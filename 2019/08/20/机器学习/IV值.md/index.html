@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="人工智能,特征工程," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="$IV$的全称是Information Value，中文意思是信息价值，或者信息量。在特征选择的过程中，可以定量的描述模型的预测能力。每一个特征对应一个$IV$值。     IV值 IV&amp;lt;0.02 0.02$\leqslant$IV&amp;lt;0.1 0.1$\leqslant$IV&amp;lt;0.3 IV$\geqslant$0.3     预测能力 不具有预测能力 预测能力很弱 中等程度预测能力">
+<meta name="keywords" content="人工智能,特征工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IV值">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/机器学习/IV值.md/index.html">
+<meta property="og:site_name" content="黎明晨光">
+<meta property="og:description" content="$IV$的全称是Information Value，中文意思是信息价值，或者信息量。在特征选择的过程中，可以定量的描述模型的预测能力。每一个特征对应一个$IV$值。     IV值 IV&amp;lt;0.02 0.02$\leqslant$IV&amp;lt;0.1 0.1$\leqslant$IV&amp;lt;0.3 IV$\geqslant$0.3     预测能力 不具有预测能力 预测能力很弱 中等程度预测能力">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-29T07:26:47.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IV值">
+<meta name="twitter:description" content="$IV$的全称是Information Value，中文意思是信息价值，或者信息量。在特征选择的过程中，可以定量的描述模型的预测能力。每一个特征对应一个$IV$值。     IV值 IV&amp;lt;0.02 0.02$\leqslant$IV&amp;lt;0.1 0.1$\leqslant$IV&amp;lt;0.3 IV$\geqslant$0.3     预测能力 不具有预测能力 预测能力很弱 中等程度预测能力">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/20/机器学习/IV值.md/"/>
+
+
+
+
+
+  <title>IV值 | 黎明晨光</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黎明晨光</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活从一点一滴开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/机器学习/IV值.md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IV值</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T15:22:10+08:00">
+                2019-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>$IV$的全称是Information Value，中文意思是信息价值，或者信息量。在特征选择的过程中，可以定量的描述模型的预测能力。每一个特征对应一个$IV$值。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>IV值</th>
+<th>IV&lt;0.02</th>
+<th>0.02$\leqslant$IV&lt;0.1</th>
+<th>0.1$\leqslant$IV&lt;0.3</th>
+<th>IV$\geqslant$0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预测能力</td>
+<td>不具有预测能力</td>
+<td>预测能力很弱</td>
+<td>中等程度预测能力</td>
+<td>预测能力很强</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="IV值的直观理解"><a href="#IV值的直观理解" class="headerlink" title="IV值的直观理解"></a>IV值的直观理解</h1><p>对$IV$值的直观理解：我们假设在一个分类问题中，<code>label</code>为：$Y_1$，$Y_2$；特征为$C_1，C_2，C_3，……，C_n$。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$C_1，C_2，C_3，……，C_n$</td>
+<td>$Y_1$，$Y_2$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对于一个样本$A$，要判断A属于$Y_1$还是$Y_2$，我们是需要一定的信息的，假设这个信息总量是$I$，而这些所需要的信息，就蕴含在所有的特征中，那么，对于其中的一个特征$C_i$来说，其蕴含的信息越多，那么它对于判断$A$属于$Y_1$还是$Y_2$的贡献就越大，$C_i$的信息价值就越大，$C_i$的$IV$就越大。</p>
+<a id="more"></a>
+<h1 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h1><ol>
+<li><p>计算每一个特征的$WOE_i$<br>要对一个特征进行$WOE$编码，需要首先把这个变量进行分组处理（也叫离散化、分箱等等）。分组后，对于第$i$组，$WOE$的计算公式如下：</p>
+<script type="math/tex; mode=display">
+WOE_i = ln(\frac{py_i}{pn_i})=ln(\frac{y_i/y_T}{n_i/n_T})</script><p><strong>WOE实际上是“当前分组中响应客户占所有响应客户的比例”和“当前分组中没有响应的客户占所有没有响应的客户的比例”的差异。WOE越大，这种差异越大，这个分组里的样本响应的可能性就越大，WOE越小，差异越小，这个分组里的样本响应的可能性就越小。</strong></p>
+</li>
+<li><p>计算每一个特征的$VI$值</p>
+<script type="math/tex; mode=display">\begin{aligned}
+IV_i &= (py_i-pn_i)\times WOE_i =(py_i-pn_i)\times ln(\frac{py_i}{pn_i})= (\frac{y_i}{y_T}-\frac{n_i}{n_T}) \times ln(\frac{y_i/y_T}{n_i/n_T})  \\
+IV &= \sum_{i}^n IV_i
+\end{aligned}</script><ul>
+<li>$y_T$：样本中好的用户总数</li>
+<li>$n_T$：样本中坏的用户总数</li>
+<li>$y_i$：第$i$组中好的用户数</li>
+<li>$n_i$：第$i$组中坏的用户数</li>
+</ul>
+</li>
+</ol>
+<h1 id="计算实例"><a href="#计算实例" class="headerlink" title="计算实例"></a>计算实例</h1><p>假设我们需要构建一个预测模型，预测公司客户对我们的这项营销活动响应的可能性有多大。假设我们已经从公司客户列表中随机抽取了100000个客户进行了营销活动测试，收集了这些客户的响应结果，作为我们的建模数据集，其中响应的客户有10000个。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>样本总量</th>
+<th>响应样本量</th>
+<th>未响应样本量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100000    十万</td>
+<td>10000    1万</td>
+<td>90000    9万</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>我们以其中的一个特征“最近一次购买金额”为例计算$WOE$和$IV$值</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>最近一次购买金额</th>
+<th>响应</th>
+<th>未响应</th>
+<th>合计</th>
+<th>响应比例</th>
+<th>WOE</th>
+<th>IV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;100元</td>
+<td>2500</td>
+<td>47500</td>
+<td>50000</td>
+<td>5%</td>
+<td>-0.74721</td>
+<td>0.20756</td>
+</tr>
+<tr>
+<td>[100,200)</td>
+<td>3000</td>
+<td>27000</td>
+<td>30000</td>
+<td>10%</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>[200,500)</td>
+<td>3000</td>
+<td>12000</td>
+<td>15000</td>
+<td>20%</td>
+<td>0.81093</td>
+<td>0.135155</td>
+</tr>
+<tr>
+<td>$\geqslant$500</td>
+<td>1500</td>
+<td>3500</td>
+<td>5000</td>
+<td>30%</td>
+<td>1.349927</td>
+<td>0.149992</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>10000</td>
+<td>90000</td>
+<td>100000</td>
+<td>10%</td>
+<td>0</td>
+<td>0.492706</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>&lt;100元：$IV_1=(\frac {2500}{10000}-\frac{47500}{90000})\times WOE_1=(\frac {2500}{10000}-\frac{47500}{90000})\times ln(\frac{2500/10000}{47500/90000})=0.20756$</li>
+<li>[100,200)  ：$IV_2=(\frac {3000}{10000}-\frac{27000}{90000})\times WOE_2=(\frac {3000}{10000}-\frac{27000}{90000})\times ln(\frac{3000/10000}{27000/90000})=0$</li>
+<li>[200,500)  ：$IV_3=(\frac {3000}{10000}-\frac{12000}{90000})\times WOE_2=(\frac {3000}{10000}-\frac{12000}{90000})\times ln(\frac{3000/10000}{12000/90000})=0.135155$</li>
+<li>$\geqslant$500：$IV_4=(\frac {1500}{10000}-\frac{3500}{90000})\times WOE_1=(\frac {1500}{10000}-\frac{3500}{90000})\times ln(\frac{1500/10000}{3500/90000})=0.149992$</li>
+</ul>
+<script type="math/tex; mode=display">
+IV=\sum_i^n IV_i= IV_1+IV_2+IV_3+IV_4 = 0.492706</script><h2 id="WOE的理解"><a href="#WOE的理解" class="headerlink" title="WOE的理解"></a>WOE的理解</h2><p><strong>WOE实际上是“当前分组中响应客户占所有响应客户的比例”和“当前分组中没有响应的客户占所有没有响应的客户的比例”的差异。WOE越大，这种差异越大，这个分组里的样本响应的可能性就越大，WOE越小，差异越小，这个分组里的样本响应的可能性就越小。</strong></p>
+<ol>
+<li>当前分组中，响应的比例越大，WOE值越大；</li>
+<li>当前分组WOE的正负，由当前分组响应和未响应的比例，与样本整体响应和未响应的比例的大小关系决定，当前分组的比例小于样本整体比例时，WOE为负，当前分组的比例大于整体比例时，WOE为正，当前分组的比例和整体比例相等时，WOE为0。</li>
+<li>WOE的取值范围是全体实数。</li>
+</ol>
+<h2 id="为什么用IV而不是直接用WOE"><a href="#为什么用IV而不是直接用WOE" class="headerlink" title="为什么用IV而不是直接用WOE"></a>为什么用IV而不是直接用WOE</h2><p>从上面的内容来看，特征各分组的$WOE$和$IV$都隐含着这个分组对目标变量的预测能力这样的意义。那我们为什么不直接用$WOE$相加或者绝对值相加作为衡量一个变量整体预测能力的指标呢？</p>
+<ol>
+<li><p>当我们衡量一个变量的预测能力时，我们所使用的指标值不应该是负数，否则，说一个变量的预测能力的指标是$-2.3$，听起来很别扭。从这个角度讲，乘以$(py_i-pn_i)$这个系数，保证了变量每个分组的结果都是非负数，你可以验证一下，当一个分组的$WOE$是正数时，$(py_i-pn_i)$也是正数，当一个分组的$WOE$是负数时，$(py_i-pn_i)$也是负数，而当一个分组的$WOE=0$时，$(py_i-pn_i)$也是0。</p>
+<p>当然，上面的原因不是最主要的，因为其实我们上面提到的$WOE=\sum_i^n |WOE_i|$这个指标也可以完全避免负数的出现。</p>
+</li>
+<li><p>乘以$(py_i-pn_i)$后，体现出了变量当前分组中个体的数量占整体个体数量的比例，对变量预测能力的影响。怎么理解这句话呢？我们还是举个例子。</p>
+<p>假设我们上面所说的营销响应模型中，还有一个特征A（是否为公司VIP客户），其取值只有两个<code>0,1</code>，数据如下：</p>
+<p>| A(是否为公司VIP) | 响应  | 未响应 | 合计   | 响应比例 | WOE       | IV           |<br>| ———————— | ——- | ——— | ——— | ———— | ————- | —————— |<br>| 1                | 90    | 10     | 100    | 90%      | 4.3944492 | 0.0390618    |<br>| 0                | 9910  | 89990  | 99900  | 10%      | -0.00893  | $7.937^{-5}$ |<br>| 合计             | 10000 | 90000  | 100000 | 10%      | 4.4033788 | 0.0391411    |</p>
+<p>我们从上表可以看出，当特征A（是否为公司VIP）取值1时，其响应比例达到了90%，非常的高，但是我们能否说特征的预测能力非常强呢？不能。为什么呢？原因就在于，A取1时，响应比例虽然很高，但这个分组的客户数太少了，占的比例太低了。虽然，如果一个客户在A这个特征上取1，那他有90%的响应可能性，但是一个客户特征A取1的可能性本身就非常的低。所以，对于样本整体来说，特征的预测能力并没有那么强。</p>
+<p>我们分别看一下变量各分组和整体的$WOE$，$IV$。从这个表我们可以看到，变量取1时，响应比达到90%，对应的$WOE$很高，但对应的$IV$却很低，原因就在于$IV$在$WO$E的前面乘以了一个系数$(py_i-pn_i)$，而这个系数很好的考虑了这个分组中样本占整体样本的比例，比例越低，这个分组对变量整体预测能力的贡献越低。相反，如果直接用$WOE$的绝对值加和，会得到一个很高的指标，这是不合理的。</p>
+</li>
+</ol>
+<h1 id="IV的极端情况以及处理方式"><a href="#IV的极端情况以及处理方式" class="headerlink" title="IV的极端情况以及处理方式"></a>IV的极端情况以及处理方式</h1><p>IV依赖WOE，并且IV是一个很好的衡量自变量对目标变量影响程度的指标。但是，使用过程中应该注意一个问题：特征的任何分组中，不应该出现响应数=0或非响应数=0的情况。</p>
+<p>原因很简单，当变量一个分组中，响应数=0时，此时对应的$IV_i$为$-∞$。$WOE_i=ln(\frac{0/n_i}{y_T/n_T})=-∞$</p>
+<p>而当变量一个分组中，没有响应的数量 = 0时，此时的$IV_i$为$+∞$。$WOE_i=ln(\frac{y_i/0}{y_T/n_T})=+∞$</p>
+<p>那么，遇到响应比例为0或者100%的情况，我们应该怎么做呢？建议如下：</p>
+<ol>
+<li><p>如果可能，直接把这个分组做成一个规则，作为模型的前置条件或补充条件；</p>
+</li>
+<li><p>重新对变量进行离散化或分组，使每个分组的响应比例都不为0且不为100%，尤其是当一个分组个体数很小时（比如小于100个），强烈建议这样做，因为本身把一个分组个体数弄得很小就不是太合理。</p>
+</li>
+<li><p>如果上面两种方法都无法使用，建议人工把该分组的响应数和非响应的数量进行一定的调整。如果响应数原本为0，可以人工调整响应数为1，如果非响应数原本为0，可以人工调整非响应数为1.</p>
+</li>
+</ol>
+<h2 id="随机森林特征重要性Identifying-churn-drivers-with-Random-Forests"><a href="#随机森林特征重要性Identifying-churn-drivers-with-Random-Forests" class="headerlink" title="随机森林特征重要性Identifying churn drivers with Random Forests"></a>随机森林特征重要性Identifying churn drivers with Random Forests</h2><p>决策树类算法的特点之一就是有良好的模型解释性。我们可以分析出得到相应结果的数据原因，也可以得到哪些特征比较重要。下面来回顾一下得到这些的主要方法：</p>
+<p>1，<strong>平均不纯度减少（MDI）</strong>：表示每个特征对误差的平均减少程度。《统计学习要素》的作者非常简洁的解释了这种方法：“在每一棵树的每一个分裂中，分裂准则的改进是对分裂变量的重要度量，并分别在森林中的所有树上为每个变量累积。”让我们详细说明一下这段话的意思。如我们所知，决策树根据一些规则，将结点分裂为两个子结点。每次分裂都是针对一个可以使误差最小化的特征。误差的计算可以使均方误差，基尼纯度，信息增益，或者其他一些根据需要设置的指标。我们总结了所有树上，这个特定变量得到的所有分割使误差减少的情况。在sk-learn包中，每次分裂带来的提升效果，是由到达节点的样本数加权得到的，然后对特征的重要性进行归一化处理。值得注意的是，这种方法往往高估了具有许多类别的特性的重要性。这里描述了一种纠正MDI偏置的替代方法。</p>
+<p>2，<strong>平均精确率减少（MDA）</strong>：打乱每个特征的特征值顺序，并且度量顺序变动对模型的精确率的影响。这种巧妙的方法利用袋外数据来计算重要性。OOB数据是训练集的一部分，但不用于训练这种特殊的树。用OOB数据计算出基本误差，然后对每个特征，随机打乱顺序。实际上，这就像用相同的分布使用随机数据替换变量一样，并忽视树对该特性的已有知识。对于不重要的特征来说，打乱顺序对模型的精确率影响不会太大，但是对于重要的特征来说，打乱顺序就会降低模型的精确率。</p>
+<p>3，<strong>Boruta</strong>：重复删除比最佳特征差的特征。主要思想就是检查比随机噪声重要的特征。首先我们要建立影子变量将所有特征混合。这就像在“减少平均精度”中描述的变量打乱一样，但这个方法是同时对所有变量进行操作。我们将影子特征加入到原有特征中，然后用随机森林进行训练。使用上述介绍的MDA或者MDI方法，我们可以看到哪个原始变量比影子变量重要。如果不相关的特征较少，则重要性度量更精确。因此，上述过程重复到预定义的次数，或者直到达到最小特征计数为止。这个算法从最不相关的特征开始删除，因此我们可以用删除顺序作为特征重要性排序。Boruta是一个“相关”的特征选择算法。这与通过确定最佳预测精度得到的最小数据集方法有细微的区别。正如该方法的作者所说的那样：“这个算法尝试找到所有对预测结果有用的特征，而不是找到一个使误差最小的特征集合。”</p>
+<p>1：对于随机森林中的每一颗决策树,使用相应的OOB(袋外数据)数据来计算它的袋外数据误差,记为errOOB1.</p>
+<p>2:  随机地对袋外数据OOB所有样本的特征X加入噪声干扰(就可以随机的改变样本在特征X处的值),再次计算它的袋外数据误差,记为errOOB2.</p>
+<p>3：假设随机森林中有Ntree棵树,那么对于特征X的重要性=∑(errOOB2-errOOB1)/Ntree,之所以可以用这个表达式来作为相应特征的重要性的度量值是因为：若给某个特征随机加入噪声之后,袋外的准确率大幅度降低,则说明这个特征对于样本的分类结果影响很大,也就是说它的重要程度比较高。</p>
+<p>我们这里只介绍用基尼指数来评价的方法，想了解另一种方法的可以参考文献2。<br>我们将变量重要性评分（variable importance measures）用VIMVIM来表示，将Gini指数用GIGI来表示，假设有mm个特征X1，X2，X3，…，XcX1，X2，X3，…，Xc，现在要计算出每个特征XjXj的Gini指数评分VIM(Gini)jVIMj(Gini)，亦即第jj个特征在RF所有决策树中节点分裂不纯度的平均改变量。<br>Gini指数的计算公式为<br>GIm=∑|K|k=1∑k′≠kpmkpmk′=1−∑|K|k=1p2mkGIm=∑k=1|K|∑k′≠kpmkpmk′=1−∑k=1|K|pmk2<br>其中，KK表示有KK个类别，pmkpmk表示节点mm中类别kk所占的比例。<br>直观地说，就是随便从节点mm中随机抽取两个样本，其类别标记不一致的概率。<br>特征XjXj在节点mm的重要性，即节点mm分枝前后的GiniGini指数变化量为<br>VIM(Gini)jm=GIm−GIl−GIrVIMjm(Gini)=GIm−GIl−GIr<br>其中，GIlGIl和GIrGIr分别表示分枝后两个新节点的GiniGini指数。<br>如果，特征XjXj在决策树ii中出现的节点在集合MM中，那么XjXj在第ii颗树的重要性为<br>VIM(Gini)ij=∑m∈MVIM(Gini)jmVIMij(Gini)=∑m∈MVIMjm(Gini)   一个决策树中多次出现特征<br>假设RFRF中共有nn颗树，那么<br>VIM(Gini)j=∑ni=1VIM(Gini)ijVIMj(Gini)=∑i=1nVIMij(Gini)<br>最后，把所有求得的重要性评分做一个归一化处理即可。<br>VIMj=VIMj∑ci=1VIMi<br> ————————————————<br>版权声明：本文为CSDN博主「zjuPeco」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/zjuPeco/article/details/77371645" target="_blank" rel="noopener">https://blog.csdn.net/zjuPeco/article/details/77371645</a></p>
+<p>xgboost使用得分作为特征的重要性</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/人工智能/" rel="tag"># 人工智能</a>
+          
+            <a href="/tags/特征工程/" rel="tag"># 特征工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/19/pyspark-DataFrame/" rel="next" title="pyspark-DataFrame">
+                <i class="fa fa-chevron-left"></i> pyspark-DataFrame
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/20/机器学习/" rel="prev" title="机器学习">
+                机器学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYwNi8xMDE2MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/tou_xiang.jpg"
+                alt="路西法" />
+            
+              <p class="site-author-name" itemprop="name">路西法</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Angel0726" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MaHao_0726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IV值的直观理解"><span class="nav-number">1.</span> <span class="nav-text">IV值的直观理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算方法"><span class="nav-number">2.</span> <span class="nav-text">计算方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算实例"><span class="nav-number">3.</span> <span class="nav-text">计算实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WOE的理解"><span class="nav-number">3.1.</span> <span class="nav-text">WOE的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么用IV而不是直接用WOE"><span class="nav-number">3.2.</span> <span class="nav-text">为什么用IV而不是直接用WOE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IV的极端情况以及处理方式"><span class="nav-number">4.</span> <span class="nav-text">IV的极端情况以及处理方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机森林特征重要性Identifying-churn-drivers-with-Random-Forests"><span class="nav-number">4.1.</span> <span class="nav-text">随机森林特征重要性Identifying churn drivers with Random Forests</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路西法</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

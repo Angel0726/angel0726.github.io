@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="人工智能,统计,抽样分布," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概率论与数理统计的主要区别为，在概率论中所研究的随机变量，其分布都是假设已知的，在这一前提下去研究它的性质（数字特征，分布函数等）；而在数理统计中研究的随机变量其分布是未知的，通过对所研究的随机变量进行重复独立的试验和观察，得到许多观察值，再对观察值进行分析，从而对所研究的随机变量的分布做出各种推断 因此数理统计的主要内容包括两部分，一是如何收集，整理数据资料，二是如何对得到的数据资料进行分析和研">
+<meta name="keywords" content="人工智能,统计,抽样分布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="样本以及抽样分布">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/样本以及抽样分布/index.html">
+<meta property="og:site_name" content="黎明晨光">
+<meta property="og:description" content="概率论与数理统计的主要区别为，在概率论中所研究的随机变量，其分布都是假设已知的，在这一前提下去研究它的性质（数字特征，分布函数等）；而在数理统计中研究的随机变量其分布是未知的，通过对所研究的随机变量进行重复独立的试验和观察，得到许多观察值，再对观察值进行分析，从而对所研究的随机变量的分布做出各种推断 因此数理统计的主要内容包括两部分，一是如何收集，整理数据资料，二是如何对得到的数据资料进行分析和研">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-7688d0c8.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-bc11bcfe.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-3e85fbb1.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-80c1cca7.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-79d1c781.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-35e6599e.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-0a6c68e5.png">
+<meta property="og:updated_time" content="2019-08-29T01:58:00.357Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="样本以及抽样分布">
+<meta name="twitter:description" content="概率论与数理统计的主要区别为，在概率论中所研究的随机变量，其分布都是假设已知的，在这一前提下去研究它的性质（数字特征，分布函数等）；而在数理统计中研究的随机变量其分布是未知的，通过对所研究的随机变量进行重复独立的试验和观察，得到许多观察值，再对观察值进行分析，从而对所研究的随机变量的分布做出各种推断 因此数理统计的主要内容包括两部分，一是如何收集，整理数据资料，二是如何对得到的数据资料进行分析和研">
+<meta name="twitter:image" content="http://yoursite.com/2017/08/15/样本以及抽样分布/样本以及抽样分布-7688d0c8.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/15/样本以及抽样分布/"/>
+
+
+
+
+
+  <title>样本以及抽样分布 | 黎明晨光</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黎明晨光</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活从一点一滴开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/15/样本以及抽样分布/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">样本以及抽样分布</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T19:41:01+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>概率论与数理统计的主要区别为</strong>，在<strong>概率论</strong>中所研究的随机变量，其<strong>分布都是假设已知的</strong>，在这一前提下去研究它的性质（数字特征，分布函数等）；而在<strong>数理统计</strong>中研究的随机变量其<strong>分布是未知的</strong>，通过对所研究的随机变量进行<strong>重复独立的试验和观察</strong>，得到许多观察值，再对观察值进行分析，从而<strong>对所研究的随机变量的分布做出各种推断</strong></p>
+<p>因此数理统计的主要内容包括两部分，一是如何收集，整理数据资料，二是如何对得到的数据资料进行分析和研究，从而对所研究的对象的性质和特点做出推断。第二部分其实就是统计推断的问题，也是后面主要讲述的内容。本文主要讲述数理统计中的两个基本概念：<strong>样本和抽样分布</strong>。</p>
+<a id="more"></a>
+<h1 id="样本"><a href="#样本" class="headerlink" title="样本"></a>样本</h1><p>从前面可知，数理统计就是通过数据来推断变量的分布，比如说现在要求求出全国成年男人的身高的一个分布，那只需要测出每个成年男人的身高后进行统计即可。</p>
+<p>但是在实际中，受限于人力物力和测试的难度，我们往往不会对每个成年男人进行身高的测试，而是在全国男人中选择部分的男人进行测试(如根据每个地区的人口数量按比例测试)，然后用这部分男人的身高分布来推断全国男人的分布，这样的推断肯定会存在误差，但是通过增加样本的数量，可以减少这种误差(大数定理)。</p>
+<p>上面其实就是一个很简单的数理统计过程，当中有几个概念需要注意，例子中的全国男人的身高是一个<strong>总体</strong>，选择出来实际测试身高的男人是一个<strong>样本</strong>，测试得到的身高称为<strong>样本值（观测值）</strong>，总体和样本中的数目分别称为他们的<strong>容量</strong>。</p>
+<p>其严格定义如下：</p>
+<p>设 $X$ 是具有分布函数 $F$ 的随机变量, 若 $X_1, X_2, …,X_n$ 是具有同一分布函数 $F$ 的相互独立的随机变量，则称 $X_1, X_2, …,X_n$ 为从分布函数 $F$ 得到的容量为 $n$ 的简单随机样本，简称样本，他们的观测值 $x_1, x_2,…x_n$ 称为样本值，又称为 $X$ 的 $n$ 个独立的观测值。</p>
+<p>由定义可知样本 $X_1,X_2,…,X_n$ 相互独立，且他们的分布函数均为 $F$ , 所以 ( $X_1,X_2,…,X_n$ )的分布函数为</p>
+<script type="math/tex; mode=display">F^*(x_1,x_2,…,x_n) = \prod_{i=1}^nF(x_i)</script><p>同样,(X1,X2,…,Xn)的概率密度函数为：</p>
+<script type="math/tex; mode=display">f^*(x_1,x_2,…,x_n) = \prod_{i=1}^nf(x_i)</script><h1 id="抽样分布"><a href="#抽样分布" class="headerlink" title="抽样分布"></a>抽样分布</h1><h2 id="统计量"><a href="#统计量" class="headerlink" title="统计量"></a>统计量</h2><p>样本是进行统计推断的依据，但是在应用中，往往不是直接使用样本本身，而是<strong>针对不同问题构造适当的样本的函数，利用这些样本的函数进行统计推断。</strong></p>
+<p>当这些样本的函数中不含未知变量时，我们称其为统计量，如下面就是几个常用的统计量，其中 $X_1,X_2,….,X_n$ 为总体的一个样本。</p>
+<p>样本平均值：</p>
+<script type="math/tex; mode=display">\overline X = \frac{1}{n} \sum_{i=1}^{n} X_i</script><p>样本方差：</p>
+<script type="math/tex; mode=display">S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline X)^2</script><p>样本标准差：</p>
+<script type="math/tex; mode=display">S = \sqrt {S^2}</script><p>样本 k 阶原点矩：</p>
+<script type="math/tex; mode=display">A_k = \frac{1}{n} \sum_{i=1}^{n} X_i^k (k=1,2,…)</script><p>样本 k 阶中心矩:</p>
+<script type="math/tex; mode=display">B_k = \frac{1}{n} \sum_{i=1}^{n}(X_i - \overline X)^k (k=2,3,4…..)</script><p>这些统计量的定义与概率论中的基本相似，唯一比较奇怪的是为什么样本方差的分母是 $n−1$ 而不是 $n$，原因是通过数学证明可以得到只有当分母取n-1时，用样本来估计总体才是无偏的(无偏指的是估计量的期望与总体的参数一致)，下面是分母取n时得到的有偏估计的证明过程（$S^2_1$为样本方差）</p>
+<p><img src="/2017/08/15/样本以及抽样分布/样本以及抽样分布-7688d0c8.png" alt=""></p>
+<h2 id="统计量的分布"><a href="#统计量的分布" class="headerlink" title="统计量的分布"></a>统计量的分布</h2><p>使用统计量进行统计推断时，常常需要知道其分布，<strong>统计量的分布也称为抽样分布</strong>，下面介绍三种来自正态分布的抽样分布： $χ^2$ 分布，$t$ 分布和 $F$ 分布。</p>
+<h3 id="χ-2-分布"><a href="#χ-2-分布" class="headerlink" title="$χ^2$ 分布"></a>$χ^2$ 分布</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>设 $X_1, X_2,…X_n$ 是来自总体 $N(0,1)$ 的样本，则称统计量</p>
+<script type="math/tex; mode=display">
+\chi^2 = X_1^2 + X_2^2 +….X_n^2</script><p>为服从自由度为 $n$ 的 $χ^2$ 分布，记作 $X$~$χ^2(n)$。其中自由度$n$指的是右端独立变量的个数。</p>
+<h4 id="概率密度函数"><a href="#概率密度函数" class="headerlink" title="概率密度函数"></a>概率密度函数</h4><p>$χ^2(n)$ 的概率密度函数为</p>
+<script type="math/tex; mode=display">
+f(y) = \begin{cases}  \frac{1}{2^{\frac{n}{2}}\Gamma(n/2)}y^{n/2-1}e^{-y/2} &{y>0} \\ 0&{其他}\end{cases}</script><p>上式的 $Γ$ 函数定义为$\Gamma = \int_{0}^{\infty} \frac{t^z - 1}{e^t} dt$。$f(y)$ 的图像如下所示</p>
+<p><img src="/2017/08/15/样本以及抽样分布/样本以及抽样分布-bc11bcfe.png" alt="卡方分布的概率密度函数"></p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><p>关于 $χ^2(n)$ 有以下几个有用的结论：</p>
+<ul>
+<li><p>可加性<br>设 $\chi_1^2$~$\chi^2(n_1), \chi_2^2$ ~ $\chi_2^2(n_2)$ , 并且 $\chi_1^2, \chi_2^2$ 相互独立，则有</p>
+<script type="math/tex; mode=display">\chi_1^2 + \chi_2^2 \sim \chi^2(n_1 + n_2)</script></li>
+<li><p>期望和方差<br>若$\chi^2(n)$，则$χ^2$的期望和方差如下所示</p>
+<script type="math/tex; mode=display">E(\chi^2) = n, D(\chi^2)=2n</script></li>
+<li><p>分位点</p>
+<p>分位点的定义如下，给定正数 $a,0&lt;a&lt;1$, 称满足下面条件的 $\chi_a^2(n)$ 为 $\chi^2(n)$ 上的 $a$ 分位点，其图像如下所示</p>
+<p><img src="/2017/08/15/样本以及抽样分布/样本以及抽样分布-3e85fbb1.png" alt=""></p>
+<p>由定义可知，分位点由 $a,n$ 共同决定，因此对于不同的 $a，n$ 可以查阅表格得到其 $a$ 分位点。</p>
+</li>
+</ul>
+<h3 id="t-分布"><a href="#t-分布" class="headerlink" title="$t$ 分布"></a>$t$ 分布</h3><p>t分布的定义如下：</p>
+<p>设 $X \sim N(0,1), Y \sim \chi^2(n)$, 且 X,Y 相互独立，则称随机变量</p>
+<script type="math/tex; mode=display">t = \frac{X}{\sqrt{Y/n}}</script><p>服从自由度为 $n$ 的 $t$ 分布, 记为 $t∼t(n)$<br>其概率密度函数和对应的图像如下所示：<br><img src="/2017/08/15/样本以及抽样分布/样本以及抽样分布-80c1cca7.png" alt="t分布的概率密度函数和图像"></p>
+<p>其分位点的定义与上面讲述的一样，</p>
+<script type="math/tex; mode=display">P(t \gt t_a(n)) = \int_{t_a(n)}^{\infty}h(t)dt= a</script><p><img src="/2017/08/15/样本以及抽样分布/样本以及抽样分布-79d1c781.png" alt=""></p>
+<p>且由于其概率密度函数的对称性可知,总是存在这样对称的两个分位点 ： $t_{1-a}(n) = -t_a(n)$</p>
+<h3 id="F-分布"><a href="#F-分布" class="headerlink" title="$F$ 分布"></a>$F$ 分布</h3><p>$F$ 分布的定义如下</p>
+<p>设 $U∼χ^2(n_1),V∼χ^2(n_2$， 且 $U,V$ 相互独立，则称随机变量</p>
+<script type="math/tex; mode=display">F = \frac{U/n_1}{V/n_2}</script><p>服从自由度为 $(n_1,n_2)$ 的 $F$ 分布，记为$F∼F(n_1,n_2)$<br>其概率密度函数为：</p>
+<script type="math/tex; mode=display">\psi(y) = \begin{cases}  \frac{\Gamma((n_1+n_2)/2)(n_1/n_2)^{n_1/2}y^{n_1/2-1}}{\Gamma(n_1/2)\Gamma(n_2/2)[1+(n_1y/n_2)]^{(n_1+n_2/)2}} &{y>0} \\ 0&{其他}\end{cases}</script><p>概率密度函数的图像如下所示<br><img src="/2017/08/15/样本以及抽样分布/样本以及抽样分布-35e6599e.png" alt="F分布的概率密度函数"></p>
+<p>其分位点定义同上</p>
+<script type="math/tex; mode=display">P(F \gt F_a(n_1,n_2)) = \int_{F_a(n_1,n_2)}^{\infty}\psi(y)dy= a</script><p><img src="/2017/08/15/样本以及抽样分布/样本以及抽样分布-0a6c68e5.png" alt="F分布的分为点"></p>
+<p>且具有以下性质</p>
+<script type="math/tex; mode=display">F_{1-a}(n_1,n_2) = \frac{1}{F_a(n_2,n_1)}</script><p>上面只是简单地介绍了三大抽样分布，并未介绍其作用，<strong>实际上三大抽样分布主要用于参数的区间估计中，而这主要基于从正态分布中抽取的样本所构造的统计量服从这三大分布这一事实，从下面要介绍的定理中可以看到了这三大抽样分布的作用</strong>。更详细的作用会在区间估计中进一步体现。</p>
+<h3 id="正态总体的样本均值与样本方差的分布-统计量的应用"><a href="#正态总体的样本均值与样本方差的分布-统计量的应用" class="headerlink" title="正态总体的样本均值与样本方差的分布(统计量的应用)"></a>正态总体的样本均值与样本方差的分布(统计量的应用)</h3><p>由于正态分布的普遍性，这里特意指出从服从正态分布的总体中抽取出的样本的所服从的分布。</p>
+<p>假设上面的 $X$ 服从正态分布 $N(μ,σ^2)$, 则有以下几条定理，这几条定理在数理统计的区间估计中起了重要作用。</p>
+<h4 id="定理一"><a href="#定理一" class="headerlink" title="定理一"></a>定理一</h4><ul>
+<li>定理一： 设 $X_1, X_2,….X_n$ 服从 $N(μ,σ^2)$，$\overline X$是样本均值，则有<script type="math/tex; mode=display">\overline X \sim N(\mu,\sigma^2/n)</script></li>
+</ul>
+<p>证明如下：</p>
+<script type="math/tex; mode=display">E(\overline X) = E(\frac{1}{n}\sum_{i=1}^{n} X_i) = \frac{1}{n}E(\sum_{i=1}^{n} X_i) = \frac{1}{n}n E(X) = \mu</script><script type="math/tex; mode=display">D(\overline X) = D(\frac{1}{n}\sum_{i=1}^{n} X_i) = \frac{1}{n^2}D(\sum_{i=1}^{n} X_i) = \frac{1}{n}n D(X) = \sigma^2/n</script><p><strong>定理一通常用于区间估计中已知总体（服从正态分布）的期望$μ$来估计其未知的方差 $σ^2$ ,或已知方差 $σ^2$ 来估计未知的期望 $μ$。</strong></p>
+<h4 id="定理二"><a href="#定理二" class="headerlink" title="定理二"></a>定理二</h4><ul>
+<li>定理二 ：设 $X_1, X_2,….X_n$ 服从 $N(μ,σ^2)$，$\overline X$是样本均值，$S^2$ 是样本的方差，则 $\overline X$ 和 $S^2$ 相互独立，且有<script type="math/tex; mode=display">\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)</script></li>
+</ul>
+<p>由于该定理的证明部分较为冗长，这里略去证明过程，感兴趣的读者可参考相关书籍。<strong>定理二主要用于区间估计中总体（服从正态分布）的期望、方差均未知时，估计其方差的范围，这也是 $χ^2$ 分布的作用之一。</strong></p>
+<h4 id="定理三"><a href="#定理三" class="headerlink" title="定理三"></a>定理三</h4><ul>
+<li>定理三：设 $X_1, X_2,….X_n$ 服从 $N(μ,σ^2)$，$\overline X$是样本均值，$S^2$ 是样本的方差，则<script type="math/tex; mode=display">\frac{\overline X - \mu}{S/\sqrt{n}} \sim t(n-1)</script></li>
+</ul>
+<p><strong>定理三主要用于区间估计中总体（服从正态分布）的期望、方差均未知时，估计其期望的范围，这也是 $t$ 分布的作用之一,注意前面讲到的 $χ^2$ 分布估计的是方差。</strong></p>
+<p>证明：<br>根据定理一，易知 $\overline X - \mu \sim N(0, \sigma^2/n)$ , 则 $\frac{\overline X - \mu}{\sqrt{\sigma^2/n}} \sim N(0,1)$ , 从定理二可知</p>
+<script type="math/tex; mode=display">\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)</script><p>则根据t分布的定义有</p>
+<script type="math/tex; mode=display">\frac{\frac{\overline X - \mu}{\sqrt{\sigma^2/n}}} {\sqrt{\frac{(n-1)S^2}{\sigma^2(n-1)}}} \sim t(n-1)</script><p>化简可得</p>
+<script type="math/tex; mode=display">\frac{\overline X - \mu}{\sqrt{\sigma^2/n}} \sim t(n-1)</script><p><strong>定理三主要用于区间估计中总体（服从正态分布）的期望、方差均未知时，估计其期望的范围，这也是 $t$ 分布的作用之一,注意前面讲到的 $χ^2$ 分布估计的是方差。</strong></p>
+<h4 id="定理四"><a href="#定理四" class="headerlink" title="定理四"></a>定理四</h4><ul>
+<li>定理四：设 $X_1, X_2…X_n$ 与 $Y_1,Y_2,…Y_n$ 分别是来自正态总体 $N(\mu_1, \sigma_1^2)$ 和 $N(\mu_2, \sigma_2^2)$ 的样本, $\overline X, \overline Y$ 分别是其样本均值，$S_1^2, S_2^2$ 分别是其样本方差。则有<script type="math/tex; mode=display">\frac{S_1^2/S_2^2}{\sigma_1^2/ \sigma_2^2} \sim F(n_1 - 1, n_2 - 1)</script>且当 $\sigma_1^2 = \sigma_2^2 = \sigma^2$ 时，<script type="math/tex; mode=display">\frac{(\overline X - \overline Y) - (\mu_1 - \mu_2)}{S_w\sqrt{1/n_1+1/n_2}} \sim t(n_1+n_2-2)</script>其中，$S_w = \sqrt{\frac{(n_1 -1)S_1^2+(n_2 -1)S_2^2}{n_1+n_2-2}}$</li>
+</ul>
+<p><strong>定理四的作用是在区间估计时估计两个均服从正态分布的总体的方差的比值（期望未知）以及两者期望的差距（方差未知）</strong><br>证明如下:<br>由定理二可知</p>
+<script type="math/tex; mode=display">\frac{(n_1-1)S_1^2}{\sigma_1^2} \sim \chi^2(n_1-1), \frac{(n_2-1)S_2^2}{\sigma_2^2} \sim \chi^2(n_2-1)</script><p>由 $F$ 分布的定义可知</p>
+<script type="math/tex; mode=display">\frac{(n_1-1)S_1^2}{\sigma_1^2(n_1-1)} / \frac{(n_2-1)S_2^2}{\sigma_2^2(n_2-1)} \sim F(n_1-1, n_2-1)</script><p>化简可得</p>
+<script type="math/tex; mode=display">\frac{S_1^2/S_2^2}{\sigma_1^2/ \sigma_2^2} \sim F(n_1 - 1, n_2 - 1)</script><p>当 $\sigma_1^2 = \sigma_2^2 = \sigma^2$ 时,</p>
+<p>易知 <script type="math/tex">(\overline X - \overline Y) \sim N(\mu_1 - \mu_2,\sigma_1^2/n_1 + \sigma_2^2/n_2)</script><br>则 $\frac{(\overline X - \overline Y)- (\mu_1 - \mu_2)}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}} \sim N(0,1)$<br>由定理二可知</p>
+<script type="math/tex; mode=display">\frac{(n_1-1)S_1^2}{\sigma_1^2} \sim \chi^2(n_1-1), \frac{(n_2-1)S_2^2}{\sigma_2^2} \sim \chi^2(n_2-1)</script><p>, 由 $χ^2$ 分布的可加性可知：</p>
+<script type="math/tex; mode=display">\frac{(n_1-1)S_1^2}{\sigma_1^2} + \frac{(n_2-1)S_2^2}{\sigma_2^2} \sim \chi^2(n_1+n_2-2)</script><p>由t分布的定义可知：</p>
+<script type="math/tex; mode=display">\frac{(\overline X - \overline Y)- (\mu_1 - \mu_2)}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}} / (\sqrt{(\frac{(n_1-1)S_1^2}{\sigma_1^2} + \frac{(n_2-1)S_2^2}{\sigma_2^2})/(n_1+n_2-2)}) \sim t(n_1+n_2-2)</script><p>将 $\sigma_1^2 = \sigma_2^2 = \sigma^2$ 代入到上式化简即可得到</p>
+<script type="math/tex; mode=display">\frac{(\overline X - \overline Y) - (\mu_1 - \mu_2)}{S_w\sqrt{1/n_1+1/n_2}} \sim t(n_1+n_2-2)</script><p>其中，$S_w = \sqrt{\frac{(n_1 -1)S_1^2+(n_2 -1)S_2^2}{n_1+n_2-2}}$</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>$χ^2$ 分布主要解决总体期望未知时估计其方差的问题， $t$ 分布主要解决总体方差未知时估计其期望的问题，$F$ 主要解决期望未知时两个正态分布的方差比值问题。需要注意的是上面估计的前提是总体服从正态分布</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/人工智能/" rel="tag"># 人工智能</a>
+          
+            <a href="/tags/统计/" rel="tag"># 统计</a>
+          
+            <a href="/tags/抽样分布/" rel="tag"># 抽样分布</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/15/常见分布/" rel="next" title="常见分布">
+                <i class="fa fa-chevron-left"></i> 常见分布
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/15/先验概率与后验概率/" rel="prev" title="先验概率与后验概率">
+                先验概率与后验概率 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYwNi8xMDE2MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/tou_xiang.jpg"
+                alt="路西法" />
+            
+              <p class="site-author-name" itemprop="name">路西法</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Angel0726" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MaHao_0726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#样本"><span class="nav-number">1.</span> <span class="nav-text">样本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽样分布"><span class="nav-number">2.</span> <span class="nav-text">抽样分布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#统计量"><span class="nav-number">2.1.</span> <span class="nav-text">统计量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计量的分布"><span class="nav-number">2.2.</span> <span class="nav-text">统计量的分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#χ-2-分布"><span class="nav-number">2.2.1.</span> <span class="nav-text">$χ^2$ 分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概率密度函数"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">概率密度函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性质"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">性质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t-分布"><span class="nav-number">2.2.2.</span> <span class="nav-text">$t$ 分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F-分布"><span class="nav-number">2.2.3.</span> <span class="nav-text">$F$ 分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正态总体的样本均值与样本方差的分布-统计量的应用"><span class="nav-number">2.2.4.</span> <span class="nav-text">正态总体的样本均值与样本方差的分布(统计量的应用)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定理一"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">定理一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定理二"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">定理二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定理三"><span class="nav-number">2.2.4.3.</span> <span class="nav-text">定理三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定理四"><span class="nav-number">2.2.4.4.</span> <span class="nav-text">定理四</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路西法</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

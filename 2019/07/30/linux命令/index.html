@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统，编程语言," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文件基本属性文件属性说明对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。因此，Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。">
+<meta name="keywords" content="操作系统，编程语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux命令">
+<meta property="og:url" content="http://yoursite.com/2019/07/30/linux命令/index.html">
+<meta property="og:site_name" content="黎明晨光">
+<meta property="og:description" content="文件基本属性文件属性说明对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。因此，Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-29T01:58:00.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux命令">
+<meta name="twitter:description" content="文件基本属性文件属性说明对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。因此，Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/30/linux命令/"/>
+
+
+
+
+
+  <title>linux命令 | 黎明晨光</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黎明晨光</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活从一点一滴开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/30/linux命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-30T10:59:16+08:00">
+                2019-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="文件基本属性"><a href="#文件基本属性" class="headerlink" title="文件基本属性"></a>文件基本属性</h1><h2 id="文件属性说明"><a href="#文件属性说明" class="headerlink" title="文件属性说明"></a>文件属性说明</h2><p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。<strong>因此，Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。</strong></p>
+<a id="more"></a>
+<h2 id="查看文件属性"><a href="#查看文件属性" class="headerlink" title="查看文件属性"></a>查看文件属性</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dr-xr-xr-x   2 root root 4096 Dec 14  2012 bin</span><br><span class="line">dr-xr-xr-x   4 root root 4096 Apr 19  2012 boot</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>第一个字符</th>
+<th>属主</th>
+<th>属组</th>
+<th>其他用户</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>d</strong>   目录<br><strong>-</strong>    文件<br><strong>l</strong>    链接文档(link file)<br><strong>b</strong>   装置文件里面的可供储存的接口设备(可随机存取装置)<br><strong>c</strong>   装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。</td>
+<td>r   读<br>w  写<br>x   执行</td>
+<td>r   读<br>w  写<br>x   执行</td>
+<td>r   读<br>w  写<br>x   执行</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="更改文件属性"><a href="#更改文件属性" class="headerlink" title="更改文件属性"></a>更改文件属性</h2><table>
+  <tr>
+    <th>功能</th>
+    <th colspan="5">方法</th>
+  </tr>
+  <tr>
+    <td>更改文件属组</td>
+    <td colspan="5">chgrp [-R] 属组名 文件名<br>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。<br></td>
+  </tr>
+  <tr>
+    <td rowspan="2">更改文件属主</td>
+    <td colspan="5">chown [–R] 属主名 文件名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`chown bin install.log`</td>
+  </tr>
+  <tr>
+    <td colspan="5">chown [-R] 属主名：属组名 文件名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`chown root:root install.log`</td>
+  </tr>
+  <tr>
+    <td rowspan="4">更改文件属性</td>
+    <td colspan="5">Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</td>
+  </tr>
+  <tr>
+    <td>第一种方式</td>
+    <td colspan="4">chmod [-R] xyz 文件或目录<br>-R : 进行递归(recursive)的持续变更，亦即连同次目录下的所有文件都会变更<br>xyz : 就是刚刚提到的数字类型的权限属性<br><br>` chmod 777 test`</td>
+  </tr>
+  <tr>
+    <td rowspan="2">第二种方式</td>
+    <td>u&nbsp;&nbsp;&nbsp;属主<br>g&nbsp;&nbsp;&nbsp;同组<br>o&nbsp;&nbsp;&nbsp;其他<br>a&nbsp;&nbsp;&nbsp;所有</td>
+    <td>+(加入)<br>-(除去)<br>=(设定)</td>
+    <td>r<br>w<br>x</td>
+    <td>文件或目录</td>
+  </tr>
+  <tr>
+    <td colspan="4">`chmod u=rwx,g=rx,o=r&nbsp;&nbsp;test` </td>
+  </tr>
+</table>
+
+
+
+<h1 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h1><p>Linux的目录结构为树状结构，最顶级的目录为根目录 /。其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td><strong>列出目录</strong><br>a: 全部的文件，连同隐藏文件（开头为.的文件）<br>-d ：仅列出目录本身，而不是列出目录内的文件数据(常用)<br>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</td>
+</tr>
+<tr>
+<td>cd</td>
+<td><strong>切换目录</strong><br># cd ~       # 表示回到自己的家目录，亦即是 /root 这个目录</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td><strong>显示目前的目录</strong><br>-P ：显示出确实的路径，而非使用连结 (link) 路径。</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td><strong>创建一个新的目录</strong><br>-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～<br>-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来！</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td>删除一个空的目录<br>-p ：连同上一级『空的』目录也一起删除</td>
+</tr>
+<tr>
+<td>cp</td>
+<td><strong>复制文件或目录</strong><br>-a：相当於 -pdr 的意思，至於 pdr 请参考下列说明；(常用)<br>-d：若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；<br>-f：为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；<br>-i：若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)<br>-l：进行硬式连结(hard link)的连结档创建，而非复制文件本身；<br>-p：连同文件的属性一起复制过去，而非使用默认属性(备份常用)；<br>-r：递归持续复制，用於目录的复制行为；(常用)<br>-s：复制成为符号连结档 (symbolic link)，亦即『捷径』文件；<br>-u：若 destination 比 source 旧才升级 destination ！</td>
+</tr>
+<tr>
+<td>rm</td>
+<td><strong>移除文件或目录</strong><br>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；<br>-i ：互动模式，在删除前会询问使用者是否动作<br>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</td>
+</tr>
+<tr>
+<td>mv</td>
+<td><strong>移动文件与目录，或修改文件与目录的名称</strong><br>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；<br>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！<br>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="用户与用户组"><a href="#用户与用户组" class="headerlink" title="用户与用户组"></a>用户与用户组</h1><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>useradd</td>
+<td><strong>添加新的用户账号</strong>    <code>useradd -s /bin/sh -g group –G adm,root gem</code><br><code>useradd 选项 用户名</code><br>-c   comment 指定一段注释性描述。<br>-d  目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。<br>-g  用户组 指定用户所属的用户组。<br>-G 用户组，用户组 指定用户所属的附加组。<br>-s  Shell文件 指定用户的登录Shell。<br>-u  用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</td>
+</tr>
+<tr>
+<td>userdel</td>
+<td><strong>删除帐号</strong>   <code>userdel -r sam</code><br>-r：把用户的主目录一起删除</td>
+</tr>
+<tr>
+<td>usermod</td>
+<td>修改帐号   <code>usermod -s /bin/ksh -d /home/z –g developer sam</code><br><code>usermod 选项 用户名</code><br>包括<code>-c, -d, -m, -g, -G, -s, -u以及-o等</code>，这些选项的意义与<code>useradd</code>命令中的选项一样</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>用户账号刚创建时没有口令，但是被系统锁定，无法使用，必须为其指定口令后才可以使用，即使是指定空口令。<br><code>passwd 选项 用户名</code><br>-l 锁定口令，即禁用账号。<br>-u 口令解锁。<br>-d 使账号无口令。<br>-f 强迫用户下次登录时修改口令。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对<strong>/etc/group</strong>文件的更新</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>groupadd</td>
+<td><strong>增加一个新的用户组</strong><br>-g GID 指定新用户组的组标识号（GID）。<br>-o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。</td>
+</tr>
+<tr>
+<td>groupdel</td>
+<td>删除一个已有的用户组</td>
+</tr>
+<tr>
+<td>groupmod</td>
+<td><strong>修改用户组的属性</strong><br>-g GID 为用户组指定新的组标识号。<br>-o 与-g选项同时使用，用户组的新GID可以与系统已有用户组的GID相同。<br>-n新用户组 将用户组的名字改为新名字</td>
+</tr>
+<tr>
+<td>newgrp</td>
+<td><strong>如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。</strong><br><figure class="highlight plain"><figcaption><span>root``` |</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 与用户账号有关的系统文件</span><br><span class="line"></span><br><span class="line">完成用户管理的工作有许多种方法，但是每一种方法实际上都是对有关的系统文件进行修改。这些文件包括/etc/passwd, /etc/shadow, /etc/group等。</span><br><span class="line"></span><br><span class="line">### 伪用户</span><br><span class="line"></span><br><span class="line">这些用户在/etc/passwd文件中也占有一条记录，但是不能登录，因为它们的登录Shell为空。它们的存在主要是方便系统管理，满足相应的系统进程对文件属主的要求。常见的伪用户如下所示：</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">伪 用 户 含 义 </span><br><span class="line">bin 拥有可执行的用户命令文件 </span><br><span class="line">sys 拥有系统文件 </span><br><span class="line">adm 拥有帐户文件 </span><br><span class="line">uucp UUCP使用 </span><br><span class="line">lp lp或lpd子系统使用 </span><br><span class="line">nobody NFS使用</span><br></pre></td></tr></table></figure></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="用户管理文件-etc-passwd"><a href="#用户管理文件-etc-passwd" class="headerlink" title="用户管理文件-/etc/passwd"></a>用户管理文件-/etc/passwd</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</span><br><span class="line">root:x:0:0:Superuser:/:</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">口令</td>
+<td>虽然这个字段存放的只是用户口令的加密串，不是明文，但是由于/etc/passwd文件对所有用户都可读，所以这仍是一个安全隐患。因此，现在许多Linux   系统（如SVR4）都使用了shadow技术，把真正的加密后的用户口令字存放到/etc/shadow文件中，而在/etc/passwd文件的口令字段中只存放一个特殊的字符，例如“x”或者“*”。</td>
+</tr>
+<tr>
+<td style="text-align:center">用户标识号</td>
+<td>系统内部用它来标识用户，一般情况下它与用户名是一一对应的。如果几个用户名对应的用户标识号是一样的，系统内部将把它们视为同一个用户，但是它们可以有不同的口令、不同的主目录以及不同的登录Shell等</td>
+</tr>
+<tr>
+<td style="text-align:center">组标识号</td>
+<td>记录的是用户所属的用户组。它对应着/etc/group文件中的一条记录。</td>
+</tr>
+<tr>
+<td style="text-align:center">注释性描述</td>
+<td>记录着用户的一些个人情况。例如用户的真实姓名、电话、地址等，</td>
+</tr>
+<tr>
+<td style="text-align:center">主目录</td>
+<td>用户的起始工作目录</td>
+</tr>
+<tr>
+<td style="text-align:center">登陆shell</td>
+<td>用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="用户管理文件-etc-shadow"><a href="#用户管理文件-etc-shadow" class="headerlink" title="用户管理文件-/etc/shadow"></a>用户管理文件-/etc/shadow</h3><p>由于/etc/passwd文件是所有用户都可读的，如果用户的密码太简单或规律比较明显的话，一台普通的计算机就能够很容易地将它破解，因此对安全性要求较高的Linux系统都把加密后的口令字分离出来，单独存放在一个文件中，这个文件是/etc/shadow文件。有超级用户才拥有该文件读权限，这就保证了用户密码的安全性。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志   root:Dnakfw28zf38w:8764:0:168:7:::</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录名</td>
+<td>与/etc/passwd文件中的登录名相一致的用户账号</td>
+</tr>
+<tr>
+<td>口令</td>
+<td>存放的是加密后的用户口令字，长度为13个字符。如果为空，则对应用户没有口令，登录时不需要口令；如果含有不属于集合   { ./0-9A-Za-z }中的字符，则对应的用户不能登录。</td>
+</tr>
+<tr>
+<td>最后一次修改时间</td>
+<td>从某个时刻起，到用户最后一次修改口令时的天数。时间起点对不同的系统可能不一样。例如在SCO   Linux 中，这个时间起点是1970年1月1日。</td>
+</tr>
+<tr>
+<td>最小时间间隔</td>
+<td>是两次修改口令之间所需的最小天数。</td>
+</tr>
+<tr>
+<td>最大时间间隔</td>
+<td>口令保持有效的最大天数。</td>
+</tr>
+<tr>
+<td>警告时间</td>
+<td>从系统开始警告用户到用户密码正式失效之间的天数。</td>
+</tr>
+<tr>
+<td>不活动时间</td>
+<td>用户没有登录活动但账号仍能保持有效的最大天数。</td>
+</tr>
+<tr>
+<td>失效时间</td>
+<td>给出的是一个绝对的天数，如果使用了这个字段，那么就给出相应账号的生存期。期满后，该账号就不再是一个合法的账号，也就不能再用来登录了。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="用户组管理文件-etc-group"><a href="#用户组管理文件-etc-group" class="headerlink" title="用户组管理文件-/etc/group"></a>用户组管理文件-/etc/group</h3><p>每个用户都属于某个用户组；一个组中可以有多个用户，一个用户也可以属于不同的组。当一个用户同时是多个组中的成员时，在/etc/passwd文件中记录的是用户所属的主组，也就是登录时所属的默认组，而其他组称为附加组。用户要访问属于附加组的文件时，必须首先使用newgrp命令使自己成为所要访问的组中的成员。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">组名:口令:组标识号:组内用户列表</span><br><span class="line">root::0:root</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组名</td>
+<td>用户组的名称，由字母或数字构成。与/etc/passwd中的登录名一样，组名不应重复。</td>
+</tr>
+<tr>
+<td>口令存</td>
+<td>用户组加密后的口令字。一般Linux系统的用户组都没有口令，即这个字段一般为空，或者是*。</td>
+</tr>
+<tr>
+<td>组标识号</td>
+<td>与用户标识号类似，也是一个整数，被系统内部用来标识组。</td>
+</tr>
+<tr>
+<td>组内用户列表</td>
+<td>属于这个组的所有用户的列表/b]，不同用户之间用逗号(,)分隔。这个用户组可能是用户的主组，也可能是附加组。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="添加批量用户"><a href="#添加批量用户" class="headerlink" title="添加批量用户"></a>添加批量用户</h2><ol>
+<li><p>先编辑一个文本用户文件。</p>
+<p>每一列按照<code>/etc/passwd</code>密码文件的格式书写，要注意每个用户的用户名、UID、宿主目录都不可以相同，其中密码栏可以留做空白或输入x号。一个范例文件user.txt内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">user001::600:100:user:/home/user001:/bin/bash</span><br><span class="line">user002::601:100:user:/home/user002:/bin/bash</span><br><span class="line">user003::602:100:user:/home/user003:/bin/bash</span><br><span class="line">user004::603:100:user:/home/user004:/bin/bash</span><br><span class="line">user005::604:100:user:/home/user005:/bin/bash</span><br><span class="line">user006::605:100:user:/home/user006:/bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以root身份执行命令 <code>/usr/sbin/newusers</code>，从刚创建的用户文件<code>user.txt</code>中导入数据，创建用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newusers &lt; user.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令/usr/sbin/pwunconv</p>
+<p>将 <code>/etc/shadow</code> 产生的 <code>shadow</code> 密码解码，然后回写到 <code>/etc/passwd</code> 中，并将<code>/etc/shadow</code>的<code>shadow</code>密码栏删掉。这是为了方便下一步的密码转换工作，即先取消 <code>shadow password</code> 功能。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwunconv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑每个用户的密码对照文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">user001:密码</span><br><span class="line">user002:密码</span><br><span class="line">user003:密码</span><br><span class="line">user004:密码</span><br><span class="line">user005:密码</span><br><span class="line">user006:密码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以root身份执行命令 <code>/usr/sbin/chpasswd</code></p>
+<p>创建用户密码，<code>chpasswd</code> 会将经过 <code>/usr/bin/passwd</code> 命令编码过的密码写入 <code>/etc/passwd</code> 的密码栏。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chpasswd &lt; passwd.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>确定密码经编码写入/etc/passwd的密码栏后。</p>
+<p>执行命令 <code>/usr/sbin/pwconv</code> 将密码编码为 <code>shadow password</code>，并将结果写入 <code>/etc/shadow</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwconv</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="yum-命令-包管理"><a href="#yum-命令-包管理" class="headerlink" title="yum 命令-包管理"></a>yum 命令-包管理</h1><ul>
+<li><p>yum（ Yellow dog Updater, Modified）是一个在Fedora和RedHat以及SUSE中的Shell前端软件<strong>包管理器</strong>。</p>
+</li>
+<li><p>基於RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以<strong>自动处理依赖性关系</strong>，并且一次安装所有依赖的软体包，无须繁琐地一次次下载、安装。</p>
+</li>
+<li><p>yum提供了<strong>查找、安装、删除</strong>某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum [options] [command] [package ...]</span><br></pre></td></tr></table></figure>
+<table>
+  <tr>
+    <th>参数</th>
+    <th colspan="2">说明</th>
+  </tr>
+  <tr>
+    <td rowspan="3">options</td>
+    <td>-h</td>
+    <td>帮助</td>
+  </tr>
+  <tr>
+    <td>-y</td>
+    <td>当安装过程提示选择全部为"yes"</td>
+  </tr>
+  <tr>
+    <td>-q</td>
+    <td>不显示安装的过程</td>
+  </tr>
+  <tr>
+    <td rowspan="11">command</td>
+    <td>check-update</td>
+    <td>列出所有可更新的软件清单命令</td>
+  </tr>
+  <tr>
+    <td>update</td>
+    <td>更新所有软件命令</td>
+  </tr>
+  <tr>
+    <td>update&lt;package_name&gt;</td>
+    <td>仅更新指定的软件命令</td>
+  </tr>
+  <tr>
+    <td>install &lt;package_name&gt;</td>
+    <td>仅安装指定的软件命令</td>
+  </tr>
+  <tr>
+    <td>list</td>
+    <td>列出所有可安裝的软件清单命令</td>
+  </tr>
+  <tr>
+    <td>remove &lt;package_name&gt;</td>
+    <td>删除软件包命令</td>
+  </tr>
+  <tr>
+    <td>search <br>&lt;keyword&gt;</td>
+    <td>查找软件包命令</td>
+  </tr>
+  <tr>
+    <td>clean packages</td>
+    <td>清除缓存目录下的软件包</td>
+  </tr>
+  <tr>
+    <td>clean headers</td>
+    <td>清除缓存目录下的 headers</td>
+  </tr>
+  <tr>
+    <td>clean oldheaders</td>
+    <td>清除缓存目录下旧的 headers</td>
+  </tr>
+  <tr>
+    <td>clean/clean all</td>
+    <td>清除缓存目录下的软件包及旧的headers</td>
+  </tr>
+  <tr>
+    <td>package</td>
+    <td colspan="2">操作的对象</td>
+  </tr>
+</table>
+
+
+
+<h1 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>1、文件管理</strong></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-cat.html" target="_blank" rel="noopener">cat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-chattr.html" target="_blank" rel="noopener">chattr</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-chgrp.html" target="_blank" rel="noopener">chgrp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-chmod.html" target="_blank" rel="noopener">chmod</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-chown.html" target="_blank" rel="noopener">chown</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-cksum.html" target="_blank" rel="noopener">cksum</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-cmp.html" target="_blank" rel="noopener">cmp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-diff.html" target="_blank" rel="noopener">diff</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-diffstat.html" target="_blank" rel="noopener">diffstat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-file.html" target="_blank" rel="noopener">file</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-find.html" target="_blank" rel="noopener">find</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-git.html" target="_blank" rel="noopener">git</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-gitview.html" target="_blank" rel="noopener">gitview</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-indent.html" target="_blank" rel="noopener">indent</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-cut.html" target="_blank" rel="noopener">cut</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ln.html" target="_blank" rel="noopener">ln</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-less.html" target="_blank" rel="noopener">less</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-locate.html" target="_blank" rel="noopener">locate</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-lsattr.html" target="_blank" rel="noopener">lsattr</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mattrib.html" target="_blank" rel="noopener">mattrib</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mc.html" target="_blank" rel="noopener">mc</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mdel.html" target="_blank" rel="noopener">mdel</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mdir.html" target="_blank" rel="noopener">mdir</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mktemp.html" target="_blank" rel="noopener">mktemp</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-more.html" target="_blank" rel="noopener">more</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mmove.html" target="_blank" rel="noopener">mmove</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mread.html" target="_blank" rel="noopener">mread</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mren.html" target="_blank" rel="noopener">mren</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mtools.html" target="_blank" rel="noopener">mtools</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mtoolstest.html" target="_blank" rel="noopener">mtoolstest</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mv.html" target="_blank" rel="noopener">mv</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-od.html" target="_blank" rel="noopener">od</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-paste.html" target="_blank" rel="noopener">paste</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-patch.html" target="_blank" rel="noopener">patch</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rcp.html" target="_blank" rel="noopener">rcp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rm.html" target="_blank" rel="noopener">rm</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-slocate.html" target="_blank" rel="noopener">slocate</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-split.html" target="_blank" rel="noopener">split</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tee.html" target="_blank" rel="noopener">tee</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tmpwatch.html" target="_blank" rel="noopener">tmpwatch</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-touch.html" target="_blank" rel="noopener">touch</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-umask.html" target="_blank" rel="noopener">umask</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-which.html" target="_blank" rel="noopener">which</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-cp.html" target="_blank" rel="noopener">cp</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-whereis.html" target="_blank" rel="noopener">whereis</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mcopy.html" target="_blank" rel="noopener">mcopy</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mshowfat.html" target="_blank" rel="noopener">mshowfat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rhmask.html" target="_blank" rel="noopener">rhmask</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-scp.html" target="_blank" rel="noopener">scp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-awk.html" target="_blank" rel="noopener">awk</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-read.html" target="_blank" rel="noopener">read</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-updatedb.html" target="_blank" rel="noopener">updatedb</a></td>
+</tr>
+<tr>
+<td><strong>2、文档编辑</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-col.html" target="_blank" rel="noopener">col</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-colrm.html" target="_blank" rel="noopener">colrm</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-comm.html" target="_blank" rel="noopener">comm</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-csplit.html" target="_blank" rel="noopener">csplit</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-ed.html" target="_blank" rel="noopener">ed</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-egrep.html" target="_blank" rel="noopener">egrep</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ex.html" target="_blank" rel="noopener">ex</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fgrep.html" target="_blank" rel="noopener">fgrep</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-fmt.html" target="_blank" rel="noopener">fmt</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fold.html" target="_blank" rel="noopener">fold</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-grep.html" target="_blank" rel="noopener">grep</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ispell.html" target="_blank" rel="noopener">ispell</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-jed.html" target="_blank" rel="noopener">jed</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-joe.html" target="_blank" rel="noopener">joe</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-join.html" target="_blank" rel="noopener">join</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-look.html" target="_blank" rel="noopener">look</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mtype.html" target="_blank" rel="noopener">mtype</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-pico.html" target="_blank" rel="noopener">pico</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rgrep.html" target="_blank" rel="noopener">rgrep</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-sed.html" target="_blank" rel="noopener">sed</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-sort.html" target="_blank" rel="noopener">sort</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-spell.html" target="_blank" rel="noopener">spell</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tr.html" target="_blank" rel="noopener">tr</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-expr.html" target="_blank" rel="noopener">expr</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-uniq.html" target="_blank" rel="noopener">uniq</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-wc.html" target="_blank" rel="noopener">wc</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-let.html" target="_blank" rel="noopener">let</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>3、文件传输</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-lprm.html" target="_blank" rel="noopener">lprm</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-lpr.html" target="_blank" rel="noopener">lpr</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-lpq.html" target="_blank" rel="noopener">lpq</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-lpd.html" target="_blank" rel="noopener">lpd</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-bye.html" target="_blank" rel="noopener">bye</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ftp.html" target="_blank" rel="noopener">ftp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uuto.html" target="_blank" rel="noopener">uuto</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uupick.html" target="_blank" rel="noopener">uupick</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-uucp.html" target="_blank" rel="noopener">uucp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uucico.html" target="_blank" rel="noopener">uucico</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tftp.html" target="_blank" rel="noopener">tftp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ncftp.html" target="_blank" rel="noopener">ncftp</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-ftpshut.html" target="_blank" rel="noopener">ftpshut</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ftpwho.html" target="_blank" rel="noopener">ftpwho</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ftpcount.html" target="_blank" rel="noopener">ftpcount</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>4、磁盘管理</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-cd.html" target="_blank" rel="noopener">cd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-df.html" target="_blank" rel="noopener">df</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-dirs.html" target="_blank" rel="noopener">dirs</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-du.html" target="_blank" rel="noopener">du</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-edquota.html" target="_blank" rel="noopener">edquota</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-eject.html" target="_blank" rel="noopener">eject</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mcd.html" target="_blank" rel="noopener">mcd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mdeltree.html" target="_blank" rel="noopener">mdeltree</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mdu.html" target="_blank" rel="noopener">mdu</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkdir.html" target="_blank" rel="noopener">mkdir</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mlabel.html" target="_blank" rel="noopener">mlabel</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mmd.html" target="_blank" rel="noopener">mmd</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mrd.html" target="_blank" rel="noopener">mrd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mzip.html" target="_blank" rel="noopener">mzip</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-pwd.html" target="_blank" rel="noopener">pwd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-quota.html" target="_blank" rel="noopener">quota</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mount.html" target="_blank" rel="noopener">mount</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mmount.html" target="_blank" rel="noopener">mmount</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rmdir.html" target="_blank" rel="noopener">rmdir</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rmt.html" target="_blank" rel="noopener">rmt</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-stat.html" target="_blank" rel="noopener">stat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tree.html" target="_blank" rel="noopener">tree</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-umount.html" target="_blank" rel="noopener">umount</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ls.html" target="_blank" rel="noopener">ls</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-quotacheck.html" target="_blank" rel="noopener">quotacheck</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-quotaoff.html" target="_blank" rel="noopener">quotaoff</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-lndir.html" target="_blank" rel="noopener">lndir</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-repquota.html" target="_blank" rel="noopener">repquota</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-quotaon.html" target="_blank" rel="noopener">quotaon</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>5、磁盘维护</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-badblocks.html" target="_blank" rel="noopener">badblocks</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-cfdisk.html" target="_blank" rel="noopener">cfdisk</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-dd.html" target="_blank" rel="noopener">dd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-e2fsck.html" target="_blank" rel="noopener">e2fsck</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-ext2ed.html" target="_blank" rel="noopener">ext2ed</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fsck.html" target="_blank" rel="noopener">fsck</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fsck-minix.html" target="_blank" rel="noopener">fsck.minix</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fsconf.html" target="_blank" rel="noopener">fsconf</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-fdformat.html" target="_blank" rel="noopener">fdformat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-hdparm.html" target="_blank" rel="noopener">hdparm</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mformat.html" target="_blank" rel="noopener">mformat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkbootdisk.html" target="_blank" rel="noopener">mkbootdisk</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkdosfs.html" target="_blank" rel="noopener">mkdosfs</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mke2fs.html" target="_blank" rel="noopener">mke2fs</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkfs-ext2.html" target="_blank" rel="noopener">mkfs.ext2</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkfs-msdos.html" target="_blank" rel="noopener">mkfs.msdos</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkinitrd.html" target="_blank" rel="noopener">mkinitrd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkisofs.html" target="_blank" rel="noopener">mkisofs</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkswap.html" target="_blank" rel="noopener">mkswap</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mpartition.html" target="_blank" rel="noopener">mpartition</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-swapon.html" target="_blank" rel="noopener">swapon</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-symlinks.html" target="_blank" rel="noopener">symlinks</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-sync.html" target="_blank" rel="noopener">sync</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mbadblocks.html" target="_blank" rel="noopener">mbadblocks</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkfs-minix.html" target="_blank" rel="noopener">mkfs.minix</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fsck-ext2.html" target="_blank" rel="noopener">fsck.ext2</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fdisk.html" target="_blank" rel="noopener">fdisk</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-losetup.html" target="_blank" rel="noopener">losetup</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkfs.html" target="_blank" rel="noopener">mkfs</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-sfdisk.html" target="_blank" rel="noopener">sfdisk</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-swapoff.html" target="_blank" rel="noopener">swapoff</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>6、网络通讯</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-apachectl.html" target="_blank" rel="noopener">apachectl</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-arpwatch.html" target="_blank" rel="noopener">arpwatch</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-dip.html" target="_blank" rel="noopener">dip</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-getty.html" target="_blank" rel="noopener">getty</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-mingetty.html" target="_blank" rel="noopener">mingetty</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uux.html" target="_blank" rel="noopener">uux</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-telnet.html" target="_blank" rel="noopener">telnet</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uulog.html" target="_blank" rel="noopener">uulog</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-uustat.html" target="_blank" rel="noopener">uustat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ppp-off.html" target="_blank" rel="noopener">ppp-off</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-netconfig.html" target="_blank" rel="noopener">netconfig</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-nc.html" target="_blank" rel="noopener">nc</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-httpd.html" target="_blank" rel="noopener">httpd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ifconfig.html" target="_blank" rel="noopener">ifconfig</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-minicom.html" target="_blank" rel="noopener">minicom</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mesg.html" target="_blank" rel="noopener">mesg</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-dnsconf.html" target="_blank" rel="noopener">dnsconf</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-wall.html" target="_blank" rel="noopener">wall</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-netstat.html" target="_blank" rel="noopener">netstat</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ping.html" target="_blank" rel="noopener">ping</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-pppstats.html" target="_blank" rel="noopener">pppstats</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-samba.html" target="_blank" rel="noopener">samba</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-setserial.html" target="_blank" rel="noopener">setserial</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-talk.html" target="_blank" rel="noopener">talk</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-traceroute.html" target="_blank" rel="noopener">traceroute</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tty.html" target="_blank" rel="noopener">tty</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-newaliases.html" target="_blank" rel="noopener">newaliases</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uuname.html" target="_blank" rel="noopener">uuname</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-netconf.html" target="_blank" rel="noopener">netconf</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-write.html" target="_blank" rel="noopener">write</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-statserial.html" target="_blank" rel="noopener">statserial</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-efax.html" target="_blank" rel="noopener">efax</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-pppsetup.html" target="_blank" rel="noopener">pppsetup</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tcpdump.html" target="_blank" rel="noopener">tcpdump</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ytalk.html" target="_blank" rel="noopener">ytalk</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-cu.html" target="_blank" rel="noopener">cu</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-smbd.html" target="_blank" rel="noopener">smbd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-testparm.html" target="_blank" rel="noopener">testparm</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-smbclient.html" target="_blank" rel="noopener">smbclient</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-shapecfg.html" target="_blank" rel="noopener">shapecfg</a></td>
+</tr>
+<tr>
+<td><strong>7、系统管理</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-adduser.html" target="_blank" rel="noopener">adduser</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-chfn.html" target="_blank" rel="noopener">chfn</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-useradd.html" target="_blank" rel="noopener">useradd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-date.html" target="_blank" rel="noopener">date</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-exit.html" target="_blank" rel="noopener">exit</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-finger.html" target="_blank" rel="noopener">finger</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fwhios.html" target="_blank" rel="noopener">fwhios</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-sleep.html" target="_blank" rel="noopener">sleep</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-suspend.html" target="_blank" rel="noopener">suspend</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-groupdel.html" target="_blank" rel="noopener">groupdel</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-groupmod.html" target="_blank" rel="noopener">groupmod</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-halt.html" target="_blank" rel="noopener">halt</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-kill.html" target="_blank" rel="noopener">kill</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-last.html" target="_blank" rel="noopener">last</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-lastb.html" target="_blank" rel="noopener">lastb</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-login.html" target="_blank" rel="noopener">login</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-logname.html" target="_blank" rel="noopener">logname</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-logout.html" target="_blank" rel="noopener">logout</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ps.html" target="_blank" rel="noopener">ps</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-nice.html" target="_blank" rel="noopener">nice</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-procinfo.html" target="_blank" rel="noopener">procinfo</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-top.html" target="_blank" rel="noopener">top</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-pstree.html" target="_blank" rel="noopener">pstree</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-reboot.html" target="_blank" rel="noopener">reboot</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-rlogin.html" target="_blank" rel="noopener">rlogin</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rsh.html" target="_blank" rel="noopener">rsh</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-sliplogin.html" target="_blank" rel="noopener">sliplogin</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-screen.html" target="_blank" rel="noopener">screen</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-shutdown.html" target="_blank" rel="noopener">shutdown</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rwho.html" target="_blank" rel="noopener">rwho</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-sudo.html" target="_blank" rel="noopener">sudo</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-gitps.html" target="_blank" rel="noopener">gitps</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-swatch.html" target="_blank" rel="noopener">swatch</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tload.html" target="_blank" rel="noopener">tload</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-logrotate.html" target="_blank" rel="noopener">logrotate</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uname.html" target="_blank" rel="noopener">uname</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-chsh.html" target="_blank" rel="noopener">chsh</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-userconf.html" target="_blank" rel="noopener">userconf</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-userdel.html" target="_blank" rel="noopener">userdel</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-usermod.html" target="_blank" rel="noopener">usermod</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-vlock.html" target="_blank" rel="noopener">vlock</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-who.html" target="_blank" rel="noopener">who</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-whoami.html" target="_blank" rel="noopener">whoami</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-whois.html" target="_blank" rel="noopener">whois</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-newgrp.html" target="_blank" rel="noopener">newgrp</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-renice.html" target="_blank" rel="noopener">renice</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-su.html" target="_blank" rel="noopener">su</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-skill.html" target="_blank" rel="noopener">skill</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-w.html" target="_blank" rel="noopener">w</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-id.html" target="_blank" rel="noopener">id</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-free.html" target="_blank" rel="noopener">free</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>8、系统设置</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-reset.html" target="_blank" rel="noopener">reset</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-clear.html" target="_blank" rel="noopener">clear</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-alias.html" target="_blank" rel="noopener">alias</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-dircolors.html" target="_blank" rel="noopener">dircolors</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-aumix.html" target="_blank" rel="noopener">aumix</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-bind.html" target="_blank" rel="noopener">bind</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-chroot.html" target="_blank" rel="noopener">chroot</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-clock.html" target="_blank" rel="noopener">clock</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-crontab.html" target="_blank" rel="noopener">crontab</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-declare.html" target="_blank" rel="noopener">declare</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-depmod.html" target="_blank" rel="noopener">depmod</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-dmesg.html" target="_blank" rel="noopener">dmesg</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-enable.html" target="_blank" rel="noopener">enable</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-eval.html" target="_blank" rel="noopener">eval</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-export.html" target="_blank" rel="noopener">export</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-pwunconv.html" target="_blank" rel="noopener">pwunconv</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-grpconv.html" target="_blank" rel="noopener">grpconv</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rpm.html" target="_blank" rel="noopener">rpm</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-insmod.html" target="_blank" rel="noopener">insmod</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-kbdconfig.html" target="_blank" rel="noopener">kbdconfig</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-lilo.html" target="_blank" rel="noopener">lilo</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-liloconfig.html" target="_blank" rel="noopener">liloconfig</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-lsmod.html" target="_blank" rel="noopener">lsmod</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-minfo.html" target="_blank" rel="noopener">minfo</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-set.html" target="_blank" rel="noopener">set</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-modprobe.html" target="_blank" rel="noopener">modprobe</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ntsysv.html" target="_blank" rel="noopener">ntsysv</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mouseconfig.html" target="_blank" rel="noopener">mouseconfig</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-passwd.html" target="_blank" rel="noopener">passwd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-pwconv.html" target="_blank" rel="noopener">pwconv</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rdate.html" target="_blank" rel="noopener">rdate</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-resize.html" target="_blank" rel="noopener">resize</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-rmmod.html" target="_blank" rel="noopener">rmmod</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-grpunconv.html" target="_blank" rel="noopener">grpunconv</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-modinfo.html" target="_blank" rel="noopener">modinfo</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-time.html" target="_blank" rel="noopener">time</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-setup.html" target="_blank" rel="noopener">setup</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-sndconfig.html" target="_blank" rel="noopener">sndconfig</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-setenv.html" target="_blank" rel="noopener">setenv</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-setconsole.html" target="_blank" rel="noopener">setconsole</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-timeconfig.html" target="_blank" rel="noopener">timeconfig</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-ulimit.html" target="_blank" rel="noopener">ulimit</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-unset.html" target="_blank" rel="noopener">unset</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-chkconfig.html" target="_blank" rel="noopener">chkconfig</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-apmd.html" target="_blank" rel="noopener">apmd</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-hwclock.html" target="_blank" rel="noopener">hwclock</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-mkkickstart.html" target="_blank" rel="noopener">mkkickstart</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-fbset.html" target="_blank" rel="noopener">fbset</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-unalias.html" target="_blank" rel="noopener">unalias</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-svgatextmode.html" target="_blank" rel="noopener">SVGATextMode</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>9、备份压缩</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-ar.html" target="_blank" rel="noopener">ar</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-bunzip2.html" target="_blank" rel="noopener">bunzip2</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-bzip2.html" target="_blank" rel="noopener">bzip2</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-bzip2recover.html" target="_blank" rel="noopener">bzip2recover</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-gunzip.html" target="_blank" rel="noopener">gunzip</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-unarj.html" target="_blank" rel="noopener">unarj</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-compress.html" target="_blank" rel="noopener">compress</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-cpio.html" target="_blank" rel="noopener">cpio</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-dump.html" target="_blank" rel="noopener">dump</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uuencode.html" target="_blank" rel="noopener">uuencode</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-gzexe.html" target="_blank" rel="noopener">gzexe</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-gzip.html" target="_blank" rel="noopener">gzip</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-lha.html" target="_blank" rel="noopener">lha</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-restore.html" target="_blank" rel="noopener">restore</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-tar.html" target="_blank" rel="noopener">tar</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-uudecode.html" target="_blank" rel="noopener">uudecode</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-unzip.html" target="_blank" rel="noopener">unzip</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-zip.html" target="_blank" rel="noopener">zip</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-zipinfo.html" target="_blank" rel="noopener">zipinfo</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>10、设备管理</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-setleds.html" target="_blank" rel="noopener">setleds</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-loadkeys.html" target="_blank" rel="noopener">loadkeys</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-rdev.html" target="_blank" rel="noopener">rdev</a></td>
+<td><a href="http://www.runoob.com/linux/linux-comm-dumpkeys.html" target="_blank" rel="noopener">dumpkeys</a></td>
+</tr>
+<tr>
+<td><a href="http://www.runoob.com/linux/linux-comm-makedev.html" target="_blank" rel="noopener">MAKEDEV</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="解压rar"><a href="#解压rar" class="headerlink" title="解压rar"></a>解压rar</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install rar unrar</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统，编程语言/" rel="tag"># 操作系统，编程语言</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/30/shell/" rel="next" title="shell">
+                <i class="fa fa-chevron-left"></i> shell
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/30/test/" rel="prev" title="test">
+                test <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYwNi8xMDE2MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/tou_xiang.jpg"
+                alt="路西法" />
+            
+              <p class="site-author-name" itemprop="name">路西法</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Angel0726" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MaHao_0726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件基本属性"><span class="nav-number">1.</span> <span class="nav-text">文件基本属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件属性说明"><span class="nav-number">1.1.</span> <span class="nav-text">文件属性说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看文件属性"><span class="nav-number">1.2.</span> <span class="nav-text">查看文件属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改文件属性"><span class="nav-number">1.3.</span> <span class="nav-text">更改文件属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件与目录管理"><span class="nav-number">2.</span> <span class="nav-text">文件与目录管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户与用户组"><span class="nav-number">3.</span> <span class="nav-text">用户与用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理"><span class="nav-number">3.1.</span> <span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户组管理"><span class="nav-number">3.2.</span> <span class="nav-text">用户组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户管理文件-etc-passwd"><span class="nav-number">3.2.1.</span> <span class="nav-text">用户管理文件-/etc/passwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户管理文件-etc-shadow"><span class="nav-number">3.2.2.</span> <span class="nav-text">用户管理文件-/etc/shadow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户组管理文件-etc-group"><span class="nav-number">3.2.3.</span> <span class="nav-text">用户组管理文件-/etc/group</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加批量用户"><span class="nav-number">3.3.</span> <span class="nav-text">添加批量用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum-命令-包管理"><span class="nav-number">4.</span> <span class="nav-text">yum 命令-包管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令大全"><span class="nav-number">5.</span> <span class="nav-text">命令大全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">6.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解压rar"><span class="nav-number">6.1.</span> <span class="nav-text">解压rar</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路西法</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
