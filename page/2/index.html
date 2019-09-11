@@ -286,6 +286,232 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/pyspark-DataFrame/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/19/pyspark-DataFrame/" itemprop="url">pyspark-DataFrame</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T14:37:32+08:00">
+                2019-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>df.show(n,truncate)</code></td>
+<td><code>n</code> - 要显示的行数。<br><code>truncate</code> - 如果设置为<code>True</code>，则默认截断超过20个字符的字符串。 如果设置为大于1的数字，则截断长字符串以截断长度并将其右对齐。</td>
+</tr>
+<tr>
+<td><code>df.count()</code></td>
+<td>返回<code>DataFrame</code>的行数</td>
+</tr>
+<tr>
+<td><code>df.select(col)</code></td>
+<td>投影一组表达式并返回一个新的<code>DataFrame</code>。<br><code>col</code>：列名，或者包含列名的列表</td>
+</tr>
+<tr>
+<td><code>df.filter(condition)</code></td>
+<td>使用给定的条件过滤行。<code>where()</code>是<code>filter()</code>的别名。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>df.fillna(value)</code></td>
+<td>空值填充</td>
+</tr>
+<tr>
+<td><code>df.columns</code></td>
+<td>返回<code>DataFrame</code>的列名，是一个<code>list</code></td>
+</tr>
+<tr>
+<td><code>df.toPandas</code></td>
+<td>转换为<code>pandas</code>的<code>dataframe</code></td>
+</tr>
+<tr>
+<td><code>df.describe()</code></td>
+<td>计算数字和字符串列的统计信息。这包括<code>count</code>，<code>mean</code>，<code>stddev</code>，<code>min</code>和<code>max</code>。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="pyspark-sql-functions"><a href="#pyspark-sql-functions" class="headerlink" title="pyspark.sql.functions"></a>pyspark.sql.functions</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark.sql.functions <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isnan</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>stddev</code></td>
+<td>计算方差</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/hadoop/MapReduce.md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1364,7 +1590,7 @@
 <h2 id="创建dataset"><a href="#创建dataset" class="headerlink" title="创建dataset"></a>创建dataset</h2><p><code>Dataset</code>是特定域对象中的强类型集合，它可以使用函数或者相关操作并行地进行转换等操作。每个<code>Dataset</code>都有一个称为<code>DataFrame</code>的非类型化的视图，这个视图是行的数据集。上面的定义看起来和<code>RDD</code>的定义类似，<code>DataSet</code>和<code>RDD</code>主要的区别是：<code>DataSet</code>是特定域的对象集合；然而<code>RDD</code>是任何对象的集合。<code>DataSet</code>的<code>API</code>总是强类型的；而且可以利用这些模式进行优化，然而<code>RDD</code>却不行。<code>DataFrame</code>是特殊的<code>Dataset</code>，它在编译时不会对模式进行检测。在未来版本的Spark，<code>Dataset</code>将会替代<code>RDD</code>成为我们开发编程使用的<code>API</code>（<strong>注意，<code>RDD</code>并不是会被取消，而是会作为底层的<code>API</code>提供给用户使用</strong>）。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//   scala</span></span><br><span class="line"><span class="comment">// Note: Case classes in Scala 2.10 can support only up to 22 fields. To work around this limit,</span></span><br><span class="line"><span class="comment">// you can use custom classes that implement the Product interface</span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>(<span class="params">name: <span class="type">String</span>, age: <span class="type">Long</span></span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">//</span> <span class="title">Encoders</span> <span class="title">are</span> <span class="title">created</span> <span class="title">for</span> <span class="title">case</span> <span class="title">classes</span></span></span><br><span class="line"><span class="class"><span class="title">val</span> <span class="title">caseClassDS</span> </span>= <span class="type">Seq</span>(<span class="type">Person</span>(<span class="string">"Andy"</span>, <span class="number">32</span>)).toDS()</span><br><span class="line">caseClassDS.show()</span><br><span class="line"><span class="comment">// +----+---+</span></span><br><span class="line"><span class="comment">// |name|age|</span></span><br><span class="line"><span class="comment">// +----+---+</span></span><br><span class="line"><span class="comment">// |Andy| 32|</span></span><br><span class="line"><span class="comment">// +----+---+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Encoders for most common types are automatically provided by importing spark.implicits._</span></span><br><span class="line"><span class="keyword">val</span> primitiveDS = <span class="type">Seq</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).toDS()</span><br><span class="line">primitiveDS.map(_ + <span class="number">1</span>).collect() <span class="comment">// Returns: Array(2, 3, 4)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DataFrames can be converted to a Dataset by providing a class. Mapping will be done by name</span></span><br><span class="line"><span class="keyword">val</span> path = <span class="string">"examples/src/main/resources/people.json"</span></span><br><span class="line"><span class="keyword">val</span> peopleDS = spark.read.json(path).as[<span class="type">Person</span>]</span><br><span class="line">peopleDS.show()</span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// | age|   name|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// |null|Michael|</span></span><br><span class="line"><span class="comment">// |  30|   Andy|</span></span><br><span class="line"><span class="comment">// |  19| Justin|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.api.java.function.MapFunction;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Dataset;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Row;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Encoder;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Encoders;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> age;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an instance of a Bean class</span></span><br><span class="line">Person person = <span class="keyword">new</span> Person();</span><br><span class="line">person.setName(<span class="string">"Andy"</span>);</span><br><span class="line">person.setAge(<span class="number">32</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Encoders are created for Java beans</span></span><br><span class="line">Encoder&lt;Person&gt; personEncoder = Encoders.bean(Person.class);</span><br><span class="line">Dataset&lt;Person&gt; javaBeanDS = spark.createDataset(</span><br><span class="line">  Collections.singletonList(person),</span><br><span class="line">  personEncoder</span><br><span class="line">);</span><br><span class="line">javaBeanDS.show();</span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// |age|name|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// | 32|Andy|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Encoders for most common types are provided in class Encoders</span></span><br><span class="line">Encoder&lt;Integer&gt; integerEncoder = Encoders.INT();</span><br><span class="line">Dataset&lt;Integer&gt; primitiveDS = spark.createDataset(Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), integerEncoder);</span><br><span class="line">Dataset&lt;Integer&gt; transformedDS = primitiveDS.map(</span><br><span class="line">    (MapFunction&lt;Integer, Integer&gt;) value -&gt; value + <span class="number">1</span>,</span><br><span class="line">    integerEncoder);</span><br><span class="line">transformedDS.collect(); <span class="comment">// Returns [2, 3, 4]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DataFrames can be converted to a Dataset by providing a class. Mapping based on name</span></span><br><span class="line">String path = <span class="string">"examples/src/main/resources/people.json"</span>;</span><br><span class="line">Dataset&lt;Person&gt; peopleDS = spark.read().json(path).as(personEncoder);</span><br><span class="line">peopleDS.show();</span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// | age|   name|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// |null|Michael|</span></span><br><span class="line"><span class="comment">// |  30|   Andy|</span></span><br><span class="line"><span class="comment">// |  19| Justin|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br></pre></td></tr></table></figure>
-<h2 id="与RDD互相转换？？？？？？"><a href="#与RDD互相转换？？？？？？" class="headerlink" title="与RDD互相转换？？？？？？"></a><a href="https://spark-reference-doc-cn.readthedocs.io/zh_CN/latest/programming-guide/sql-guide.html#rdd" target="_blank" rel="noopener">与RDD互相转换</a>？？？？？？</h2><p>Spark SQL 支持两种不同的方法将RDDs 转换成 Datasets.</p>
+<h2 id="与RDD互相转换"><a href="#与RDD互相转换" class="headerlink" title="与RDD互相转换"></a><a href="https://spark-reference-doc-cn.readthedocs.io/zh_CN/latest/programming-guide/sql-guide.html#rdd" target="_blank" rel="noopener">与RDD互相转换</a></h2><p>Spark SQL 支持两种不同的方法将RDDs 转换成 Datasets.</p>
 <p><strong>??????????????????????????????????????????</strong></p>
 <h2 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a><a href="https://spark-reference-doc-cn.readthedocs.io/zh_CN/latest/programming-guide/sql-guide.html#id4" target="_blank" rel="noopener">聚合函数</a></h2><p>DataFrame可以使用聚合函数，例如count()、max()等</p>
 <h3 id="自定义聚合函数"><a href="#自定义聚合函数" class="headerlink" title="自定义聚合函数"></a>自定义聚合函数</h3><p>使用<code>UserDefinedAggregateFunction a</code>自定义聚合函数。</p>
@@ -2228,153 +2454,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/linux子系统-win10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/05/linux子系统-win10/" itemprop="url">linux子系统-win10</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T17:29:40+08:00">
-                2019-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Windows10安装Ubuntu子系统"><a href="#Windows10安装Ubuntu子系统" class="headerlink" title="Windows10安装Ubuntu子系统"></a>Windows10安装Ubuntu子系统</h1><h2 id="一、开启开发模式"><a href="#一、开启开发模式" class="headerlink" title="一、开启开发模式"></a>一、开启开发模式</h2><p>“设置 - 更新和安全 - 针对开发人员”设置页面，选中“开发人员模式”。</p>
-<p><img src="/2019/08/05/linux子系统-win10/tempsnip.png" alt="tempsnip"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/05/linux子系统-win10/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2429,7 +2508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2440,7 +2519,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2451,7 +2530,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

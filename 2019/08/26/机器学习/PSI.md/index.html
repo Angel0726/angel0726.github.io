@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="黎明晨光">
 <meta property="og:description" content="简介由于模型是以特定时期的样本所开发的，此模型是否适用于开发样本之外的族群，必须经过稳定性测试才能得知。稳定度指标(population stability index ,PSI)可衡量测试样本及模型开发样本评分的的分布差异，为最常见的模型稳定度评估指针。其实PSI表示的就是按分数分档后，针对不同样本，或者不同时间的样本，population分布是否有变化，就是看各个分数区间内人数占总人数的占比是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-29T01:57:59.996Z">
+<meta property="og:updated_time" content="2019-09-05T03:16:56.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PSI">
 <meta name="twitter:description" content="简介由于模型是以特定时期的样本所开发的，此模型是否适用于开发样本之外的族群，必须经过稳定性测试才能得知。稳定度指标(population stability index ,PSI)可衡量测试样本及模型开发样本评分的的分布差异，为最常见的模型稳定度评估指针。其实PSI表示的就是按分数分档后，针对不同样本，或者不同时间的样本，population分布是否有变化，就是看各个分数区间内人数占总人数的占比是">
@@ -401,19 +401,19 @@
 </div>
 <a id="more"></a>
 <h1 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h1><script type="math/tex; mode=display">
-PSI=\sum_i^n \frac{Ac-Ex}{ln (Ac/Ex)}</script><p>其中：$Ac$是实际占比；$Ex$是期望占比</p>
+PSI=\sum_i^n {(Ac-Ex)} \times {ln (Ac/Ex)}</script><p>其中：$Ac$是实际占比；$Ex$是期望占比</p>
 <h2 id="计算PSI"><a href="#计算PSI" class="headerlink" title="计算PSI"></a>计算PSI</h2><p>将数据集划分为<code>base</code>与<code>test</code>两个数据集。</p>
 <h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><ol>
 <li>将基准数据集<code>base</code>的score划分为10个区间，将测试数据集<code>test</code>的score按照相同的边界值划分为10个区间</li>
 <li>分别统计各个分区基准score的个数$B_i$、预测score的个数$T_i$</li>
 <li>分别统计各个分区基准score的个数比例$P_B$、预测score的个数比例$T_B$</li>
-<li>计算 $PSI=\sum \frac{P_B(i)-P_T(i)}{ln(P_B(i)/P_T(i))}$</li>
+<li>计算 $PSI=\sum {\left(P_B(i)-P_T(i) \right)} \times {ln(P_B(i)/P_T(i))}$</li>
 </ol>
 <h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><ol>
 <li>将基准数据集<code>base</code>的特征划分为10个区间，将测试数据集<code>test</code>的特征按照相同的边界值划分为10个区间</li>
 <li>分别统计各个分区基准<code>feature</code>的个数$B_i$、预测<code>feature</code>的个数$T_i$</li>
 <li>分别统计各个分区基准<code>feature</code>的个数比例$P_B$、预测<code>feature</code>的个数比例$T_B$</li>
-<li>计算 $PSI=\sum \frac{P_B(i)-P_T(i)}{ln(P_B(i)/P_T(i))}$</li>
+<li>计算 $PSI=\sum {(P_B(i)-P_T(i))} \times {ln(P_B(i)/P_T(i))}$</li>
 </ol>
 
       
@@ -537,7 +537,7 @@ PSI=\sum_i^n \frac{Ac-Ex}{ln (Ac/Ex)}</script><p>其中：$Ac$是实际占比；
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -548,7 +548,7 @@ PSI=\sum_i^n \frac{Ac-Ex}{ln (Ac/Ex)}</script><p>其中：$Ac$是实际占比；
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -559,7 +559,7 @@ PSI=\sum_i^n \frac{Ac-Ex}{ln (Ac/Ex)}</script><p>其中：$Ac$是实际占比；
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

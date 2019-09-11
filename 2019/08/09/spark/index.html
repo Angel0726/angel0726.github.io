@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/08/09/spark/76738fed8d7a40e7f3f646f73a61e8bd.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/08/09/spark/15052983161313.jpg">
-<meta property="og:updated_time" content="2019-08-29T01:58:00.110Z">
+<meta property="og:updated_time" content="2019-09-04T07:48:50.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark">
 <meta name="twitter:description" content="spark简介Spark是开发通用的大数据处理框架。Spark应用程序可以使用R语言、Java、Scala和Python进行编写，极少使用R语言编写Spark程序，Java和Scala语言编写的Spark程序的执行效率是相同的，但Java语言写的代码量多，Scala简洁优雅，但可读性不如Java，Python语言编写的Spark程序的执行效率不如Java和Scala。">
@@ -416,7 +416,8 @@
 </tbody>
 </table>
 </div>
-<h1 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a><a href="./RDD-Spark.md">RDD</a></h1><p>RDD是<strong>弹性分布式数据集</strong>，<strong>是Spark中最基本的数据抽象，任何数据在Spark中都被表示为RDD</strong>。从编程的角度来看，RDD可以简单看成是一个数组。和普通数组的区别是，RDD中的数据是分区存储的，这样不同分区的数据就可以分布在不同的机器上，同时可以被并行处理。因此，Spark应用程序所做的无非是把需要处理的数据转换为RDD，然后对RDD进行一系列的变换和操作从而得到结果。</p>
+<h1 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a><a href="./RDD-Spark.md">RDD</a></h1><p><code>Spark</code>主要特点是提供了一个集群的分布式内存抽象，以支持需要工作集的应用。这个抽象就是<code>RDD</code></p>
+<p><code>RDD</code>是<strong>弹性分布式数据集</strong>，<strong>是<code>Spark</code>中最基本的数据抽象，任何数据在<code>Spark</code>中都被表示为<code>RDD</code></strong>。从编程的角度来看，<code>RDD</code>可以简单看成是一个数组。和普通数组的区别是，<code>RDD</code>中的数据是分区存储的，这样不同分区的数据就可以分布在不同的机器上，同时可以被并行处理。因此，Spark应用程序所做的无非是把需要处理的数据转换为<code>RDD</code>，然后对<code>RDD</code>进行一系列的变换和操作从而得到结果。</p>
 <center>
 
 <pre class="mermaid">graph TD
@@ -693,7 +694,7 @@ B-->C[使用actions算子触发执行]</pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -704,7 +705,7 @@ B-->C[使用actions算子触发执行]</pre>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -715,7 +716,7 @@ B-->C[使用actions算子触发执行]</pre>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

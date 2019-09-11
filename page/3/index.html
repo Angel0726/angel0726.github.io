@@ -286,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/SQL/DDL-SQL.md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/linux子系统-win10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -305,7 +305,154 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/31/SQL/DDL-SQL.md/" itemprop="url">DDL-SQL</a></h1>
+                <a class="post-title-link" href="/2019/08/05/linux子系统-win10/" itemprop="url">linux子系统-win10</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T17:29:40+08:00">
+                2019-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Windows10安装Ubuntu子系统"><a href="#Windows10安装Ubuntu子系统" class="headerlink" title="Windows10安装Ubuntu子系统"></a>Windows10安装Ubuntu子系统</h1><h2 id="一、开启开发模式"><a href="#一、开启开发模式" class="headerlink" title="一、开启开发模式"></a>一、开启开发模式</h2><p>“设置 - 更新和安全 - 针对开发人员”设置页面，选中“开发人员模式”。</p>
+<p><img src="/2019/08/05/linux子系统-win10/tempsnip.png" alt="tempsnip"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/05/linux子系统-win10/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/SQL/DML-SQL.md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/31/SQL/DML-SQL.md/" itemprop="url">DML-SQL</a></h1>
         
 
         <div class="post-meta">
@@ -378,10 +525,33 @@
 
       
         
-          <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">Create</span> <span class="keyword">database</span> my_db; </span><br><span class="line"><span class="comment">-- 删除数据库</span></span><br><span class="line"><span class="keyword">Drop</span> <span class="keyword">database</span> my_db;</span><br><span class="line"><span class="comment">-- 指定数据库</span></span><br><span class="line"><span class="keyword">use</span> my_db;</span><br><span class="line"><span class="comment">-- 关闭数据库</span></span><br><span class="line">close my_db;</span><br></pre></td></tr></table></figure>
+          <div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insert</code></td>
+<td>插入语句<br><code>insert into</code>:追加数据<br><code>insert overwrite</code>:覆盖数据</td>
+</tr>
+<tr>
+<td><code>UPDATE</code></td>
+<td>更新语句</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>删除语句</td>
+</tr>
+</tbody>
+</table>
+</div>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/31/SQL/DDL-SQL.md/#more" rel="contents">
+            <a class="btn" href="/2019/07/31/SQL/DML-SQL.md/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -582,7 +752,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/SQL/DML-SQL.md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/31/SQL/DDL-SQL.md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -601,7 +771,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/07/31/SQL/DML-SQL.md/" itemprop="url">DML-SQL</a></h1>
+                <a class="post-title-link" href="/2019/07/31/SQL/DDL-SQL.md/" itemprop="url">DDL-SQL</a></h1>
         
 
         <div class="post-meta">
@@ -674,33 +844,10 @@
 
       
         
-          <div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>insert</code></td>
-<td>插入语句<br><code>insert into</code>:追加数据<br><code>insert overwrite</code>:覆盖数据</td>
-</tr>
-<tr>
-<td><code>UPDATE</code></td>
-<td>更新语句</td>
-</tr>
-<tr>
-<td><code>DELETE</code></td>
-<td>删除语句</td>
-</tr>
-</tbody>
-</table>
-</div>
+          <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">Create</span> <span class="keyword">database</span> my_db; </span><br><span class="line"><span class="comment">-- 删除数据库</span></span><br><span class="line"><span class="keyword">Drop</span> <span class="keyword">database</span> my_db;</span><br><span class="line"><span class="comment">-- 指定数据库</span></span><br><span class="line"><span class="keyword">use</span> my_db;</span><br><span class="line"><span class="comment">-- 关闭数据库</span></span><br><span class="line">close my_db;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/07/31/SQL/DML-SQL.md/#more" rel="contents">
+            <a class="btn" href="/2019/07/31/SQL/DDL-SQL.md/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1650,125 +1797,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/23/矩阵求导/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/23/矩阵求导/" itemprop="url">矩阵求导</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-23T21:10:27+08:00">
-                2018-09-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1823,7 +1851,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1834,7 +1862,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1845,7 +1873,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

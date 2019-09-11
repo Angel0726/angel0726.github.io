@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/08/14/hadoop/1565782138575.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/14/hadoop/14019352-0c530b046636edd0.webp">
-<meta property="og:updated_time" content="2019-08-29T01:58:00.067Z">
+<meta property="og:updated_time" content="2019-09-04T06:46:35.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop">
 <meta name="twitter:description" content="Apache Hadoop软件库是一个框架，允许使用简单的编程模型跨计算机集群分布式处理大型数据集。它旨在从单个服务器扩展到数千台计算机，每台计算机都提供本地计算和存储。该库本身不是依靠硬件来提供高可用性，而是设计用于检测和处理应用层的故障，从而在计算机集群之上提供高可用性服务，每个计算机都可能容易出现故障。Hadoop的命令众多，本文重点介绍HDFS与MapReduce">
@@ -501,7 +501,8 @@
 <h1 id="Map-Reduce"><a href="#Map-Reduce" class="headerlink" title="Map/Reduce"></a><a href="./MapReduce.md">Map/Reduce</a></h1><p><code>Map/Reduce</code> 是一个分布式运算程序的编程框架，<code>Map/Reduce</code> 核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个 <code>hadoop</code> 集群上。每个<code>Map/Reduce</code>任务都被初始化为一个<code>Job</code>，每个<code>Job</code>又可以分为两种阶段：<code>map</code>阶段和<code>reduce</code>阶段。这两个阶段分别用两个函数表示，即<code>map</code>函数和<code>reduce</code>函数。一个<code>Map/Reduce</code>作业的输入和输出类型如下所示：</p>
 <p><code>(input) &lt;k1, v1&gt; -&gt; map -&gt; &lt;k2, v2&gt; -&gt; combine -&gt; &lt;k2, v2&gt; -&gt; reduce -&gt; &lt;k3, v3&gt; (output)</code></p>
 <p><img src="/2019/08/14/hadoop/14019352-0c530b046636edd0.webp" alt="img"></p>
-<h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a><a href="./hive.md">Hive</a></h1>
+<h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a><a href="./hive.md">Hive</a></h1><p>有了<code>MapReduce</code>之后，程序员发现，<code>MapReduce</code>的程序写起来真麻烦。他们希望简化这个过程。这就好比你有了汇编语言，虽然你几乎什么都能干了，但是你还是觉得繁琐。你希望有个更高层更抽象的语言层来描述算法和数据处理流程。于是就有了<code>Pig</code>和<code>Hive</code>。<code>Pig</code>是接近脚本方式去描述<code>MapReduce</code>，<code>Hive</code>则用的是<code>SQL</code>。它们把脚本和<code>SQL</code>语言翻译成<code>MapReduce</code>程序，丢给计算引擎去计算，而你就从繁琐的<code>MapReduce</code>程序中解脱出来，用更简单更直观的语言去写程序了。</p>
+
       
     </div>
     
@@ -631,7 +632,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">86</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -642,7 +643,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -653,7 +654,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
