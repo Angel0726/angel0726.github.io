@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="远程登陆服务器shell脚本远程自动登陆服务器目前远程登陆服务器一般需要1. 登陆跳板机；2. 登陆服务器。  ssh跳板机-&amp;gt;输入静态密码+token码 在跳板机ssh服务器-&amp;gt;输入密码  解决方法1sudo apt-get install expect   #安装expect 在expect中写入，不同公司的登陆流程不一样，需要修改登陆流程。但是登陆模板如图所示。其中set是设置变">
+<meta name="description" content="生成ssh密钥对1ssh-keygen -t rsa -C &apos;xxx@xxx.com&apos; 按3次回车（不使用密码）生成下图。密钥对在~/.ssh文件夹中,将id_rsa.pub（公钥）提交到github或者gitlab中  安装ssh12sudo apt-get install openssh-client  #客户端 类似于xshell，登陆服务器sudo apt-get install open">
 <meta name="keywords" content="git,分布式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh">
 <meta property="og:url" content="http://yoursite.com/2019/09/03/ssh/index.html">
 <meta property="og:site_name" content="黎明晨光">
-<meta property="og:description" content="远程登陆服务器shell脚本远程自动登陆服务器目前远程登陆服务器一般需要1. 登陆跳板机；2. 登陆服务器。  ssh跳板机-&amp;gt;输入静态密码+token码 在跳板机ssh服务器-&amp;gt;输入密码  解决方法1sudo apt-get install expect   #安装expect 在expect中写入，不同公司的登陆流程不一样，需要修改登陆流程。但是登陆模板如图所示。其中set是设置变">
+<meta property="og:description" content="生成ssh密钥对1ssh-keygen -t rsa -C &apos;xxx@xxx.com&apos; 按3次回车（不使用密码）生成下图。密钥对在~/.ssh文件夹中,将id_rsa.pub（公钥）提交到github或者gitlab中  安装ssh12sudo apt-get install openssh-client  #客户端 类似于xshell，登陆服务器sudo apt-get install open">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-05T03:22:53.158Z">
+<meta property="og:image" content="http://yoursite.com/2019/09/03/ssh/1568460515778.png">
+<meta property="og:updated_time" content="2019-09-14T11:34:53.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh">
-<meta name="twitter:description" content="远程登陆服务器shell脚本远程自动登陆服务器目前远程登陆服务器一般需要1. 登陆跳板机；2. 登陆服务器。  ssh跳板机-&amp;gt;输入静态密码+token码 在跳板机ssh服务器-&amp;gt;输入密码  解决方法1sudo apt-get install expect   #安装expect 在expect中写入，不同公司的登陆流程不一样，需要修改登陆流程。但是登陆模板如图所示。其中set是设置变">
+<meta name="twitter:description" content="生成ssh密钥对1ssh-keygen -t rsa -C &apos;xxx@xxx.com&apos; 按3次回车（不使用密码）生成下图。密钥对在~/.ssh文件夹中,将id_rsa.pub（公钥）提交到github或者gitlab中  安装ssh12sudo apt-get install openssh-client  #客户端 类似于xshell，登陆服务器sudo apt-get install open">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/03/ssh/1568460515778.png">
 
 
 
@@ -381,7 +383,11 @@
       
 
       
-        <h1 id="远程登陆服务器"><a href="#远程登陆服务器" class="headerlink" title="远程登陆服务器"></a>远程登陆服务器</h1><h2 id="shell脚本远程自动登陆服务器"><a href="#shell脚本远程自动登陆服务器" class="headerlink" title="shell脚本远程自动登陆服务器"></a>shell脚本远程自动登陆服务器</h2><p>目前远程登陆服务器一般需要1. 登陆跳板机；2. 登陆服务器。</p>
+        <h1 id="生成ssh密钥对"><a href="#生成ssh密钥对" class="headerlink" title="生成ssh密钥对"></a>生成ssh密钥对</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C 'xxx@xxx.com'</span><br></pre></td></tr></table></figure>
+<p>按3次回车（不使用密码）生成下图。密钥对在<code>~/.ssh</code>文件夹中,将<code>id_rsa.pub</code>（公钥）提交到github或者gitlab中</p>
+<p><img src="/2019/09/03/ssh/1568460515778.png" alt="1568460515778"></p>
+<h1 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-client  #客户端 类似于xshell，登陆服务器</span><br><span class="line">sudo apt-get install openssh-server  #服务端 用于服务器，让其他客户端远程登陆</span><br></pre></td></tr></table></figure>
+<h1 id="远程登陆服务器"><a href="#远程登陆服务器" class="headerlink" title="远程登陆服务器"></a>远程登陆服务器</h1><h2 id="shell脚本远程自动登陆服务器"><a href="#shell脚本远程自动登陆服务器" class="headerlink" title="shell脚本远程自动登陆服务器"></a>shell脚本远程自动登陆服务器</h2><p>目前远程登陆服务器一般需要1. 登陆跳板机；2. 登陆服务器。</p>
 <ol>
 <li>ssh跳板机-&gt;输入静态密码+token码</li>
 <li>在跳板机ssh服务器-&gt;输入密码</li>
@@ -586,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#远程登陆服务器"><span class="nav-number">1.</span> <span class="nav-text">远程登陆服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell脚本远程自动登陆服务器"><span class="nav-number">1.1.</span> <span class="nav-text">shell脚本远程自动登陆服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生成ssh密钥对"><span class="nav-number">1.</span> <span class="nav-text">生成ssh密钥对</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ssh"><span class="nav-number">2.</span> <span class="nav-text">安装ssh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程登陆服务器"><span class="nav-number">3.</span> <span class="nav-text">远程登陆服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell脚本远程自动登陆服务器"><span class="nav-number">3.1.</span> <span class="nav-text">shell脚本远程自动登陆服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">3.1.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

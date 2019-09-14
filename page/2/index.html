@@ -1133,7 +1133,6 @@
 </tbody>
 </table>
 </div>
-<h1 id="matplotlib"><a href="#matplotlib" class="headerlink" title="matplotlib"></a><a href="https://matplotlib.org/index.html" target="_blank" rel="noopener">matplotlib</a></h1><p><a href="https://serverpoolauth.ops.ctripcorp.com" target="_blank" rel="noopener">https://serverpoolauth.ops.ctripcorp.com</a></p>
 <h1 id="numpy"><a href="#numpy" class="headerlink" title="numpy"></a>numpy</h1><div class="table-container">
 <table>
 <thead>
@@ -1191,8 +1190,8 @@
 </thead>
 <tbody>
 <tr>
-<td><code>df.iloc[]</code></td>
-<td>指定行</td>
+<td><code>df.iloc[num]</code></td>
+<td>指定行。<code>df.iloc[0]</code>指定第一行</td>
 </tr>
 <tr>
 <td><code>df(df.b.isin([5,13]))</code></td>
@@ -1241,6 +1240,45 @@
 </tbody>
 </table>
 </div>
+<h1 id="matplotlib"><a href="#matplotlib" class="headerlink" title="matplotlib"></a><a href="https://matplotlib.org/index.html" target="_blank" rel="noopener">matplotlib</a></h1><p><a href="https://serverpoolauth.ops.ctripcorp.com" target="_blank" rel="noopener">https://serverpoolauth.ops.ctripcorp.com</a></p>
+<h1 id="sklearn"><a href="#sklearn" class="headerlink" title="sklearn"></a>sklearn</h1><h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a><a href="https://scikit-learn.org/stable/modules/preprocessing.html#k-bins-discretization" target="_blank" rel="noopener">特征工程</a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>KBinsDiscretizer</code></td>
+<td>-&nbsp;对数据进行分箱（离散化） ,不能处理空值<br>-&nbsp;返回<code>np.array</code>数据<br>-&nbsp;参数 <br>&nbsp;&nbsp;n_bins:分箱的数量，默认值是5，也可以是列表，指定各个特征的分箱数量，例如，[feature1_bins,feature2_bins,…]<br></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>n_bins：分箱的数量，默认值是5，也可以是列表，指定各个特征的分箱数量，例如，[feature1_bins,feature2_bins,…]</p>
+<p>encode：编码方式，{‘onehot’, ‘onehot-dense’, ‘ordinal’}, (default=’onehot’)</p>
+<ul>
+<li>onehot：以onehot方式编码，返回稀疏矩阵</li>
+<li>onehot-dense：以onehot方式编码，返回密集矩阵</li>
+<li>ordinal：以ordinal方式编码，返回分箱的序号</li>
+</ul>
+<p>strategy：定义分箱宽度的策略，{‘uniform’, ‘quantile’, ‘kmeans’}, (default=’quantile’)</p>
+<ul>
+<li>uniform：每个分箱等宽</li>
+<li>quantile：每个分箱中拥有相同数量的数据点</li>
+<li>kmeans：每个箱中的值具有与1D k均值簇最近的中心</li>
+</ul>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>断言 assert</p>
 
           
