@@ -286,6 +286,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/机器学习/IV值.md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/20/机器学习/IV值.md/" itemprop="url">IV值</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T15:22:10+08:00">
+                2019-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>$IV$的全称是Information Value，中文意思是信息价值，或者信息量。在特征选择的过程中，可以定量的描述模型的预测能力。每一个特征对应一个$IV$值。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>IV值</th>
+<th>IV&lt;0.02</th>
+<th>0.02$\leqslant$IV&lt;0.1</th>
+<th>0.1$\leqslant$IV&lt;0.3</th>
+<th>IV$\geqslant$0.3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预测能力</td>
+<td>不具有预测能力</td>
+<td>预测能力很弱</td>
+<td>中等程度预测能力</td>
+<td>预测能力很强</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="IV值的直观理解"><a href="#IV值的直观理解" class="headerlink" title="IV值的直观理解"></a>IV值的直观理解</h1><p>对$IV$值的直观理解：我们假设在一个分类问题中，<code>label</code>为：$Y_1$，$Y_2$；特征为$C_1，C_2，C_3，……，C_n$。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$C_1，C_2，C_3，……，C_n$</td>
+<td>$Y_1$，$Y_2$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对于一个样本$A$，要判断A属于$Y_1$还是$Y_2$，我们是需要一定的信息的，假设这个信息总量是$I$，而这些所需要的信息，就蕴含在所有的特征中，那么，对于其中的一个特征$C_i$来说，其蕴含的信息越多，那么它对于判断$A$属于$Y_1$还是$Y_2$的贡献就越大，$C_i$的信息价值就越大，$C_i$的$IV$就越大。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/20/机器学习/IV值.md/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/pyspark-DataFrame/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2324,174 +2510,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/07/评估模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/07/评估模型/" itemprop="url">评估模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-07T18:22:37+08:00">
-                2019-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">真实类别</th>
-<th style="text-align:center">预测为正例</th>
-<th style="text-align:center">预测为反例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">正例</td>
-<td style="text-align:center">TP(真正例)</td>
-<td style="text-align:center">FN(假反例)</td>
-</tr>
-<tr>
-<td style="text-align:center">反例</td>
-<td style="text-align:center">FP(假正例)</td>
-<td style="text-align:center">TN(真反例)</td>
-</tr>
-</tbody>
-</table>
-</div>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/07/评估模型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2546,7 +2564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2568,7 +2586,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

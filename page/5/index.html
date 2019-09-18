@@ -286,6 +286,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/感知器梯度下降/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/04/感知器梯度下降/" itemprop="url">神经元-感知器梯度下降</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T23:08:52+08:00">
+                2017-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="感知器-神经元"><a href="#感知器-神经元" class="headerlink" title="感知器-神经元"></a><a href="https://www.zybuluo.com/hanbingtao/note/433855" target="_blank" rel="noopener">感知器-神经元</a></h2><p><img src="/2017/09/04/感知器梯度下降/感知器梯度下降-ecffbab1.png" alt=""></p>
+<ul>
+<li><strong>输入权值</strong> 一个感知器可以接收多个输$(x_1, x_2,…,x_n\mid x_i\in R)$(特征)，每个输入上有一个<strong>权值</strong>$w_i\in R$。此外还有一个<strong>偏置项</strong>$b$,就是上图中的$w_0$</li>
+<li><strong>激活函数</strong> 感知器的激活函数可以有很多选择，比如我们可以选择下面这个<strong>阶跃函数</strong>$f$来作为激活函数：<script type="math/tex; mode=display">f(z)=\left\{\begin{matrix}
+1&\: \, z>0\\
+0&\: \,otherwise
+\end{matrix}\right.</script></li>
+<li><strong>输出</strong> 感知器的输出由下面这个公式来计算<script type="math/tex; mode=display">y=f(\mathrm{w}\bullet\mathrm{x}+b)\qquad</script>偏置项$b$,就是上图中的$w_0$<script type="math/tex; mode=display">y=f(\mathrm{w}\bullet\mathrm{x})</script><h2 id="线性单元和梯度下降"><a href="#线性单元和梯度下降" class="headerlink" title="线性单元和梯度下降"></a><a href="https://www.zybuluo.com/hanbingtao/note/448086" target="_blank" rel="noopener">线性单元和梯度下降</a></h2>当感知器为线性函数时候<script type="math/tex; mode=display">y=\mathrm{w}\bullet\mathrm{x}+b</script>偏置项$b$,就是上图中的$w_0$，$y=\mathrm{w}\bullet\mathrm{x}$其优化如下所示<h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3>在监督学习下，对于一个样本，我们知道它的特征$x$，以及标记$y$。同时，我们还可以根据模型 $y=\mathrm{w}\bullet\mathrm{x}+b$ 计算得到输出 $\bar{y}$。注意这里面我们用$y$表示训练样本里面的<strong>标记</strong>，也就是<strong>实际值</strong>；用带上划线的 $\bar{y}$ 表示模型计算的出来的<strong>预测值</strong>。我们当然希望模型计算出来的和越接近越好。则损失函数为<script type="math/tex; mode=display">loss = \frac{1}{2}\sum_{i=1}^{n}(y^{(i)}-\bar{y}^{(i)})^2</script></li>
+</ul>
+<script type="math/tex; mode=display">\frac{\partial loss}{\partial w}=\sum_{i=1}^{n}(y^{(i)}-\bar{y}^{(i)})\mathrm{x}^{(i)}</script><script type="math/tex; mode=display">\mathrm{w}_{new}=\mathrm{w}_{old}+\eta\sum_{i=1}^{n}(y^{(i)}-\bar{y}^{(i)})\mathrm{x}^{(i)}</script><script type="math/tex; mode=display">\begin{bmatrix}
+w_0 \\
+w_1 \\
+w_2 \\
+... \\
+w_m \\
+\end{bmatrix}_{new}=
+\begin{bmatrix}
+w_0 \\
+w_1 \\
+w_2 \\
+... \\
+w_m \\
+\end{bmatrix}_{old}+\eta\sum_{i=1}^{n}(y^{(i)}-\bar{y}^{(i)})
+\begin{bmatrix}
+1 \\
+x_1^{(i)} \\
+x_2^{(i)} \\
+... \\
+x_m^{(i)} \\
+\end{bmatrix}</script>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/03/牛顿法和拟牛顿法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1920,152 +2090,6 @@ K(x_n,x_1) & \cdots  & K(x_n,x_n)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/C-数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/29/C-数组/" itemprop="url">C++数组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T19:10:45+08:00">
-                2017-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type arrayName [ arraySize ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> balance[<span class="number">5</span>] = &#123;<span class="number">1000.0</span>, <span class="number">2.0</span>, <span class="number">3.4</span>, <span class="number">7.0</span>, <span class="number">50.0</span>&#125;;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/29/C-数组/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2120,7 +2144,7 @@ K(x_n,x_1) & \cdots  & K(x_n,x_n)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2142,7 +2166,7 @@ K(x_n,x_1) & \cdots  & K(x_n,x_n)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
