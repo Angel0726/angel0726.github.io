@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/08/22/linux子系统安装spark/1566463750551.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/22/linux子系统安装spark/506829-20170927211937559-443973780.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/22/linux子系统安装spark/1566473557610.png">
-<meta property="og:updated_time" content="2019-08-29T01:58:00.093Z">
+<meta property="og:updated_time" content="2019-09-26T09:07:46.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux子系统安装spark">
 <meta name="twitter:description" content="123JDK:1.8  Spark-2.2.0Hadoop Release:2.7.4 一般将文件安装在/opt目录下，/opt目录用来存放第三方的应用程序与文件。">
@@ -398,11 +398,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  jdk-8u131-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将<code>jdk</code>安装在<code>usr/java</code>当中</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/java   #创建/usr/java文件夹</span><br><span class="line">mv /home/cmfchina/jdk1.8.0_131 /usr/java  #将jdk1.8.0_131移动到/usr/java文件夹</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/java   #创建/usr/java文件夹</span><br><span class="line">mv /home/cmfchina/jdk1.8.0_131 /opt/java  #将jdk1.8.0_131移动到/opt/java文件夹</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/08/22/linux子系统安装spark/506829-20170927215620215-1679478260.png" alt="img"></p>
 </li>
 <li><p>修改环境变量，使用<code>vim /etc/profile</code>并在末尾添加如下内容，并使用<code>source /etc/profile</code>让命令<code>profile</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_131</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib:$CLASSPATH</span><br><span class="line">export JAVA_PATH=$&#123;JAVA_HOME&#125;/bin:$&#123;JRE_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_PATH&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/java/jdk1.8.0_131</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib:$CLASSPATH</span><br><span class="line">export JAVA_PATH=$&#123;JAVA_HOME&#125;/bin:$&#123;JRE_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_PATH&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/08/22/linux子系统安装spark/506829-20170927215632028-1294986463.png" alt="img"></p>
 </li>
 <li><p>测试是否安装成功</p>
@@ -419,19 +419,21 @@
 <li><p>解压压缩包</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar  -zxvf  scala-2.12.2.tgz</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>将<code>scala</code>安装在<code>usr/scala</code>当中</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/scala </span><br><span class="line">mv scala-2.12.2 /usr/scala</span><br></pre></td></tr></table></figure>
+<li><p>将<code>scala</code>安装在opt/scala`当中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/scala </span><br><span class="line">mv scala-2.12.2 /usr/scala</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>配置Scala环境变量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export  SCALA_HOME=/opt/scala/scala-2.12.2</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SCALA_HOME=/opt/scala/scala-2.12.2</span><br><span class="line">export PATH=$PATH:$&#123;SCALA_HOME&#125;/bin</span><br></pre></td></tr></table></figure>
 <p>在该文件的PATH变量中增加下面的内容<code>{SCALA_HOME}/bin</code></p>
-<p><img src="/2019/08/22/linux子系统安装spark/1566379770191.png" alt="1566379770191"></p>
 </li>
+</ol>
+<p><img src="/2019/08/22/linux子系统安装spark/1566379770191.png" alt="1566379770191"></p>
+<ol>
 <li><p>运行环境变量</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source  /etc/profile</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>测试Scala是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala    -version</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala -version</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h1 id="ssh免密登陆"><a href="#ssh免密登陆" class="headerlink" title="ssh免密登陆"></a>ssh免密登陆</h1><ol>
@@ -639,7 +641,7 @@ C-->E[name]</pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
