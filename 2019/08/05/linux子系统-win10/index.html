@@ -90,10 +90,11 @@
 <meta property="og:image" content="http://yoursite.com/2019/08/05/linux子系统-win10/tempsnip.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/05/linux子系统-win10/1565005612829.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/05/linux子系统-win10/20171212111834391.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/08/05/linux子系统-win10/1569556094297.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/05/linux子系统-win10/dff1d38a0f699e19488e71c1ad7ad8805cc.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/08/05/linux子系统-win10/1566527134737.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/05/linux子系统-win10/tempsnip-1565012471202.png">
-<meta property="og:updated_time" content="2019-09-26T06:21:39.896Z">
+<meta property="og:updated_time" content="2019-09-27T03:49:49.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux子系统-win10">
 <meta name="twitter:description" content="Windows10安装Ubuntu子系统一、开启开发模式“设置 - 更新和安全 - 针对开发人员”设置页面，选中“开发人员模式”。">
@@ -413,7 +414,14 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8</code></li>
 </ol>
-<h4 id="插件说明"><a href="#插件说明" class="headerlink" title="插件说明"></a>插件说明</h4><h2 id="五、安装配置Cmder命令行终端"><a href="#五、安装配置Cmder命令行终端" class="headerlink" title="五、安装配置Cmder命令行终端"></a>五、安装配置Cmder命令行终端</h2><p>访问<a href="https://cmder.net/" target="_blank" rel="noopener">cmder.net</a>，下载mini版本即可</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>在使用<code>vscode</code>的<code>wsl</code>开发环境的时候。<code>vscode</code>的终端只会运行<code>~/.zshrc</code>文件，不会运行<code>/etc/profile</code>文件；因此在<code>/etc/profile</code>文件中的环境变量不会被导入。为了解决这个问题需要在<code>~/.zshrc</code>文件中启用<code>/etc/profile</code>文件。在<code>~/zshrc</code>文件中添加</p>
+<p><img src="/2019/08/05/linux子系统-win10/1569556094297.png" alt="1569556094297"></p>
+<ul>
+<li><p>注意：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile        #必须在上面</span><br><span class="line">source $ZSH/oh-my-zsh.sh</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="五、安装配置Cmder命令行终端"><a href="#五、安装配置Cmder命令行终端" class="headerlink" title="五、安装配置Cmder命令行终端"></a>五、安装配置Cmder命令行终端</h2><p>访问<a href="https://cmder.net/" target="_blank" rel="noopener">cmder.net</a>，下载mini版本即可</p>
 <ol>
 <li><p>修改启动参数</p>
 <p>修改启动参数填入<code>bash -cur_console:p</code>，这样我们直接打开cmder后就可以进入到linux系统了。这种方法一般vim的方向键不可以使用。</p>
@@ -469,8 +477,8 @@ export LANG=en_US.UTF-8</code></li>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/31/SQL/DML-SQL.md/" rel="next" title="DML-SQL">
-                <i class="fa fa-chevron-left"></i> DML-SQL
+              <a href="/2019/07/31/SQL/DCL-SQL.md/" rel="next" title="DCL-SQL">
+                <i class="fa fa-chevron-left"></i> DCL-SQL
               </a>
             
           </div>
@@ -638,7 +646,7 @@ export LANG=en_US.UTF-8</code></li>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows10安装Ubuntu子系统"><span class="nav-number">1.</span> <span class="nav-text">Windows10安装Ubuntu子系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、开启开发模式"><span class="nav-number">1.1.</span> <span class="nav-text">一、开启开发模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、启用或关闭Windows功能"><span class="nav-number">1.2.</span> <span class="nav-text">二、启用或关闭Windows功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装-Linux-子系统"><span class="nav-number">1.3.</span> <span class="nav-text">三、安装 Linux 子系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、zsh"><span class="nav-number">1.4.</span> <span class="nav-text">四、zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh插件"><span class="nav-number">1.4.1.</span> <span class="nav-text">zsh插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插件说明"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">插件说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、安装配置Cmder命令行终端"><span class="nav-number">1.5.</span> <span class="nav-text">五、安装配置Cmder命令行终端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件夹互相访问"><span class="nav-number">2.</span> <span class="nav-text">文件夹互相访问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#win10访问ubuntu"><span class="nav-number">2.1.</span> <span class="nav-text">win10访问ubuntu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu访问win10"><span class="nav-number">2.2.</span> <span class="nav-text">ubuntu访问win10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以建立一个win10的快捷方式"><span class="nav-number">2.2.1.</span> <span class="nav-text">可以建立一个win10的快捷方式</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows10安装Ubuntu子系统"><span class="nav-number">1.</span> <span class="nav-text">Windows10安装Ubuntu子系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、开启开发模式"><span class="nav-number">1.1.</span> <span class="nav-text">一、开启开发模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、启用或关闭Windows功能"><span class="nav-number">1.2.</span> <span class="nav-text">二、启用或关闭Windows功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装-Linux-子系统"><span class="nav-number">1.3.</span> <span class="nav-text">三、安装 Linux 子系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、zsh"><span class="nav-number">1.4.</span> <span class="nav-text">四、zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh插件"><span class="nav-number">1.4.1.</span> <span class="nav-text">zsh插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境变量"><span class="nav-number">1.4.2.</span> <span class="nav-text">环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、安装配置Cmder命令行终端"><span class="nav-number">1.5.</span> <span class="nav-text">五、安装配置Cmder命令行终端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件夹互相访问"><span class="nav-number">2.</span> <span class="nav-text">文件夹互相访问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#win10访问ubuntu"><span class="nav-number">2.1.</span> <span class="nav-text">win10访问ubuntu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu访问win10"><span class="nav-number">2.2.</span> <span class="nav-text">ubuntu访问win10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以建立一个win10的快捷方式"><span class="nav-number">2.2.1.</span> <span class="nav-text">可以建立一个win10的快捷方式</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
