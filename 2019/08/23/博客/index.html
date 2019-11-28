@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="WSL,开发环境," />
+  <meta name="keywords" content="环境搭建,WSL," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="使用WSL即windows的ubuntu子系统搭建博客 安装node与npm12345sudo apt-get install nodejssudo apt-get install npmnode -v #测试是否安装完成npm -v  #测试是否安装完成">
-<meta name="keywords" content="WSL,开发环境">
+<meta name="keywords" content="环境搭建,WSL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客">
 <meta property="og:url" content="http://yoursite.com/2019/08/23/博客/index.html">
 <meta property="og:site_name" content="黎明晨光">
 <meta property="og:description" content="使用WSL即windows的ubuntu子系统搭建博客 安装node与npm12345sudo apt-get install nodejssudo apt-get install npmnode -v #测试是否安装完成npm -v  #测试是否安装完成">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-29T01:58:00.295Z">
+<meta property="og:updated_time" content="2019-11-28T03:22:21.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客">
 <meta name="twitter:description" content="使用WSL即windows的ubuntu子系统搭建博客 安装node与npm12345sudo apt-get install nodejssudo apt-get install npmnode -v #测试是否安装完成npm -v  #测试是否安装完成">
@@ -339,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WSL开发环境/" itemprop="url" rel="index">
-                    <span itemprop="name">WSL开发环境</span>
+                  <a href="/categories/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
                   </a>
                 </span>
 
@@ -386,7 +386,7 @@
 <a id="more"></a>
 <h1 id="安装流程图插件"><a href="#安装流程图插件" class="headerlink" title="安装流程图插件"></a>安装流程图插件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-filter-mermaid-diagrams   #安装流程图插件</span><br></pre></td></tr></table></figure>
 <p>在<code>themes/next/layout/_partials/footer.swig</code>加入</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> (theme.mermaid.enable)  %&#125;</span><br><span class="line">  &lt;script src=<span class="string">'https://unpkg.com/mermaid@&#123;&#123; theme.mermaid.version &#125;&#125;/dist/mermaid.min.js'</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.mermaid) &#123;</span><br><span class="line">      mermaid.initialize(&#123;<span class="attr">theme</span>: <span class="string">'forest'</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> (theme.mermaid.enable)  %&#125;</span><br><span class="line">  &lt;script src=<span class="string">'https://unpkg.com/mermaid@&#123;&#123; theme.mermaid.version &#125;&#125;/dist/mermaid.min.js'</span>&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.mermaid) &#123;</span><br><span class="line">      mermaid.initialize(&#123;<span class="attr">theme</span>: <span class="string">'forest'</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&#123;% endif %&#125;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -404,9 +404,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/WSL/" rel="tag"># WSL</a>
+            <a href="/tags/环境搭建/" rel="tag"># 环境搭建</a>
           
-            <a href="/tags/开发环境/" rel="tag"># 开发环境</a>
+            <a href="/tags/WSL/" rel="tag"># WSL</a>
           
         </div>
       
@@ -419,7 +419,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/22/健身动作/" rel="next" title="健身动作">
+              <a href="/2019/08/22/风轻云淡/健身动作/" rel="next" title="健身动作">
                 <i class="fa fa-chevron-left"></i> 健身动作
               </a>
             
@@ -517,7 +517,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -528,7 +528,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -539,7 +539,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="线性分类器,模型," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介支持向量机（support vector machines，SVM）是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机。构建一个超平面将数据点分开,使所有数据距离超平面的距离最大。其中红色与蓝色的数据点成为支持向量">
+<meta name="keywords" content="线性分类器,模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVM支持向量机">
+<meta property="og:url" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/index.html">
+<meta property="og:site_name" content="黎明晨光">
+<meta property="og:description" content="简介支持向量机（support vector machines，SVM）是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机。构建一个超平面将数据点分开,使所有数据距离超平面的距离最大。其中红色与蓝色的数据点成为支持向量">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-7a61442f.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-d7b11def.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-124d9ba6.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-92b2d31d.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-2b9c28f6.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-0ba6fdac.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-18baeb56.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-51712dc0.png">
+<meta property="og:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-f41dd70d.png">
+<meta property="og:updated_time" content="2019-11-28T02:37:20.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVM支持向量机">
+<meta name="twitter:description" content="简介支持向量机（support vector machines，SVM）是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机。构建一个超平面将数据点分开,使所有数据距离超平面的距离最大。其中红色与蓝色的数据点成为支持向量">
+<meta name="twitter:image" content="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-7a61442f.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/"/>
+
+
+
+
+
+  <title>SVM支持向量机 | 黎明晨光</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黎明晨光</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活从一点一滴开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/人工智能/机器学习/SVM支持向量机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SVM支持向量机</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T23:22:09+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>支持向量机（support vector machines，SVM）是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机。构建一个超平面将数据点分开,使所有数据距离超平面的距离最大。其中红色与蓝色的数据点成为<strong>支持向量</strong></p>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-7a61442f.png" alt=""></p>
+<a id="more"></a>
+<h2 id="知识体系结构"><a href="#知识体系结构" class="headerlink" title="知识体系结构"></a>知识体系结构</h2><ul>
+<li>学习一个线性的分类器，即线性可分支持向量机，又称为硬间隔支持向量机；</li>
+<li>当训练数据近似线性可分时，通过软间隔最大化，也学习一个线性的分类器，即线性支持向量机，又称为软间隔支持向量机；</li>
+<li>当训练数据线性不可分时，通过使用核技巧及软间隔最大化，学习非线性支持向量机。</li>
+</ul>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a><a href="https://blog.csdn.net/github_39261590/article/details/75009069" target="_blank" rel="noopener">算法</a></h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>输入：是线性可分的 $m$ 个样本${(x_1,y_1), (x_2,y_2), …, (x_m,y_m),}$,其中 $x$ 为 $n$ 维特征向量。$y$为二元输出，值为1，或者-1.<br>输出：是分离超平面的参数和$w^{\ast }和b^{\ast }$和分类决策函数。</p>
+<script type="math/tex; mode=display">\begin{align*}
+&min\;\; \frac{1}{2}||w||_2^2\\
+s.t\;\;\;\; & y_i(w\cdot x_i + b)  \geq 1 \;\;(i =1,2,...n)
+\end{align*}</script><p>求得最优解,$w^{\ast },b^{\ast }$</p>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><script type="math/tex; mode=display">w^*\cdot x+b^*=0</script><p>分类决策函数为</p>
+<script type="math/tex; mode=display">f(x)=sign(w^*\cdot x+b^*)</script><p>其他点$(x_0,y_0)$平面$w\cdot x_i + b=0$的距离</p>
+<script type="math/tex; mode=display">\frac{|w\cdot x_i + b|}{||w||_2^2}</script><p>因为$y=\pm 1$所以</p>
+<script type="math/tex; mode=display">\frac{y(w\cdot x_i + b)}{||w||_2^2}</script><p>假设$y(w\cdot x_i + b)\geqslant 1$则</p>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-d7b11def.png" alt=""></p>
+<script type="math/tex; mode=display">\begin{align*}
+&min\;\; \frac{1}{2}||w||_2^2\\
+s.t\;\;\;\; & y_i(w\cdot x_i + b)  \geq 1 \;\;(i =1,2,...n)
+\end{align*}</script><h1 id="线性可分支持向量机与硬间隔最大化"><a href="#线性可分支持向量机与硬间隔最大化" class="headerlink" title="线性可分支持向量机与硬间隔最大化"></a>线性可分支持向量机与硬间隔最大化</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>线性可分支持量机的定义<br>给定线性可分训练数据集，通过间隔最大化或等价地求解相应的凸二次规划问题学习得到的分离超平面为<script type="math/tex; mode=display">w\cdot x + b = 0</script>以及相应的分类决策函数<script type="math/tex; mode=display">f(x)=sign(w\cdot x + b )</script>线性可分如下图所示：</li>
+</ul>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-124d9ba6.png" alt=""></p>
+<ul>
+<li>支持向量<br>距离超平面最近的数据点，如下图所示的圆圈处的数据点。</li>
+<li>硬间隔<script type="math/tex; mode=display">\left\{\begin{matrix}
+w\cdot x_{i}+b\geqslant +1 &y_i=+1\\
+w\cdot x_{i}+b\leqslant -1 &y_i=-1
+\end{matrix}\right.</script>硬间隔：两个异类支持向量到超平面的距离之和如下所示<script type="math/tex">\gamma =\frac{2}{\left \| w \right \|}</script></li>
+</ul>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-92b2d31d.png" alt="硬间隔"></p>
+<h2 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h2><p>SVM的模型是让所有点到超平面的距离大于一定的距离，也就是所有的分类点要在各自类别的支持向量两边。用数学式子表示为：</p>
+<script type="math/tex; mode=display">\begin{align*}
+&min\;\; \frac{1}{2}||w||_2^2\\
+s.t\;\;\;\; & y_i(w\cdot x_i + b)  \geq 1 \;\;(i =1,2,...n)
+\end{align*}</script><ul>
+<li>推导<br>略</li>
+</ul>
+<h2 id="怎么得到支持向量"><a href="#怎么得到支持向量" class="headerlink" title="怎么得到支持向量"></a>怎么得到支持向量</h2><p>根据KKT条件中的对偶互补条件$α_i∗(y_i(w\cdot x_i+b)−1)=0$，如果$α_i&gt;0$则有$y_i(w\cdot x_i+b)=1 $即点在支持向量上，否则如果$α_i=0$则有$y_i(w\cdot x_i+b)≥1$，即样本在支持向量上或者已经被正确分类。</p>
+<h2 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h2><p>输入：线性可分训练集$T={(x_1,y_1), (x_2,y_2), …, (x_m,y_m),}$,其中$x$为n维特征向量。$y$为二元输出，值为1，或者-1.<br>输出：是分离超平面的参数和$w^{\ast }和b^{\ast }$和分类决策函数。</p>
+<ol>
+<li>构造约束优化问题<script type="math/tex; mode=display">\begin{align*}
+&\underbrace{min}_{\alpha} \;\; \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \cdot x_j) -  \sum\limits_{i=1}^{m} \alpha_i\\
+s.t\;\;\;\; & \sum\limits_{i=1}^{m}\alpha_iy_i = 0\\
+&\alpha_i \geq 0  \; i=1,2,...m
+\end{align*}</script></li>
+<li>利用SMO算法求得求出上式最小时对应的$α$向量的值$α^∗$向量.</li>
+<li>计算：<script type="math/tex; mode=display">w^{*} = \sum\limits_{i=1}^{m}\alpha_i^{*}y_ix_i</script>求b则稍微麻烦一点。注意到，对于任意支持向量$(x_s, y_s)$，都有<script type="math/tex; mode=display">y_s(w\cdot x_s+b) = y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_ix_s+b) = 1</script>假设我们有S个支持向量，则对应我们求出S个$b^{\ast }$,理论上这些$b^{\ast }$都可以作为最终的结果， 但是我们一般采用一种更健壮的办法，即求出所有支持向量所对应的$b_s^{\ast }$，然后将其平均值作为最后的结果。</li>
+</ol>
+<h1 id="线性支持向量机与软间隔最大化"><a href="#线性支持向量机与软间隔最大化" class="headerlink" title="线性支持向量机与软间隔最大化"></a>线性支持向量机与软间隔最大化</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>线性支持向量机<br>训练数据集不是线性可分的。通常情况是，训练数据中有一些特异点（outlier），将这些特异点除去后，剩下大部分的样本点组成的集合是线性可分的。这时需要修改硬间隔最大化，使其成为软间隔最大化。</li>
+</ul>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-2b9c28f6.png" alt=""></p>
+<p>本来如果我们不考虑异常点，SVM的超平面应该是下图中的红色线所示，但是由于有一个蓝色的异常点，导致我们学习到的超平面是下图中的粗虚线所示，这样会严重影响我们的分类模型预测效果。</p>
+<ul>
+<li>软间隔<br>SVM对训练集里面的每个样本$(x_i,y_i)$引入了一个松弛变量$ξ_i≥0$,使函数间隔加上松弛变量大于等于1，也就是说：<script type="math/tex; mode=display">y_i(w\cdot  x_i +b) \geq 1- \xi_i</script></li>
+</ul>
+<h2 id="数学模型-1"><a href="#数学模型-1" class="headerlink" title="数学模型"></a>数学模型</h2><p>对每个松弛变量$ξ_i$，支付一个代价$ξ_i$，这个就得到了我们的软间隔最大化的SVM学习条件。目标函数由原来的</p>
+<script type="math/tex; mode=display">\begin{align*}
+&min\;\; \frac{1}{2}||w||^2 +C\sum\limits_{i=1}^{m}\xi_i \\
+s.t. \;  \; \;\; &y_i(w\cdot x_i + b)  \geq 1 - \xi_i \;\;(i =1,2,...m)\\
+&\xi_i \geq 0 \;\;(i =1,2,...m)
+\end{align*}</script><p>C&gt;0称为惩罚参数，一般由应用问题决定，C值大时对误分类的惩罚增大，C值小时对误分类的惩罚减小。最小化目标函数包含两层含义：使$\frac{1}{2}||w||^2$尽量小即间隔尽量大，同时使误分类点的个数尽量小，C是调和二者的系数。</p>
+<h2 id="支持向量"><a href="#支持向量" class="headerlink" title="支持向量"></a>支持向量</h2><p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-0ba6fdac.png" alt=""></p>
+<p>根据软间隔最大化时KKT条件中的对偶互补条件$α_i∗(y_i(w\cdot x_i+b)−1+ξ_i^∗)=0$我们有</p>
+<ol>
+<li>如果$α=0$,那么$y_i(w\cdot x_i+b)−1≥0$,即样本在支持向量上或者已经被正确分类。如图中所有远离支持向量的点。</li>
+<li>如果$0≤α≤C$,那么$ξ_i=0,y_i(w\cdot x_i+b)−1=0$,即点在支持向量上。如图中在虚线支持向量上的点。</li>
+<li>如果$α=C$，说明这是一个可能比较异常的点，需要检查此时$\xi_i$<ol>
+<li>如果$0≤ξ_i≤1$,那么点被正确分类，但是却在超平面和自己类别的支持向量之间。如图中的样本2和4.</li>
+<li>如果$ξ_i=1$,那么点在分离超平面上，无法被正确分类。</li>
+<li>如果$ξ_i&gt;1$,那么点在超平面的另一侧，也就是说，这个点不能被正常分类。如图中的样本1和3</li>
+</ol>
+</li>
+</ol>
+<h2 id="算法-2"><a href="#算法-2" class="headerlink" title="算法"></a>算法</h2><p>输入：线性可分的$m$个样本$(x_1,y_1),(x_2,y_2),…,(x_m,y_m)$,,其中$x$为$n$维特征向量。$y$为二元输出，值为1，或者-1.<br>输出：是分离超平面的参数和$w^{\ast }$和$b^{\ast }$和分类决策函数。</p>
+<ol>
+<li>选择一个惩罚系数C&gt;0, 构造约束优化问题</li>
+<li><script type="math/tex; mode=display">\begin{align*}
+&\underbrace{min}_{\alpha} \;\; \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \cdot x_j) -  \sum\limits_{i=1}^{m} \alpha_i\\
+s.t\;\;\;\; & \sum\limits_{i=1}^{m}\alpha_iy_i = 0\\
+&0\leqslant \alpha_i \leqslant C \; \;\;i=1,2,...m
+\end{align*}</script></li>
+<li>用SMO算法求出上式最小时对应的$α$向量的值$α^∗$向量.</li>
+<li>计算$w^{<em>} = \sum\limits_{i=1}^{m}\alpha_i^{</em>}y_ix_i$</li>
+<li>找出所有的S个支持向量,即满足$0&lt;α_s&lt;C$对应的样本$(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s+b) = 1$，计算出每个支持向量$(x_s,y_s)$对应的$b_s^{\ast }$,计算出这些$b_s^{\ast } = y_s - \sum\limits_{i=1}^{S}\alpha_iy_ix_i^Tx_s$. 所有的$b_s^∗$对应的平均值即为最终的$b^{\ast } = \frac{1}{S}\sum\limits_{i=1}^{S}b_s^{\ast }$</li>
+<li>这样最终的分类超平面为：$w^∗\cdot x+b^∗=0$，最终的分类决策函数为：</li>
+<li><script type="math/tex; mode=display">f(x) = sign(w^{*} \cdot x + b^{*})</script></li>
+</ol>
+<h2 id="合页损失函数"><a href="#合页损失函数" class="headerlink" title="合页损失函数"></a>合页损失函数</h2><p>线性支持向量机还有另外一种解释如下：</p>
+<script type="math/tex; mode=display">\underbrace{ min}_{w, b}[1-y_i(w \cdot x + b)]_{+} + \lambda ||w||_2^2</script><p>其中$L(y(w \bullet x + b)) = [1-y_i(w \bullet x + b)]_{+}$称为合页损失函数(hinge loss function)，下标+表示为：</p>
+<script type="math/tex; mode=display">[z]_{+}= \begin{cases} z & {z >0}\\ 0& {z\leq 0} \end{cases}</script><p>也就是说，如果点被正确分类，且函数间隔大于1，损失是0，否则损失是$1−y(w∙x+b)$,如下图中的绿线。我们在下图还可以看出其他各种模型损失和函数间隔的关系：对于0-1损失函数，如果正确分类，损失是0，误分类损失1， 如下图黑线，可见0-1损失函数是不可导的。对于感知机模型，感知机的损失函数是$[-y_i(w \cdot x + b)]_{+}$，这样当样本被正确分类时，损失是0，误分类时，损失是$-y_i(w \cdot x + b)$，如下图紫线。对于逻辑回归之类和最大熵模型对应的对数损失，损失函数是$log[1+exp(−y(w\cdot  x+b))]$, 如下图红线所示。</p>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-18baeb56.png" alt=""></p>
+<h1 id="非线性支持向量机与核函数"><a href="#非线性支持向量机与核函数" class="headerlink" title="非线性支持向量机与核函数"></a>非线性支持向量机与核函数</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>非线性分类问题<br>非线性分类问题是指通过利用非线性模型才能很好地进行分类的问题。如下图所示，无法用直线（线性模型）将正负实例正确分开，但可以用一条椭圆曲线（非线性模型）将它们正确分开。<strong>用线性分类方法求解非线性分类问题分为两步：首先使用一个变换将原空间的数据映射到新空间；然后在新空间里用线性分类学习方法从训练数据中学习分类模型。</strong></li>
+</ul>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-51712dc0.png" alt=""></p>
+<ul>
+<li>核函数<br>设$\mathbb{X}$是输入空间（欧氏空间$\mathbb{R}^{n}$的子集或离散集合），又设$\mathbb{H}$为特征空间（希尔伯特空间），如果存在一个从$\mathbb{X}$到$\mathbb{H}$的映射<script type="math/tex; mode=display">\Phi (x):\mathbb{X}\rightarrow \mathbb{H}</script>使得对所有$x,z\in \mathbb{X}$，函数$K(x,z)$满足条件<script type="math/tex; mode=display">K(x,z)=\Phi (x)\cdot \Phi (z)</script>则称$K(x,z)$为核函数，$\Phi (x)$为映射函数，式中$\Phi (x)\cdot \Phi (z)$为$\Phi (x)$和$\Phi (z)$的内积。</li>
+</ul>
+<p><img src="/2017/10/18/人工智能/机器学习/SVM支持向量机/SVM支持向量机-f41dd70d.png" alt=""></p>
+<h2 id="正定核函数"><a href="#正定核函数" class="headerlink" title="正定核函数"></a>正定核函数</h2><p>一个函数要想成为正定核函数，必须满足他里面任何点的集合形成的Gram矩阵是半正定的。也就是说,对于任意的$x_i \in \chi ， i=1,2,3…m$，$K(x_i,x_j)$对应的Gram矩阵$K = \bigg[ K(x_i, x_j )\bigg]$是半正定矩阵，则$K(x,z)$是正定核函数。　</p>
+<h2 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h2><ul>
+<li>线性核函数<br>线性核函数（Linear Kernel）其实就是我们前两篇的线性可分SVM，表达式为：<script type="math/tex; mode=display">K(x, z) = x \cdot z</script>也就是说，线性可分SVM我们可以和线性不可分SVM归为一类，区别仅仅在于线性可分SVM用的是线性核函数。</li>
+<li>多项式核函数<br>多项式核函数（Polynomial Kernel）是线性不可分SVM常用的核函数之一，表达式为：<script type="math/tex; mode=display">K(x, z) = （\gamma x \cdot z  + r)^d</script>其中，$γ,r,d$都需要自己调参定义。</li>
+<li>高斯核函数<br>高斯核函数（Gaussian Kernel），在SVM中也称为径向基核函数（Radial Basis Function,RBF），它是非线性分类SVM最主流的核函数。libsvm默认的核函数就是它。表达式为：<script type="math/tex; mode=display">K(x, z) = exp(-\gamma||x-z||^2)</script>其中，$γ$大于0，需要自己调参定义。</li>
+<li>Sigmoid核函数<br>Sigmoid核函数（Sigmoid Kernel）也是线性不可分SVM常用的核函数之一，表达式为：<script type="math/tex; mode=display">K(x, z) = tanh（\gamma x \cdot z  + r)</script>其中，$γ,r$都需要自己调参定义。</li>
+</ul>
+<h2 id="算法-3"><a href="#算法-3" class="headerlink" title="算法"></a>算法</h2><p>输入：$m$个样本$(x_1,y_1), (x_2,y_2), …, (x_m,y_m),$,其中x为n维特征向量。y为二元输出，值为1，或者-1.<br>输出：分离超平面的参数$w^∗$和$b^∗$和分类决策函数。<br>算法过程如下：</p>
+<ol>
+<li>选择适当的核函数$K(x,z)$和一个惩罚系数$C&gt;0$, 构造约束优化问题<script type="math/tex; mode=display">\begin{align*}
+&\underbrace{min}_{\alpha} \;\; \frac{1}{2}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m}\alpha_i\alpha_jy_iy_j(x_i \cdot x_j) -  \sum\limits_{i=1}^{m} \alpha_i\\
+s.t\;\;\;\; & \sum\limits_{i=1}^{m}\alpha_iy_i = 0\\
+&0\leqslant \alpha _i\leqslant C \; i=1,2,...m
+\end{align*}</script></li>
+<li>用SMO算法求出上式最小时对应的$α$向量的值$α^∗$向量</li>
+<li>得到$w^{\ast } = \sum\limits_{i=1}^{m}\alpha_i^{\ast }y_i\phi(x_i)$，此处可以不直接显式的计算$w^∗$。</li>
+<li>找出所有的S个支持向量,即满足$0 &lt; \alpha_s &lt; C$对应的样本$(x_s,y_s)$，通过 $y_s(\sum\limits_{i=1}^{S}\alpha_iy_iK(x_i,x_s)+b) = 1$，计算出每个支持向量$(x_s,y_s)$对应的$b_s^{\ast }$,计算出这些$b_s^{\ast } = y_s - \sum\limits_{i=1}^{S}\alpha_iy_iK(x_i,x_s)$. 所有的$b_s^{\ast }$对应的平均值即为最终的$b^{*} = \frac{1}{S}\sum\limits_{i=1}^{S}b_s^{\ast }$</li>
+</ol>
+<p>这样最终的分类超平面为：$\sum\limits_{i=1}^{m}\alpha_i^{\ast }y_iK(x, x_i)+ b^{\ast } = 0$，最终的分类决策函数为：</p>
+<script type="math/tex; mode=display">f(x) = sign(\sum\limits_{i=1}^{m}\alpha_i^{\ast }y_iK(x, x_i)+ b^{\ast })</script><h1 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h1><p><a href="http://www.cnblogs.com/pinard/p/6097604.html" target="_blank" rel="noopener">支持向量机原理(一) 线性支持向量机</a><br><a href="http://www.cnblogs.com/pinard/p/6100722.html" target="_blank" rel="noopener">支持向量机原理(二) 线性支持向量机的软间隔最大化模型</a><br><a href="http://www.cnblogs.com/pinard/p/6103615.html" target="_blank" rel="noopener">支持向量机原理(三) 线性不可分支持向量机与核函数</a><br><a href="http://www.cnblogs.com/pinard/p/6111471.html" target="_blank" rel="noopener">支持向量机原理(四) SMO算法原理</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/线性分类器/" rel="tag"># 线性分类器</a>
+          
+            <a href="/tags/模型/" rel="tag"># 模型</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/04/人工智能/深度学习/感知器梯度下降/" rel="next" title="神经元-感知器梯度下降">
+                <i class="fa fa-chevron-left"></i> 神经元-感知器梯度下降
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/20/人工智能/机器学习/GBDT/" rel="prev" title="GBDT">
+                GBDT <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYwNi8xMDE2MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/tou_xiang.jpg"
+                alt="路西法" />
+            
+              <p class="site-author-name" itemprop="name">路西法</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Angel0726" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MaHao_0726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识体系结构"><span class="nav-number">1.1.</span> <span class="nav-text">知识体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.2.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推导"><span class="nav-number">1.2.2.</span> <span class="nav-text">推导</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性可分支持向量机与硬间隔最大化"><span class="nav-number">2.</span> <span class="nav-text">线性可分支持向量机与硬间隔最大化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学模型"><span class="nav-number">2.2.</span> <span class="nav-text">数学模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么得到支持向量"><span class="nav-number">2.3.</span> <span class="nav-text">怎么得到支持向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法-1"><span class="nav-number">2.4.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性支持向量机与软间隔最大化"><span class="nav-number">3.</span> <span class="nav-text">线性支持向量机与软间隔最大化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念-1"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学模型-1"><span class="nav-number">3.2.</span> <span class="nav-text">数学模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量"><span class="nav-number">3.3.</span> <span class="nav-text">支持向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法-2"><span class="nav-number">3.4.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合页损失函数"><span class="nav-number">3.5.</span> <span class="nav-text">合页损失函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非线性支持向量机与核函数"><span class="nav-number">4.</span> <span class="nav-text">非线性支持向量机与核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念-2"><span class="nav-number">4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正定核函数"><span class="nav-number">4.2.</span> <span class="nav-text">正定核函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用核函数"><span class="nav-number">4.3.</span> <span class="nav-text">常用核函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法-3"><span class="nav-number">4.4.</span> <span class="nav-text">算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SMO算法"><span class="nav-number">5.</span> <span class="nav-text">SMO算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路西法</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

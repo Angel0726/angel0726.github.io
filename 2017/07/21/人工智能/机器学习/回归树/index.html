@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="模型,树模型," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介决策树的生成就是递归地构建二叉决策树的过程。对回归树用平方误差最小化准则，对分类树用基尼指数（Gini index）最小化准则，进行特征选择，生成二叉树。CART算法有两步：决策树生成和剪枝。">
+<meta name="keywords" content="模型,树模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CART">
+<meta property="og:url" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/index.html">
+<meta property="og:site_name" content="黎明晨光">
+<meta property="og:description" content="简介决策树的生成就是递归地构建二叉决策树的过程。对回归树用平方误差最小化准则，对分类树用基尼指数（Gini index）最小化准则，进行特征选择，生成二叉树。CART算法有两步：决策树生成和剪枝。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/回归树-d82a16be.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/回归树-eb149128.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/回归树-ce859c9e.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/回归树-ae6f77ba.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/回归树-23c9f784.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/回归树-7ea432c5.png">
+<meta property="og:updated_time" content="2019-11-28T02:36:51.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CART">
+<meta name="twitter:description" content="简介决策树的生成就是递归地构建二叉决策树的过程。对回归树用平方误差最小化准则，对分类树用基尼指数（Gini index）最小化准则，进行特征选择，生成二叉树。CART算法有两步：决策树生成和剪枝。">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/回归树-d82a16be.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/"/>
+
+
+
+
+
+  <title>CART | 黎明晨光</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黎明晨光</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活从一点一滴开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/21/人工智能/机器学习/回归树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CART</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-21T11:07:40+08:00">
+                2017-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>决策树的生成就是递归地构建二叉决策树的过程。对回归树用<strong>平方误差最小化准则</strong>，对分类树用<strong>基尼指数（Gini index）</strong>最小化准则，进行特征选择，生成二叉树。CART算法有两步：<strong>决策树生成和剪枝。</strong><br><a id="more"></a></p>
+<h1 id="回归树的生成"><a href="#回归树的生成" class="headerlink" title="回归树的生成"></a>回归树的生成</h1><p>一个回归树对应着输入空间（即特征空间）的一个划分以及在划分的单元上的输出值。假设已将输入空间划分为$M$个单元$R_1,R_2,…,R_M$，并且在每个单元$R_m$上有一个固定的输出值$c$,$f(x)=\sum _{i=1}^M c_mI(x \in R_m)$</p>
+<ul>
+<li>输入：训练数据集$D{(x_1,y_1),…,(x_N,y_N)}$；</li>
+<li>输出：回归树$f(x)=\sum _{i=1}^M c_mI(x \in R_m)$<br>在训练数据集所在的输入空间中，递归地将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树<ol>
+<li>当输入空间的划分确定时，可以用平方误差$\sum _{x_i\in R_m}(y_i-f(x_i))^2$来表示回归树对于训练数据的预测误差，选择最优切分变量$j$与切分点$s$，使得预测误差最小，求解<script type="math/tex; mode=display">\min_{j,s}[\min_{c_1} \sum_{x_i\in R_1(j,s)}(y_i-c_1)^2 + \min_{c_2} \sum_{x_i\in R_2(j,s)}(y_i-c_2)^2]</script></li>
+<li>用选定的对$（j,s）$划分区域并决定相应的输出值：<script type="math/tex; mode=display">R_1(j,s)=\{x|x^{(j)}\leqslant s\},R_1(j,s)=\{x|x^{(j)}> s\}\\
+\hat{c}_m=\frac{1}{N_m}\sum_{x_i \in R_m(j,s)}y_i ,\; \; x\in R_m ,\, \, m=1,2</script></li>
+<li>继续对两个子区域调用以上两个步骤，直至满足停止条件。</li>
+<li>将输入空间划分为$M$个区域$R_1,R_2,…R_m$，生成决策树<script type="math/tex; mode=display">f(x)=\sum _{m=1}^M\hat{c}_mI(x \in R_m)</script></li>
+</ol>
+</li>
+</ul>
+<h2 id="计算实例"><a href="#计算实例" class="headerlink" title="计算实例"></a>计算实例</h2><p>训练数据见下表，x的取值范围为区间[0.5,10.5],y的取值范围为区间[5.0,10.0],学习这个回归问题的最小二叉回归树</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$y_i$</td>
+<td>5.56</td>
+<td>5.70</td>
+<td>5.91</td>
+<td>6.40</td>
+<td>6.80</td>
+<td>7.05</td>
+<td>8.90</td>
+<td>8.70</td>
+<td>9.00</td>
+<td>9.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="根结点-T-1-x"><a href="#根结点-T-1-x" class="headerlink" title="根结点$T_1(x)$"></a>根结点$T_1(x)$</h3><p>求训练数据的切分点，根据所给数据，求取使得预测误差最小的切分点：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$y_i$</td>
+<td>5.56</td>
+<td>5.70</td>
+<td>5.91</td>
+<td>6.40</td>
+<td>6.80</td>
+<td>7.05</td>
+<td>8.90</td>
+<td>8.70</td>
+<td>9.00</td>
+<td>9.05</td>
+</tr>
+<tr>
+<td>切分点</td>
+<td>1.5</td>
+<td>2.5</td>
+<td>3.5</td>
+<td>4.5</td>
+<td>5.5</td>
+<td>6.5</td>
+<td>7.5</td>
+<td>8.5</td>
+<td>9.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>例如当 $s=1.5$ 时，$R_1 = \lbrace 1\rbrace$ , $R_2 = \lbrace 2, 3 , \ldots , 10\rbrace$ , $c_1=5.56$ , $c_2=7.50$ ,</p>
+<script type="math/tex; mode=display">m(s)=\min_{j,s}[\min_{c_1} \sum_{x_i\in R_1(j,s)}(y_i-c_1)^2 + \min_{c_2} \sum_{x_i\in R_2(j,s)}(y_i-c_2)^2] = 0+15.72 = 15.72</script><p>由上表可知，当$x=6.5$的时候达到最小值，此时$R_1 = \lbrace 1 ,2 , \ldots , 6\rbrace$ , $R_2 = \lbrace 7 ,8 ,9 ,10 ,\rbrace$ , $c_1=6.24$ , $c_2=8.9$ , 所以回归树$T_1(x)$为：</p>
+<script type="math/tex; mode=display">T_1(x) =
+\begin{cases}
+6.24, & x\lt 6.5 \\
+8.91, & x \ge 6.5 \\
+\end{cases}</script><script type="math/tex; mode=display">f_1(x) = T_1(x)</script></li>
+<li><p>用$f_1(x)$拟合训练数据的平方误差：</p>
+<script type="math/tex; mode=display">L(y,f_1(x)) = \sum_{i=1}^{10}(y_i-f_1(x_i))^2 = 1.93</script></li>
+</ul>
+<h3 id="次结点-T-2-x"><a href="#次结点-T-2-x" class="headerlink" title="次结点$T_2(x)$"></a>次结点$T_2(x)$</h3><p>用$f_1(x)$拟合训练数据的残差见下表，表中$r_{2i} = y_i - f_1(x_i),i=1,2,\ldots , 10$</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$x_i$</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$y_i$</td>
+<td>5.56</td>
+<td>5.70</td>
+<td>5.91</td>
+<td>6.40</td>
+<td>6.80</td>
+<td>7.05</td>
+<td>8.90</td>
+<td>8.70</td>
+<td>9.00</td>
+<td>9.05</td>
+</tr>
+<tr>
+<td>$r_{2i}$</td>
+<td>-0.68</td>
+<td>-0.54</td>
+<td>-0.33</td>
+<td>0.16</td>
+<td>0.56</td>
+<td>0.81</td>
+<td>-0.01</td>
+<td>-0.21</td>
+<td>0.09</td>
+<td>0.14</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>求$T_2(x)$.方法与求$T_1(x)$一样，只是拟合的数据是上表的残差，可以得到</p>
+<script type="math/tex; mode=display">T_2(x) =
+\begin{cases}
+-0.52, & x\lt 3.5 \\
+0.22, & x \ge 3.5 \\
+\end{cases}</script><script type="math/tex; mode=display">f_2(x) = f_1(x) + T_2(x)=
+\begin{cases}
+5.72, & x\lt 3.5 \\
+6.46, & 3.5\le x \lt 6.5 \\
+9.13, & x\ge 6.5 \\
+\end{cases}</script><ul>
+<li>用$f_2(x)$拟合训练数据的平方误差是：<script type="math/tex; mode=display">L(y,f_2(x)) = \sum_{i=1}^{10}(y_i-f_2(x_i))^2 = 0.79</script></li>
+</ul>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>继续求得</p>
+<script type="math/tex; mode=display">T_3(x) =
+\begin{cases}
+0.15, & x\lt 6.5 \\
+-0.22, & x \ge 6.5 \\
+\end{cases}
+\quad L(y,f_3(x)) = 0.47 ,</script><script type="math/tex; mode=display">T_4(x) =
+\begin{cases}
+-0.16, & x\lt 4.5 \\
+0.11, & x \ge 4.5 \\
+\end{cases}
+\quad L(y,f_3(x)) = 0.30 ,</script><script type="math/tex; mode=display">T_5(x) =
+\begin{cases}
+0.07, & x\lt 6.5 \\
+-0.11, & x \ge 6.5 \\
+\end{cases}
+\quad L(y,f_3(x)) = 0.23 ,</script><script type="math/tex; mode=display">T_6(x) =
+\begin{cases}
+-0.15, & x\lt 2.5 \\
+0.04, & x \ge 2.5 \\
+\end{cases}</script><script type="math/tex; mode=display">f_6(x) = f_5(x)+T_6(x) =T_1(x)+ \ldots + T_5(x) + T_6(x)=
+\begin{cases}
+5.63, & x\lt 2.5 \\
+5.82, & 2.5 \le x\lt 3.5 \\
+6.56, & 3.5 \le x\lt 4.5 \\
+6.83, & 4.5 \le x\lt 6.5 \\
+8.95, & x\ge 6.5 \\
+\end{cases}</script><ul>
+<li>用$f_6(x)$拟合训练数据的平方损失误差是<script type="math/tex; mode=display">L(y,f_6(x)) = \sum_{i=1}^{10}(y_i-f_6(x_i))^2 = 0.71</script>假设此时已经满足误差要求，那么$f(x)=f_6(x)$即为所求的回归树。</li>
+</ul>
+<p><strong> 综可知平方差函数越来越小</strong></p>
+<h1 id="分类树的生成"><a href="#分类树的生成" class="headerlink" title="分类树的生成"></a>分类树的生成</h1><ul>
+<li>输入：训练数据集$D$，停止计算的条件；</li>
+<li>输出：CART决策树。根据训练数据集，从根结点开始，递归地对每个结点进行以下操作，构建二叉决策树：<ol>
+<li>设结点的训练数据集为$D$，计算现有特征对该数据集的基尼指数。此时，对每一个特征$A$，对其可能取的每个值$a$，根据样本点对$A＝a$的测试为“是”或“否”将$D$分割成$D1$和$D2$两部分，利用式$Gini(D)=1-\sum_{k=1}^{K}\left ( \frac{|c_k|}{D} \right )^2$计算$A＝a$时的基尼指数。</li>
+<li>在所有可能的特征$A$以及它们所有可能的切分点$a$中，选择基尼指数最小的特征及其对应的切分点作为最优特征与最优切分点。依最优特征与最优切分点，从现结点生成两个子结点，将训练数据集依特征分配到两个子结点中去。</li>
+<li>对两个子结点递归地调用以上两个步骤，直至满足停止条件。</li>
+<li>生成CART决策树。</li>
+</ol>
+</li>
+</ul>
+<h2 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h2><p> 分类问题中，假设有 $K$ 个类，样本点属于第k类的概率为$p_k$，则概率分布的基尼指数定义为</p>
+<script type="math/tex; mode=display">\begin{align*}
+ Gini(p)&=\sum_{k=1}^{K}p_k(1-p_k)=1-\sum_{k=1}^{K}p_k^2\\
+ Gini(D)&=1-\sum_{k=1}^{K}\left ( \frac{|c_k|}{D} \right )^2
+ \end{align*}</script><p> 如果样本集合 $D$ 根据特征 $A$ 是否取某一可能值 $a$ 被分割成 $D_1$ 和 $D_2$ 两部分，则在特征 $A$ 的条件下，集合 $D$ 的基尼指数定义为</p>
+<script type="math/tex; mode=display">Gini(D,A)=\frac{|D_1|}{D}Gini(D_1)+\frac{|D_2|}{D}Gini(D_2)</script><p> 基尼指数 $Gini(D,A)$ 表示集合 $D$ 的不确定性，基尼指数 $Gini(D,A)$ 表示经 $A=a$ 分割后集合 $D$ 的不确定性。基尼指数值越大，样本集合的不确定性也就越强</p>
+<h2 id="计算实例-1"><a href="#计算实例-1" class="headerlink" title="计算实例"></a>计算实例</h2><p><img src="/2017/07/21/人工智能/机器学习/回归树/回归树-d82a16be.png" alt=""><br>分别以$A_1，A_2，A_3，A_4$表示年龄、有工作、有自己的房子和信贷情况4个特征，并以$1，2，3$表示年龄的值为青年、中年和老年，以$1，2$表示有工作和有自己的房子的值为是和否，以$1，2，3$表示信贷情况的值为非常好、好和一般。</p>
+<script type="math/tex; mode=display">Gini( D,A_1=1 )=\frac{5}{15}\left ( \frac{2}{5}(1-\frac{2}{5})+\frac{3}{5}(1-\frac{3}{5}) \right )+\frac{10}{15}\left ( \frac{7}{10}(1-\frac{7}{10})+\frac{3}{10}(1-\frac{3}{10}) \right )</script><p><img src="/2017/07/21/人工智能/机器学习/回归树/回归树-eb149128.png" alt=""><br><img src="/2017/07/21/人工智能/机器学习/回归树/回归树-ce859c9e.png" alt=""><br><img src="/2017/07/21/人工智能/机器学习/回归树/回归树-ae6f77ba.png" alt=""><br>在$A_1，A_2，A_3，A_4$几个特征中，$Gini(D，A_3＝1)＝0.27$最小，所以选择特征 $A_3$ 为最优特征，$A_3＝1$为其最优切分点。于是根结点生成两个子结点，一个是叶结点。对另一个结点继续使用以上方法在$A_1，A_2，A_4$中选择最优特征及其最优切分点，结果是 $A_2＝1$。依此计算得知，所得结点都是叶结点。</p>
+<h1 id="CART剪枝"><a href="#CART剪枝" class="headerlink" title="CART剪枝"></a>CART剪枝</h1><h3 id="CART决策树剪枝"><a href="#CART决策树剪枝" class="headerlink" title="CART决策树剪枝"></a>CART决策树剪枝</h3><p>CART剪枝算法从“完全生长”的决策树的底端剪去一些子树，使决策树变小（模型变简单），从而能够对未知数据有更准确的预测。CART剪枝算法由两步组成：</p>
+<ul>
+<li>首先从生成算法产生的决策树 $T_0$ 底端开始不断剪枝，直到T0的根结点，形成一个子树序列$\{T_0，T_1,…,T_n\}$；</li>
+<li>然后通过交叉验证法在独立的验证数据集上对子树序列进行测试，从中选择最优子树。</li>
+</ul>
+<p>那么问题来了，参数$α$给定的？谁来给？领域专家给？这是一种行之有效的办法，但却需要领域知识。理想化的模型都希望参数由data决定，也就是$α$也由数据决定。那么我们能想到的就是拿测试数据去测试在给定$α$下生成的子树。<br><strong>ID3与C4.5使用的$α$由人为决定，CART的$α$有算法决定</strong>下面主要介绍如何确定$α$</p>
+<h4 id="α-的算法"><a href="#α-的算法" class="headerlink" title="$α$的算法"></a>$α$的算法</h4><p>剪枝过程中计算子树的损失函数</p>
+<script type="math/tex; mode=display">C_{\alpha}(T) = C(T)+\alpha \left | T \right |</script><p>其中，$T$为任意子树，$ C(T)$为对训练数据的预测误差（如基尼指数），$\left | T \right |$为子树的叶结点个数，$\alpha \geqslant 0$为参数，$C_\alpha (T)$为参数是$\alpha $时的子树$T$的整体损失，参数$\alpha $权衡训练数据的拟合程度与模型的复杂度</p>
+<p>具体地，从整体树$T_0$开始剪枝，对$T_0$的任意内部结点$t$，以$t$为单结点树的损失函数是</p>
+<script type="math/tex; mode=display">C_{\alpha}(t) = C(t)+\alpha</script><p>以$t$为为根结点的子树$T_t$为单结点树的损失函数是</p>
+<script type="math/tex; mode=display">C_{\alpha }(T_t) = C(T_t)+\alpha \left | T_t \right |</script><ul>
+<li>当$\alpha =0$及$\alpha $充分小时，有不等式</li>
+</ul>
+<script type="math/tex; mode=display">C_\alpha(T_t)<C_\alpha(t)</script><ul>
+<li>当$\alpha $增大时，有某一$\alpha $有</li>
+</ul>
+<script type="math/tex; mode=display">C_\alpha(T_t)=C_\alpha(t)</script><ul>
+<li>当$\alpha $继续增大时</li>
+</ul>
+<script type="math/tex; mode=display">C_\alpha(T_t)>C_\alpha(t)</script><p>所以我们只要取$\alpha_1 = \frac{C(t)-C(T_t)}{\vert T_t\vert-1}$时，当且仅当$α≥α_1$时，剪枝必然发生。$α$必须满足上述条件，否则前提假设将失去意义。所以说，我们通过假设剪枝必然发生就能找到对应的$α$</p>
+<p>这个 $α$ 的值有什么意义，刚才我们高能预警的地方，$0=\alpha_0&lt;\alpha_1&lt;…&lt;\alpha_n&lt;+\infty$ ，在每个区间 $[α_i,α_{i+1})$ 中，子树 $T_i$ 是这个区间里最优的。为什么呢？原因就在刚才的推导，对于当前这个结点，只要 $α$ 大于这个值时，一定有$C_{\alpha}(t)&lt;C_{\alpha}(T_t)$ ，也就是剪掉这个结点后都比不剪要更优。所以每个最优子树对应的是一个区间，在这个区间内都是最优的。</p>
+<h5 id="g-t-为什么是最小的"><a href="#g-t-为什么是最小的" class="headerlink" title="$g(t)$为什么是最小的"></a>$g(t)$为什么是最小的</h5><script type="math/tex; mode=display">g(t) = \frac{C(t)-C(T_t)}{\vert T_t\vert-1}</script><p><img src="/2017/07/21/人工智能/机器学习/回归树/回归树-23c9f784.png" alt=""></p>
+<p>当$α$较小时，结点不修剪的误差要小于修剪之后的误差，此时不剪为好，但当$α$增大时，修剪前后的误差先减小后增大，对应每个结点都有一个临界值 $g(t)$ 。<br>为什么要选择最小的$ g(t)$ 呢？以图中两个点为例，结点1和结点2，$g(t)_2$ 大于$g(t)_1$, 假设在所有结点中$g(t)_1$最小，$g(t)_2$最大，两种选择方法：当选择最大值$g(t)_2$，即结点2进行剪枝，但此时结点1的不修剪的误差大于修剪之后的误差，即如果不修剪的话，误差变大，依次类推，对其它所有的结点的$g(t)$都是如此，从而造成整体的累计误差更大。反之，如果选择最小值$g(t)_1$，即结点1进行剪枝，则其余结点不剪的误差要小于剪后的误差，不修剪为好，且整体的误差最小。从而以最小$g(t)$剪枝获得的子树是该$α$值下的最优子树！</p>
+<h3 id="剪枝流程"><a href="#剪枝流程" class="headerlink" title="剪枝流程"></a>剪枝流程</h3><p><img src="/2017/07/21/人工智能/机器学习/回归树/回归树-7ea432c5.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模型/" rel="tag"># 模型</a>
+          
+            <a href="/tags/树模型/" rel="tag"># 树模型</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/21/人工智能/机器学习/决策树/" rel="next" title="决策树">
+                <i class="fa fa-chevron-left"></i> 决策树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/29/编程语言/c语言/C-存储类/" rel="prev" title="C++存储类">
+                C++存储类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYwNi8xMDE2MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/tou_xiang.jpg"
+                alt="路西法" />
+            
+              <p class="site-author-name" itemprop="name">路西法</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Angel0726" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MaHao_0726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回归树的生成"><span class="nav-number">2.</span> <span class="nav-text">回归树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算实例"><span class="nav-number">2.1.</span> <span class="nav-text">计算实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#根结点-T-1-x"><span class="nav-number">2.1.1.</span> <span class="nav-text">根结点$T_1(x)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#次结点-T-2-x"><span class="nav-number">2.1.2.</span> <span class="nav-text">次结点$T_2(x)$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果"><span class="nav-number">2.1.3.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类树的生成"><span class="nav-number">3.</span> <span class="nav-text">分类树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基尼指数"><span class="nav-number">3.1.</span> <span class="nav-text">基尼指数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算实例-1"><span class="nav-number">3.2.</span> <span class="nav-text">计算实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CART剪枝"><span class="nav-number">4.</span> <span class="nav-text">CART剪枝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CART决策树剪枝"><span class="nav-number">4.0.1.</span> <span class="nav-text">CART决策树剪枝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#α-的算法"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">$α$的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#g-t-为什么是最小的"><span class="nav-number">4.0.1.1.1.</span> <span class="nav-text">$g(t)$为什么是最小的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪枝流程"><span class="nav-number">4.0.2.</span> <span class="nav-text">剪枝流程</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路西法</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

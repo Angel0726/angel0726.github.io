@@ -286,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/21/数据分箱/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/linux/git/git原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -305,7 +305,1178 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/21/数据分箱/" itemprop="url">数据分箱</a></h1>
+                <a class="post-title-link" href="/2019/09/03/linux/git/git原理/" itemprop="url">git原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-03T14:24:10+08:00">
+                2019-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/版本管理/" itemprop="url" rel="index">
+                    <span itemprop="name">版本管理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p> Git 和其它版本控制系统(包括 Subversion 和近似工具)的主要差别在于 Git 对待数据的方法。</p>
+<ul>
+<li><p>大部分版本控制系统，例如(CVS、Subversion、Perforce、Bazaar 等等)，采用增量文件系统，存储每个文件版本的差异；</p>
+</li>
+<li><p>Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件；如果文件发生修改，Git 将存储该文件全部内容。</p>
+<p><img src="/2019/09/03/linux/git/git原理/498935a9ebaa0d553460df77f30a0110d35.jpg" alt="img"></p>
+</li>
+</ul>
+<p><center>增量文件系统</center><br><img src="/2019/09/03/linux/git/git原理/9a7ec25d895130165bf7c3214472442f6c0.jpg" alt="img"></p>
+<p><center>快照文件系统</center><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/03/linux/git/git原理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/28/linux/git/git使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/28/linux/git/git使用/" itemprop="url">git使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-28T10:14:10+08:00">
+                2019-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/版本管理/" itemprop="url" rel="index">
+                    <span itemprop="name">版本管理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。知名的<code>git</code>管理平台有<code>github</code></p>
+<h1 id="本地git"><a href="#本地git" class="headerlink" title="本地git"></a>本地git</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>git分为工作区、暂存器和版本库。</p>
+<ul>
+<li><strong>工作区</strong>：就是你在电脑里能看到的目录。</li>
+<li><strong>暂存区</strong>：英文叫stage, 或index。一般存放在 “.git目录下” 下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。</li>
+<li><strong>版本库</strong>：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。图中”HEAD” 实际是指向 master 分支的一个”游标”。所以图示的命令中出现 HEAD 的地方可以用 master 来替换。</li>
+<li><strong>object：</strong>Git 的对象库，实际位于 “.git/objects” 目录下，里面包含了创建的各种对象及内容。</li>
+</ul>
+<p><img src="/2019/08/28/linux/git/git使用/1566977176119.png" alt="1566977176119"></p>
+<h2 id="命令说明"><a href="#命令说明" class="headerlink" title="命令说明"></a>命令说明</h2><table>
+  <tr>
+    <th rowspan="7">基本操作</th>
+    <th>git init</th>
+    <th>创建版本库</th>
+  </tr>
+  <tr>
+    <td>git add &lt;文件&gt;</td>
+    <td>将文件从工作区添加到暂存区</td>
+  </tr>
+  <tr>
+    <td>git commit -m“&lt;说明&gt;”</td>
+    <td>将文件从暂存区添加到版本库</td>
+  </tr>
+  <tr>
+    <td>git checkout  &lt;文件&gt;</td>
+    <td>将文件从暂存区添加到工作区</td>
+  </tr>
+  <tr>
+    <td>git rm --cached &lt;文件&gt;</td>
+    <td>将暂存区中的文件删除</td>
+  </tr>
+  <tr>
+    <td>git reset head</td>
+    <td>将文件从版本库添加到暂存区</td>
+  </tr>
+  <tr>
+    <td>git checkout head &lt;文件&gt;</td>
+    <td>将文件从版本库添加到工作区</td>
+  </tr>
+  <tr>
+    <td rowspan="3">版本管理</td>
+    <td>git log</td>
+    <td>查看版本信息 ——查找commit id<br>--graph：以图的形式展现信息<br></td>
+  </tr>
+  <tr>
+    <td>git reflog</td>
+    <td>查看历史操作信息——查找commit id<br>以防因为版本回滚导致git log中的信息丢失</td>
+  </tr>
+  <tr>
+    <td>git reset --hard HEAD^<br>git reset --hard HEAD^^<br>git reset --HEAD~100<br>git reset --hard 1094<br></td>
+    <td># 回退上一个版本<br># 回退上两个版本<br># 回退上100个版本<br># 回退到指定版本，后面的1094a是commit的版本号</td>
+  </tr>
+  <tr>
+    <td rowspan="5">标签</td>
+    <td>git tag -a v0.1 -m "version 0.1 released" 1094adb</td>
+    <td>-a指定标签名，-m指定说明文字</td>
+  </tr>
+  <tr>
+    <td>git tag v0.1  commit id</td>
+    <td>默认标签是打在最新提交的commit id<br>如果添加commit id就会打在指定的commit id上</td>
+  </tr>
+  <tr>
+    <td>git tag -d v0.1</td>
+    <td>删除标签</td>
+  </tr>
+  <tr>
+    <td>git push origin v1.0<br>git push origin --tags<br></td>
+    <td>推送标签到远程<br>一次性推送全部标签<br></td>
+  </tr>
+  <tr>
+    <td>git tag<br>git show &lt;标签名&gt;<br></td>
+    <td>查看标签<br>查看标签的说明文字</td>
+  </tr>
+  <tr>
+    <td rowspan="5">保存工作区与缓存区</td>
+    <td>git stash <br></td>
+    <td>将工作区与暂存区的内容保存起来</td>
+  </tr>
+  <tr>
+    <td>git stash list </td>
+    <td>查看保存的工作区与暂存区  <br></td>
+  </tr>
+  <tr>
+    <td>git stash apply </td>
+    <td>恢复制定的stash，但是stash内容并不删除。git stash apply stash@{0}  <br></td>
+  </tr>
+  <tr>
+    <td>git stash drop </td>
+    <td>删除制定的stash。git stash drop stash@{0}  <br></td>
+  </tr>
+  <tr>
+    <td>git stash pop </td>
+    <td>恢复并删除最新的工作区与暂存区</td>
+  </tr>
+  <tr>
+    <td rowspan="5">分支管理</td>
+    <td>git branch</td>
+    <td>查看分支</td>
+  </tr>
+  <tr>
+    <td>git branch  &lt;分支名&gt;</td>
+    <td>新建分支，并且新分支有老分支的内容</td>
+  </tr>
+  <tr>
+    <td>git checkout &lt;分支名&gt;</td>
+    <td>切换分支</td>
+  </tr>
+  <tr>
+    <td>git branch -d &lt;分支名&gt;</td>
+    <td>删除分支</td>
+  </tr>
+  <tr>
+    <td>git merge &lt;分支名&gt;<br>git merge --no-ff &lt;分支名&gt;<br></td>
+    <td>合并分支到当前分支下<br>如果有冲突修改冲突，使用git add与git commit 提交</td>
+  </tr>
+  <tr>
+    <td rowspan="9">其他</td>
+    <td>git status</td>
+    <td>查看状态</td>
+  </tr>
+  <tr>
+    <td rowspan="7">git diff<br>git diff [--options] &lt;commit&gt; &lt;commit&gt; [--] [&lt;path&gt;...]<br></td>
+    <td>git diff：比较工作区与暂存区</td>
+  </tr>
+  <tr>
+    <td>git diff --cached：比较暂存区与最新本地版本库</td>
+  </tr>
+  <tr>
+    <td>git diff --cached &lt;commit-id&gt;：比较暂存区与版本库指定commit-id的差异</td>
+  </tr>
+  <tr>
+    <td>git diff HEAD：比较工作区与最新本地版本库</td>
+  </tr>
+  <tr>
+    <td>git diff &lt;commit-id&gt;：比较工作区与版本库指定commit-id的差异</td>
+  </tr>
+  <tr>
+    <td>git diff &lt;commit-id&gt;&lt;commit-id&gt;：比较版本库两个commit-id之间的差异</td>
+  </tr>
+  <tr>
+    <td>git diff &lt;分支&gt;&lt;分支&gt;：比较两个分支</td>
+  </tr>
+  <tr>
+    <td>git rm</td>
+    <td>删除文件</td>
+  </tr>
+</table>
+
+<h1 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h1><p>添加到<code>.gitignore</code>中的文件，不会被添加到暂存区，因此不会被保存到版本库中，进而不会存在版本管理。在不同文件夹下建立<code>.gitignore</code>可以忽略不同的文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── .vscode   </span><br><span class="line">├── feture        </span><br><span class="line">│   ├── dev.py</span><br><span class="line">│   └── test            #测试文件夹</span><br><span class="line">│   │   ├── test_dev.py #本地仓库对应分支所有操作</span><br><span class="line">│   └── .gitignore      #写入test/ 可以忽略同级目录下test的文件夹 </span><br><span class="line">├── .gitignore   #写入.vscode/ 可以忽略同级目录下.vscode的文件夹</span><br></pre></td></tr></table></figure>
+<h1 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h1><p><img src="/2019/08/28/linux/git/git使用/1566980274372.png" alt="1566980274372"></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git remote</td>
+<td>查看当前配置有哪些远程仓库<br>-v：执行时加上 -v 参数，你还可以看到每个别名的实际链接地址。</td>
+</tr>
+<tr>
+<td>git remote add</td>
+<td>连接远程版本库<br>git remote add [shortname] [url]<br>shortname：远程版本库的别名<br>url：远程版本库的链接</td>
+</tr>
+<tr>
+<td>git remote rm [别名]</td>
+<td>删除远程仓库</td>
+</tr>
+<tr>
+<td>git push</td>
+<td>本地库内容推送到远程库中 <br>git push [alias] [branch]：推送成为 [alias] 远程仓库上的 [branch] 分支</td>
+</tr>
+<tr>
+<td>git clone</td>
+<td>克隆远程版本库</td>
+</tr>
+<tr>
+<td>git pull</td>
+<td>拉取远程分支更新到本地仓库，再与本地指定分支合并。<br>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</td>
+</tr>
+<tr>
+<td>git fetch</td>
+<td>拉取远程分支更新到本地仓库</td>
+</tr>
+<tr>
+<td>git merge origin/master</td>
+<td>把远程下载下来的代码合并到本地仓库，远程的和本地的合并</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>git ls-files查看版本库目录</p>
+<p>git指针问题</p>
+<p>文件<code>.git/index</code>实际上就是一个包含文件索引的目录树，像是一个虚拟的工作区。在这个虚拟工作区的目录树中，记录了文件名、文件的状态信息（时间戳、文件长度等）。文件的内容并不存储其中，而是保存在Git对象库<code>.git/objects</code>目录中，文件索引建立了文件和对象库中对象实体之间的对应。下面这个图展示了工作区、版本库中的暂存区和版本库之间的关系。</p>
+<blockquote>
+<p><a href="http://www.worldhello.net/gotgit/images/git-stage.png" target="_blank" rel="noopener"><img src="/2019/08/28/linux/git/git使用/git-stage.png" alt="../images/git-stage.png"></a></p>
+<p>工作区、版本库、暂存区原理图</p>
+</blockquote>
+<p>在这个图中，可以看到部分Git命令是如何影响工作区和暂存区（stage，亦称index）的。下面就对这些命令进行简要的说明，而要彻底揭开这些命令的面纱要在接下来的几个章节。</p>
+<ul>
+<li>图中左侧为工作区，右侧为版本库。在版本库中标记为<code>index</code>的区域是暂存区（stage，亦称index），标记为<code>master</code>的是master分支所代表的目录树。</li>
+<li>图中可以看出此时HEAD实际是指向master分支的一个“游标”。所以图示的命令中出现HEAD的地方可以用master来替换。</li>
+<li>图中的objects标识的区域为Git的对象库，实际位于<code>.git/objects</code>目录下，会在后面的章节重点介绍。</li>
+<li>当对工作区修改（或新增）的文件执行<strong>git add</strong>命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。</li>
+<li>当执行提交操作（<strong>git commit</strong>）时，暂存区的目录树写到版本库（对象库）中，master分支会做相应的更新。即master最新指向的目录树就是提交时原暂存区的目录树。</li>
+<li>当执行<strong>git reset HEAD</strong>命令时，暂存区的目录树会被重写，被master分支指向的目录树所替换，但是工作区不受影响。</li>
+<li>当执行<strong>git rm –cached <file></file></strong>命令时，会直接从暂存区删除文件，工作区则不做出改变。</li>
+<li>当执行<strong>git checkout .</strong>或者<strong>git checkout – <file></file></strong>命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</li>
+<li>当执行<strong>git checkout HEAD .</strong>或者<strong>git checkout HEAD <file></file></strong>命令时，会用HEAD指向的master分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</li>
+</ul>
+<p><img src="/2019/08/28/linux/git/git使用/git-diff.png" alt="../images/git-diff.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/机器学习/PSI.md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/26/机器学习/PSI.md/" itemprop="url">PSI</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T14:24:22+08:00">
+                2019-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/特征工程/" itemprop="url" rel="index">
+                    <span itemprop="name">特征工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>由于模型是以特定时期的样本所开发的，此模型是否适用于开发样本之外的族群，必须经过稳定性测试才能得知。稳定度指标(population stability index ,PSI)可衡量测试样本及模型开发样本评分的的分布差异，为最常见的模型稳定度评估指针。其实PSI表示的就是按分数分档后，针对不同样本，或者不同时间的样本，population分布是否有变化，就是看各个分数区间内人数占总人数的占比是否有显著变化。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>PSI&lt;0.1</th>
+<th>0.1~0.25</th>
+<th>PSI&gt;0.25​</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>稳定性很高</td>
+<td>一般</td>
+<td>稳定性差</td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/26/机器学习/PSI.md/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/23/博客/" itemprop="url">博客</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T12:01:43+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>使用<code>WSL</code>即<code>windows</code>的<code>ubuntu</code>子系统搭建博客</p>
+<h1 id="安装node与npm"><a href="#安装node与npm" class="headerlink" title="安装node与npm"></a>安装node与npm</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br><span class="line"></span><br><span class="line">node -v #测试是否安装完成</span><br><span class="line">npm -v  #测试是否安装完成</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/23/博客/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/22/风轻云淡/健身动作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/22/风轻云淡/健身动作/" itemprop="url">健身动作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T20:20:06+08:00">
+                2019-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div class="table-container">
+<table>
+<thead>
+<tr>
+<th>部位</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>胸部</td>
+<td>上胸肌：上斜卧推<br>中胸肌：平板卧推<br>下胸肌：双杠臂屈伸</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/22/风轻云淡/健身动作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/22/大数据框架/spark/linux子系统安装spark/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/22/大数据框架/spark/linux子系统安装spark/" itemprop="url">linux子系统安装spark</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T19:27:32+08:00">
+                2019-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据平台/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据平台</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据平台/spark/" itemprop="url" rel="index">
+                    <span itemprop="name">spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JDK:1.8  </span><br><span class="line">Spark-2.2.0</span><br><span class="line">Hadoop Release:2.7.4</span><br></pre></td></tr></table></figure>
+<p>一般将文件安装在<code>/opt</code>目录下，<code>/opt</code>目录用来存放第三方的应用程序与文件。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/22/大数据框架/spark/linux子系统安装spark/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/21/人工智能/特征工程/数据分箱/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/21/人工智能/特征工程/数据分箱/" itemprop="url">数据分箱</a></h1>
         
 
         <div class="post-meta">
@@ -340,8 +1511,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/特征工程/" itemprop="url" rel="index">
+                    <span itemprop="name">特征工程</span>
                   </a>
                 </span>
 
@@ -418,7 +1600,7 @@
 </table>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/21/数据分箱/#more" rel="contents">
+            <a class="btn" href="/2019/08/21/人工智能/特征工程/数据分箱/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -469,7 +1651,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/机器学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/人工智能/机器学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -488,7 +1670,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/20/机器学习/" itemprop="url">机器学习</a></h1>
+                <a class="post-title-link" href="/2019/08/20/人工智能/机器学习/" itemprop="url">机器学习</a></h1>
         
 
         <div class="post-meta">
@@ -523,8 +1705,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
                   </a>
                 </span>
 
@@ -671,8 +1853,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/特征工程/" itemprop="url" rel="index">
+                    <span itemprop="name">特征工程</span>
                   </a>
                 </span>
 
@@ -803,7 +1996,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/pyspark-DataFrame/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/大数据框架/spark/pyspark-DataFrame/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -822,7 +2015,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/19/pyspark-DataFrame/" itemprop="url">pyspark-DataFrame</a></h1>
+                <a class="post-title-link" href="/2019/08/19/大数据框架/spark/pyspark-DataFrame/" itemprop="url">pyspark-DataFrame</a></h1>
         
 
         <div class="post-meta">
@@ -844,6 +2037,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据平台/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据平台</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据平台/spark/" itemprop="url" rel="index">
+                    <span itemprop="name">spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1016,1416 +2242,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/hadoop/MapReduce.md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/16/hadoop/MapReduce.md/" itemprop="url">MapReduce</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-16T14:48:05+08:00">
-                2019-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>Map/Reduce</code> 是一个分布式运算程序的编程框架，<code>Map/Reduce</code> 核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个 <code>hadoop</code> 集群上。每个<code>Map/Reduce</code>任务都被初始化为一个<code>Job</code>，每个<code>Job</code>又可以分为两种阶段：<code>map</code>阶段和<code>reduce</code>阶段。这两个阶段分别用两个函数表示，即<code>map</code>函数和<code>reduce</code>函数。一个<code>Map/Reduce</code>作业的输入和输出类型如下所示：</p>
-<p><code>(input) &lt;k1, v1&gt; -&gt; map-&gt; &lt;k2, v2&gt; -&gt; Shuff-&gt; &lt;k2, list[v2]&gt; -&gt; reduce -&gt; &lt;k3, v3&gt; (output)</code></p>
-<p>简单在于其编程模型只包含<code>map</code>和<code>reduce</code>两个过程，<code>map</code>的主要输入是一对<code>&lt;key , value&gt;</code>值，经过<code>map</code>计算后输出一对<code>&lt;key , value&gt;</code>值；然后将相同<code>key</code>合并，形成<code>&lt;key , value集合&gt;</code>；再将这个<code>&lt;key , value集合&gt;</code>输入<code>reduce</code>，经过计算输出零个或多个<code>&lt;key , value&gt;</code>对。</p>
-<p><img src="/2019/08/16/hadoop/MapReduce.md/14019352-0c530b046636edd0.webp" alt="img"></p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a><a href="https://songlee24.github.io/2015/07/29/mapreduce-word-count/" target="_blank" rel="noopener">原理</a></h1><p><img src="/2019/08/16/hadoop/MapReduce.md/1089769-20180418222127341-658345249.png" alt="img"></p>
-<p>系统中有两类主要的进程节点：<code>master</code>（单点），<code>worker</code>（多个）。其中，<code>worker</code>根据不同的计算任务，又分为<code>map worke</code>r（对应上图中的<code>Map phase</code>）、<code>reduce worker</code>（对应上图中的<code>Reduce phase</code>）。</p>
-<ul>
-<li><code>master</code>是系统的中心节点，负责为<code>worker</code>节点分配计算任务，同时监控<code>worker</code>节点的状态。如果某个<code>worker</code>计算太慢，或者宕机，<code>master</code>会将该<code>worker</code>进程负责的计算任务转移到其他进程。</li>
-<li><code>worker</code>包括<code>Map</code>与<code>Reduce</code></li>
-</ul>
-<ol>
-<li>首先将文件分割成<code>&lt;key,value&gt;</code>的键值对。<code>Map</code>通过 <code>RecordReader</code> 读取Input的<code>&lt;key,value&gt;</code>对，<code>map</code>根据用户自定义的任务，运行完毕后，输出另外一系列<code>&lt;key,value&gt;</code>，</li>
-<li><code>Shuffle</code> 阶段需要从所有<code>map</code>主机上把相同的<code>key</code> 的 <code>key value</code>对组合在一起，（也就是这里省去的<code>Combine</code>阶段）。</li>
-<li><code>Partitioner</code>组件会把 <code>key</code>放进一个 <code>hash</code>函数里，然后得到结果。如果两个 <code>key</code> 的哈希值 一样，他们的 <code>&lt;key,value&gt;</code>对就被放到同一个 <code>reduce</code> 函数里。我们也把分配到同一个 <code>reduce</code>函数里的<code>&lt;key,value&gt;</code>对叫做一个<code>reduce partition</code>。</li>
-<li><code>reduce()</code> 函数以 <code>key</code> 及对应的 <code>value</code> 列表作为输入，按照用户自己的程序逻辑，经合并 <code>key</code> 相同的 <code>value</code> 值后，产 生另外一系列 <code>&lt;key,value&gt;</code> 对作为最终输出写入<code>HDFS</code>。</li>
-</ol>
-<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/16/hadoop/HDFS.md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/16/hadoop/HDFS.md/" itemprop="url">HDFS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-16T10:17:08+08:00">
-                2019-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="HDFS框架"><a href="#HDFS框架" class="headerlink" title="HDFS框架"></a>HDFS框架</h1><p><img src="/2019/08/16/hadoop/HDFS.md/2608446-66ac838fbd1c4c6d.webp" alt="img"></p>
-<ul>
-<li>主从结构：<ol>
-<li>主节点，只有一个  ： <code>namenode</code></li>
-<li>从节点，有很多个  ：<code>datanodes</code></li>
-</ol>
-</li>
-<li><code>namenode</code>负责：<ol>
-<li>接收用户请求操作</li>
-<li>维护文件信息系统的目录结构</li>
-<li>管理文件与<code>block</code>之间的关系，<code>block</code>与<code>datanade</code>之间的关系<br>注意：<code>namenode</code>归根结底要放在磁盘上的以保证数据的持久性，但是为了提高效率，一般在<code>hadoop</code>运行时时放在内存中的</li>
-</ol>
-</li>
-<li><code>datanode</code>负责：<pre><code>  1. 存储文件
-     2. 文件被分成`block`存储字磁盘上
-     3. 为保证数据安全，文件会有多个副本
-</code></pre></li>
-</ul>
-<h1 id="HDFS-shell命令"><a href="#HDFS-shell命令" class="headerlink" title="HDFS shell命令"></a>HDFS shell命令</h1><p><strong>命令格式：</strong> <code>bin/hadoop fs &lt;args&gt; URI</code></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>URI</code>：<code>scheme://authority/path</code>—HDFS文件系统<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>file://authority/path</code>—本地文件系统</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>cat</code></td>
-<td>使用方法：<code>hadoop fs -cat URI [URI …]</code><br><strong>将路径指定文件的内容输出到<code>stdout,</code>成功返回0，失败返回-1。</strong><br>eg:<code>hadoop fs -cat hdfs://host1:port1/file1 hdfs://host2:port2/file2</code><br>&emsp;&nbsp;&nbsp;<code>hadoop fs -cat file:///file3 /user/hadoop/file4</code></td>
-</tr>
-<tr>
-<td><code>chgrp</code></td>
-<td>使用方法：<code>hadoop fs -chgrp [-R] GROUP URI [URI …]</code><br>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; <code>-R</code>：递归改变文件的目录结构<br><strong>改变文件所属的组。</strong></td>
-</tr>
-<tr>
-<td><code>chmod</code></td>
-<td>使用方法：<code>hadoop fs -chmod [-R] &lt;MODE[,MODE]...  OCTALMODE&gt; URI [URI …]</code><br> &nbsp; &emsp; &emsp;&emsp;&emsp;<code>-R</code>：递归改变文件的目录结构<br><strong>改变文件的权限。</strong></td>
-</tr>
-<tr>
-<td><code>chown</code></td>
-<td>使用方法：<code>hadoop fs -chown [-R] [OWNER][:[GROUP]] URI [URI ]</code><br>&emsp;&emsp;&emsp;&emsp;&emsp;<code>-R</code>：递归改变文件的目录结构<br><strong>改变文件的拥有者。</strong></td>
-</tr>
-<tr>
-<td><code>copyFromLocal</code></td>
-<td>使用方法：<code>hadoop fs -copyFromLocal &lt;localsrc&gt; URI</code><br><strong>除了限定源路径是一个本地文件外，和<a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_shell.html#putlink" target="_blank" rel="noopener"><code>put</code></a>命令相似</strong></td>
-</tr>
-<tr>
-<td><code>copyToLocal</code></td>
-<td>使用方法：<code>hadoop fs -copyToLocal [-ignorecrc] [-crc] URI &lt;localdst&gt;</code><br><strong>除了限定目标路径是一个本地文件外，和<a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_shell.html#getlink" target="_blank" rel="noopener">get</a>命令类似。</strong></td>
-</tr>
-<tr>
-<td><code>cp</code></td>
-<td>使用方法：<code>hadoop fs -cp URI [URI …] &lt;dest&gt;</code><br><strong>将文件从源路径复制到目标路径。这个命令允许有多个源路径，此时目标路径必须是一个目录。成功返回0，失败返回-1。</strong><br>eg：<code>hadoop fs -cp /user/hadoop/file1 /user/hadoop/file2 /user/hadoop/dir</code></td>
-</tr>
-<tr>
-<td><code>du</code></td>
-<td>使用方法：<code>hadoop fs -du URI [URI …]</code><br><strong>显示目录中所有文件的大小，或者当只指定一个文件时，显示此文件的大小。成功返回0，失败返回-1。</strong><br>eg：<code>hadoop fs -du /user/hadoop/dir1 /user/hadoop/file1 hdfs://host:port/user/hadoop/dir1</code></td>
-</tr>
-<tr>
-<td><code>dus</code></td>
-<td>使用方法：<code>hadoop fs -dus &lt;args&gt;</code><br><strong>显示文件的大小。</strong></td>
-</tr>
-<tr>
-<td><code>expunge</code></td>
-<td>使用方法：<code>hadoop fs -expunge</code><br><strong>清空回收站。</strong></td>
-</tr>
-<tr>
-<td><code>get</code></td>
-<td>使用方法：<code>hadoop fs -get [-ignorecrc] [-crc] &lt;src&gt; &lt;localdst&gt;</code><br><strong>复制文件到本地文件系统。可用<code>-ignorecrc</code>选项复制<code>CRC</code>校验失败的文件。使用<code>-crc</code>选项复制文件以及CRC信息。</strong><br>eg：<code>hadoop fs -get /user/hadoop/file localfile</code><br>&emsp;&emsp;<code>hadoop fs -get hdfs://host:port/user/hadoop/file localfile</code></td>
-</tr>
-<tr>
-<td><code>getmerge</code></td>
-<td>使用方法：<code>hadoop fs -getmerge &lt;src&gt; &lt;localdst&gt; [addnl]</code><br>接受一个源目录和一个目标文件作为输入，并且将源目录中所有的文件连接成本地目标文件。<code>addnl</code>是可选的，用于指定在每个文件结尾添加一个换行符。</td>
-</tr>
-<tr>
-<td><code>ls</code></td>
-<td>使用方法：<code>hadoop fs -ls &lt;args&gt;</code><br>如果是文件，则按照如下格式返回文件信息：<code>文件名 &lt;副本数&gt; 文件大小 修改日期 修改时间 权限 用户ID 组ID</code><br>如果是目录，则返回它直接子文件的一个列表，就像在Unix中一样。目录返回列表的信息如下<code>目录名 &lt;dir&gt; 修改日期 修改时间 权限 用户ID 组ID</code><br>成功返回0，失败返回-1。</td>
-</tr>
-<tr>
-<td><code>lsr</code></td>
-<td><code>ls</code>命令的递归版本。类似于Unix中的<code>ls -R</code>。</td>
-</tr>
-<tr>
-<td><code>mkdir</code></td>
-<td>使用方法：<code>hadoop fs -mkdir &lt;paths&gt;</code><br><strong>接受路径指定的<code>uri</code>作为参数，创建这些目录。其行为类似于<code>Unix</code>的<code>mkdir -p</code>，它会创建路径中的各级父目录。成功返回0，失败返回-1。</strong><br>eg：<code>hadoop fs -mkdir /user/hadoop/dir1 /user/hadoop/dir2</code></td>
-</tr>
-<tr>
-<td><code>movefromLocal</code></td>
-<td>使用方法：<code>dfs -moveFromLocal &lt;src&gt; &lt;dst&gt;</code></td>
-</tr>
-<tr>
-<td><code>mv</code></td>
-<td>使用方法：<code>hadoop fs -mv URI [URI …] &lt;dest&gt;</code><br><strong>将文件从源路径移动到目标路径。这个命令允许有多个源路径，此时目标路径必须是一个目录。不允许在不同的文件系统间移动文件。</strong><br>eg：<code>hadoop fs -mv /user/hadoop/file1 /user/hadoop/file2</code></td>
-</tr>
-<tr>
-<td><code>put</code></td>
-<td>使用方法：<code>hadoop fs -put &lt;localsrc&gt; ... &lt;dst&gt;</code><br><strong>从本地文件系统中复制单个或多个源路径到目标文件系统。也支持从标准输入中读取输入写入目标文件系统。成功返回0，失败返回-1。</strong><br>eg：<code>hadoop fs -put localfile /user/hadoop/hadoopfile</code></td>
-</tr>
-<tr>
-<td><code>rm</code></td>
-<td>使用方法：<code>hadoop fs -rm URI [URI …]</code><br><strong>删除指定的文件。只删除非空目录和文件。请参考<code>rmr</code>命令了解递归删除。成功返回0，失败返回-1。</strong><br>eg：<code>hadoop fs -rm hdfs://host:port/file /user/hadoop/emptydir</code></td>
-</tr>
-<tr>
-<td><code>rmr</code></td>
-<td>使用方法：<code>hadoop fs -rmr URI [URI …]</code><br><code>delete</code>的递归版本。<br><code>hadoop fs -rmr /user/hadoop/dir</code></td>
-</tr>
-<tr>
-<td><code>setrep</code></td>
-<td>使用方法：<code>hadoop fs -setrep [-R] &lt;path&gt;</code><br><strong>改变一个文件的副本系数。-R选项用于递归改变目录下所有文件的副本系数。成功返回0，失败返回-1。</strong><br><code>hadoop fs -setrep -w 3 -R /user/hadoop/dir1</code></td>
-</tr>
-<tr>
-<td><code>stat</code></td>
-<td>使用方法：<code>hadoop fs -stat URI [URI …]</code><br><strong>返回指定路径的统计信息。</strong><br><code>hadoop fs -stat path</code></td>
-</tr>
-<tr>
-<td><code>tail</code></td>
-<td>使用方法：<code>hadoop fs -tail [-f] URI</code><br><strong>将文件尾部1K字节的内容输出到<code>stdout</code>。支持-f选项，行为和<code>Unix</code>中一致。成功返回0，失败返回-1。</strong></td>
-</tr>
-<tr>
-<td><code>test</code></td>
-<td>使用方法：<code>hadoop fs -test -[ezd] URI</code><br>&emsp;&emsp;&emsp;&emsp;&emsp;<code>-e</code> 检查文件是否存在。如果存在则返回<code>0</code>。<br>&emsp;&emsp;&emsp;&emsp;&emsp;<code>-z</code> 检查文件是否是<code>0</code>字节。如果是则返回<code>0</code>。 <br>&emsp;&emsp;&emsp;&emsp;&emsp;<code>-d</code>如果路径是个目录，则返回<code>1</code>，否则返回<code>0</code>。</td>
-</tr>
-<tr>
-<td><code>text</code></td>
-<td>使用方法：<code>hadoop fs -text &lt;src&gt;</code><br><strong>将源文件输出为文本格式。允许的格式是<code>zip</code>和<code>TextRecordInputStream</code>。</strong></td>
-</tr>
-<tr>
-<td><code>touchz</code></td>
-<td>使用方法：<code>hadoop fs -touchz URI [URI …]</code><br><strong>创建一个0字节的空文件。成功返回0，失败返回-1。</strong></td>
-</tr>
-</tbody>
-</table>
-</div>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/15/python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/15/python/" itemprop="url">python</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T14:27:07+08:00">
-                2019-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'True'</span>) <span class="keyword">if</span> condition <span class="keyword">else</span> print(<span class="string">'False'</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>max(num,key=func)</code></td>
-<td>按照<code>func</code>返回<code>num</code>中的最大值</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="sys"><a href="#sys" class="headerlink" title="sys"></a>sys</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>getsizeof()</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="os"><a href="#os" class="headerlink" title="os"></a>os</h1><h2 id="environ-函数"><a href="#environ-函数" class="headerlink" title="environ()函数"></a>environ()函数</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>os.environ[‘USER’]</td>
-<td>当前使用用户</td>
-</tr>
-<tr>
-<td>os.environ[‘SHELL’]</td>
-<td>使用shell的类型</td>
-</tr>
-<tr>
-<td>os.environ[‘LAN’]</td>
-<td>使用的语言</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="numpy"><a href="#numpy" class="headerlink" title="numpy"></a>numpy</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>random.randint(start,ene,size)</code></td>
-<td><code>start</code>与<code>end</code>：取值范围<br><code>size</code>：数组的容量</td>
-</tr>
-<tr>
-<td><code>np.logical_and(x1, x2, *args, **kwargs)</code></td>
-<td>逻辑与</td>
-</tr>
-<tr>
-<td><code>np.logical_or(x1, x2, *args, **kwargs)</code></td>
-<td>逻辑或</td>
-</tr>
-<tr>
-<td><code>np.logical_not(x, *args, **kwargs)</code></td>
-<td>逻辑非</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="pandas"><a href="#pandas" class="headerlink" title="pandas"></a><a href="https://pandas.pydata.org/" target="_blank" rel="noopener">pandas</a></h1><h2 id="Dataframe"><a href="#Dataframe" class="headerlink" title="Dataframe"></a>Dataframe</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>df.iloc[num]</code></td>
-<td>指定行。<code>df.iloc[0]</code>指定第一行</td>
-</tr>
-<tr>
-<td><code>df(df.b.isin([5,13]))</code></td>
-<td>删除<code>b</code>列包含<code>5、13</code>的列</td>
-</tr>
-<tr>
-<td><code>df[&#39;add_column&#39;]=1</code></td>
-<td><code>df</code>添加列<code>add_column</code></td>
-</tr>
-<tr>
-<td><code>df.drop()</code></td>
-<td>删除行或者列<br><code>labels</code>：删除的行或者列名<br><code>axis</code>：行-&gt;0；列-&gt;1<br><code>index</code> ：直接指定要删除的行<br><code>columns</code>：直接指定要删除的列<br><code>inplace=False</code>：默认该删除操作不改变原数据，而是返回一个执行删除操作后的新<code>dataframe</code>；<br><code>inplace=True</code>：则会直接在原数据上进行删除操作，删除后无法返回。</td>
-</tr>
-<tr>
-<td><code>df.dropna()</code></td>
-<td>删除空行<br><code>axis</code>：0-行操作（默认），1-列操作 <br><code>how</code>：<code>any</code>-只要有空值就删除（默认），<code>all</code>-全部为空值才删除 <br><code>inplace</code>：<code>False</code>-返回新的数据集（默认），<code>True</code>-在愿数据集上操作</td>
-</tr>
-<tr>
-<td><code>df.rename()</code></td>
-<td><code>df.rename(columns={&#39;A&#39;:&#39;a&#39;, &#39;B&#39;:&#39;b&#39;, &#39;C&#39;:&#39;c&#39;}, inplace = True)</code><br>将列名修改为`[‘a’,’b’,’c’]</td>
-</tr>
-<tr>
-<td><code>df.columns= [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</code></td>
-<td>将列名修改为<code>[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</code></td>
-</tr>
-<tr>
-<td><code>df.reset_index(列名,inplace)</code></td>
-<td>索引转化为列<br>列名：可以有，可以没有。多索引时，可以指定索引<br><code>inplace</code>：替换原<code>DataFrame</code></td>
-</tr>
-<tr>
-<td><code>df.set_index(列名)</code></td>
-<td>列转化为索引</td>
-</tr>
-<tr>
-<td><code>df.T</code></td>
-<td><code>DataFrame</code>转置</td>
-</tr>
-<tr>
-<td><code>df.merge()</code></td>
-<td>类似于数据库的<code>join</code>,返回<code>DataFrame</code></td>
-</tr>
-<tr>
-<td><code>df[&#39;列名&#39;].tolist()</code></td>
-<td>将列转换为<code>list</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="matplotlib"><a href="#matplotlib" class="headerlink" title="matplotlib"></a><a href="https://matplotlib.org/index.html" target="_blank" rel="noopener">matplotlib</a></h1><p><a href="https://serverpoolauth.ops.ctripcorp.com" target="_blank" rel="noopener">https://serverpoolauth.ops.ctripcorp.com</a></p>
-<h1 id="sklearn"><a href="#sklearn" class="headerlink" title="sklearn"></a>sklearn</h1><h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a><a href="https://scikit-learn.org/stable/modules/preprocessing.html#k-bins-discretization" target="_blank" rel="noopener">特征工程</a></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>KBinsDiscretizer</code></td>
-<td>-&nbsp;对数据进行分箱（离散化） ,不能处理空值<br>-&nbsp;返回<code>np.array</code>数据<br>-&nbsp;参数 <br>&nbsp;&nbsp;n_bins:分箱的数量，默认值是5，也可以是列表，指定各个特征的分箱数量，例如，[feature1_bins,feature2_bins,…]<br></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>n_bins：分箱的数量，默认值是5，也可以是列表，指定各个特征的分箱数量，例如，[feature1_bins,feature2_bins,…]</p>
-<p>encode：编码方式，{‘onehot’, ‘onehot-dense’, ‘ordinal’}, (default=’onehot’)</p>
-<ul>
-<li>onehot：以onehot方式编码，返回稀疏矩阵</li>
-<li>onehot-dense：以onehot方式编码，返回密集矩阵</li>
-<li>ordinal：以ordinal方式编码，返回分箱的序号</li>
-</ul>
-<p>strategy：定义分箱宽度的策略，{‘uniform’, ‘quantile’, ‘kmeans’}, (default=’quantile’)</p>
-<ul>
-<li>uniform：每个分箱等宽</li>
-<li>quantile：每个分箱中拥有相同数量的数据点</li>
-<li>kmeans：每个箱中的值具有与1D k均值簇最近的中心</li>
-</ul>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>断言 assert</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/hadoop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/14/hadoop/" itemprop="url">hadoop</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T19:20:28+08:00">
-                2019-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/2019/08/14/hadoop/1565782138575.png" alt="1565782138575"></p>
-<p><code>Apache Hadoop</code>软件库是一个框架，允许使用简单的编程模型跨计算机集群分布式处理大型数据集。它旨在从单个服务器扩展到数千台计算机，每台计算机都提供本地计算和存储。该库本身不是依靠硬件来提供高可用性，而是设计用于检测和处理应用层的故障，从而在计算机集群之上提供高可用性服务，每个计算机都可能容易出现故障。<code>Hadoop</code>的命令众多，本文重点介绍<code>HDFS</code>与<code>MapReduce</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/14/hadoop/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/13/spark/SQL-spark.md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/13/spark/SQL-spark.md/" itemprop="url">SQL-spark</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T19:49:05+08:00">
-                2019-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/2019/08/13/spark/SQL-spark.md/spark_sql_architecture.jpg" alt="æç«SQLæ¶æ"></p>
-<h1 id="getting-started"><a href="#getting-started" class="headerlink" title="getting started"></a><a href="https://spark-reference-doc-cn.readthedocs.io/zh_CN/latest/programming-guide/sql-guide.html#dataset" target="_blank" rel="noopener">getting started</a></h1><h2 id="SparkSession"><a href="#SparkSession" class="headerlink" title="SparkSession"></a>SparkSession</h2><p>Spark 中所有功能的入口是 <code>SparkSession</code> 类。要创建一个基本的<code>SparkSession</code> 对象, 只需要使用 <code>SparkSession.builder():</code></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.<span class="type">SparkSession</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> spark = <span class="type">SparkSession</span></span><br><span class="line">  .builder()</span><br><span class="line">  .appName(<span class="string">"Spark SQL basic example"</span>)</span><br><span class="line">  .config(<span class="string">"spark.some.config.option"</span>, <span class="string">"some-value"</span>)</span><br><span class="line">  .getOrCreate()</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.SparkSession;</span><br><span class="line"></span><br><span class="line">SparkSession spark = SparkSession</span><br><span class="line">  .builder()</span><br><span class="line">  .appName(<span class="string">"Java Spark SQL basic example"</span>)</span><br><span class="line">  .config(<span class="string">"spark.some.config.option"</span>, <span class="string">"some-value"</span>)</span><br><span class="line">  .getOrCreate();</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python</span></span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br><span class="line"></span><br><span class="line">spark = SparkSession \</span><br><span class="line">    .builder \</span><br><span class="line">    .appName(<span class="string">"Python Spark SQL basic example"</span>) \</span><br><span class="line">    .config(<span class="string">"spark.some.config.option"</span>, <span class="string">"some-value"</span>) \</span><br><span class="line">    .getOrCreate()</span><br></pre></td></tr></table></figure>
-<h2 id="创建-DataFrame"><a href="#创建-DataFrame" class="headerlink" title="创建 DataFrame"></a>创建 DataFrame</h2><p>应用程序可以使用 <code>SparkSession</code>从一个现有的 <code>RDD</code>，<code>Hive</code>表或 <code>Spark</code> 数据源创建 <code>DataFrame</code>。下面基于一个 <code>JSON</code> 文件的内容创建一个 <code>DataFrame</code>:</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> df = spark.read.json(<span class="string">"examples/src/main/resources/people.json"</span>)           <span class="comment">//scala</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.<span class="type">Dataset</span>;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.<span class="type">Row</span>;</span><br><span class="line"><span class="type">Dataset</span>&lt;<span class="type">Row</span>&gt; df = spark.read().json(<span class="string">"examples/src/main/resources/people.json"</span>); <span class="comment">//java</span></span><br><span class="line"></span><br><span class="line">df = spark.read.json(<span class="string">"examples/src/main/resources/people.json"</span>)               <span class="comment">//python</span></span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame-操作"><a href="#DataFrame-操作" class="headerlink" title="DataFrame 操作"></a>DataFrame 操作</h2><p><code>DataFrame</code>为 <code>Scala</code>,<code>Java</code>, <code>Python</code> 以及 <code>R</code> 语言中的结构化数据操作提供了一种领域特定语言。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>scala</th>
-<th>java</th>
-<th>python</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>df.printSchema()</code></td>
-<td><code>df.printSchema();</code></td>
-<td><code>df.printSchema()</code></td>
-</tr>
-<tr>
-<td><code>df.select(&quot;name&quot;)</code></td>
-<td><code>df.select(&quot;name&quot;).show();</code></td>
-<td><code>df.select(&quot;name&quot;).show();</code></td>
-</tr>
-<tr>
-<td><code>df.select($&quot;name&quot;, $&quot;age&quot; + 1).show()</code></td>
-<td><code>df.select(col(&quot;name&quot;), col(&quot;age&quot;).plus(1)).show();</code></td>
-<td><code>df.select(df[&#39;name&#39;], df[&#39;age&#39;] + 1).show()</code></td>
-</tr>
-<tr>
-<td><code>df.filter($&quot;age&quot; &gt; 21).show()</code></td>
-<td><code>df.filter(col(&quot;age&quot;).gt(21)).show();</code></td>
-<td><code>df.filter(df[&#39;age&#39;] &gt; 21).show()</code></td>
-</tr>
-<tr>
-<td><code>df.groupBy(&quot;age&quot;).count().show()</code></td>
-<td><code>df.groupBy(&quot;age&quot;).count().show()</code></td>
-<td><code>df.groupBy(&quot;age&quot;).count().show()</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************** scala*************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// This import is needed to use the $-notation</span></span><br><span class="line"><span class="keyword">import</span> spark.implicits._</span><br><span class="line"><span class="comment">// Print the schema in a tree format</span></span><br><span class="line">df.printSchema()</span><br><span class="line"><span class="comment">// root</span></span><br><span class="line"><span class="comment">// |-- age: long (nullable = true)</span></span><br><span class="line"><span class="comment">// |-- name: string (nullable = true)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Select only the "name" column</span></span><br><span class="line">df.select(<span class="string">"name"</span>).show()</span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |   name|</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |Michael|</span></span><br><span class="line"><span class="comment">// |   Andy|</span></span><br><span class="line"><span class="comment">// | Justin|</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Select everybody, but increment the age by 1</span></span><br><span class="line">df.select($<span class="string">"name"</span>, $<span class="string">"age"</span> + <span class="number">1</span>).show()</span><br><span class="line"><span class="comment">// +-------+---------+</span></span><br><span class="line"><span class="comment">// |   name|(age + 1)|</span></span><br><span class="line"><span class="comment">// +-------+---------+</span></span><br><span class="line"><span class="comment">// |Michael|     null|</span></span><br><span class="line"><span class="comment">// |   Andy|       31|</span></span><br><span class="line"><span class="comment">// | Justin|       20|</span></span><br><span class="line"><span class="comment">// +-------+---------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Select people older than 21</span></span><br><span class="line">df.filter($<span class="string">"age"</span> &gt; <span class="number">21</span>).show()</span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// |age|name|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// | 30|Andy|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Count people by age</span></span><br><span class="line">df.groupBy(<span class="string">"age"</span>).count().show()</span><br><span class="line"><span class="comment">// +----+-----+</span></span><br><span class="line"><span class="comment">// | age|count|</span></span><br><span class="line"><span class="comment">// +----+-----+</span></span><br><span class="line"><span class="comment">// |  19|    1|</span></span><br><span class="line"><span class="comment">// |null|    1|</span></span><br><span class="line"><span class="comment">// |  30|    1|</span></span><br><span class="line"><span class="comment">// +----+-----+</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************** java*************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// col("...") is preferable to df.col("...")</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.apache.spark.sql.functions.col;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Print the schema in a tree format</span></span><br><span class="line">df.printSchema();</span><br><span class="line"><span class="comment">// root</span></span><br><span class="line"><span class="comment">// |-- age: long (nullable = true)</span></span><br><span class="line"><span class="comment">// |-- name: string (nullable = true)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Select only the "name" column</span></span><br><span class="line">df.select(<span class="string">"name"</span>).show();</span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |   name|</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"><span class="comment">// |Michael|</span></span><br><span class="line"><span class="comment">// |   Andy|</span></span><br><span class="line"><span class="comment">// | Justin|</span></span><br><span class="line"><span class="comment">// +-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Select everybody, but increment the age by 1</span></span><br><span class="line">df.select(col(<span class="string">"name"</span>), col(<span class="string">"age"</span>).plus(<span class="number">1</span>)).show();</span><br><span class="line"><span class="comment">// +-------+---------+</span></span><br><span class="line"><span class="comment">// |   name|(age + 1)|</span></span><br><span class="line"><span class="comment">// +-------+---------+</span></span><br><span class="line"><span class="comment">// |Michael|     null|</span></span><br><span class="line"><span class="comment">// |   Andy|       31|</span></span><br><span class="line"><span class="comment">// | Justin|       20|</span></span><br><span class="line"><span class="comment">// +-------+---------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Select people older than 21</span></span><br><span class="line">df.filter(col(<span class="string">"age"</span>).gt(<span class="number">21</span>)).show();</span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// |age|name|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// | 30|Andy|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Count people by age</span></span><br><span class="line">df.groupBy(<span class="string">"age"</span>).count().show();</span><br><span class="line"><span class="comment">// +----+-----+</span></span><br><span class="line"><span class="comment">// | age|count|</span></span><br><span class="line"><span class="comment">// +----+-----+</span></span><br><span class="line"><span class="comment">// |  19|    1|</span></span><br><span class="line"><span class="comment">// |null|    1|</span></span><br><span class="line"><span class="comment">// |  30|    1|</span></span><br><span class="line"><span class="comment">// +----+-----+</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#####################             python                ###################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># spark, df are from the previous example</span></span><br><span class="line"><span class="comment"># Print the schema in a tree format</span></span><br><span class="line">df.printSchema()</span><br><span class="line"><span class="comment"># root</span></span><br><span class="line"><span class="comment"># |-- age: long (nullable = true)</span></span><br><span class="line"><span class="comment"># |-- name: string (nullable = true)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Select only the "name" column</span></span><br><span class="line">df.select(<span class="string">"name"</span>).show()</span><br><span class="line"><span class="comment"># +-------+</span></span><br><span class="line"><span class="comment"># |   name|</span></span><br><span class="line"><span class="comment"># +-------+</span></span><br><span class="line"><span class="comment"># |Michael|</span></span><br><span class="line"><span class="comment"># |   Andy|</span></span><br><span class="line"><span class="comment"># | Justin|</span></span><br><span class="line"><span class="comment"># +-------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Select everybody, but increment the age by 1</span></span><br><span class="line">df.select(df[<span class="string">'name'</span>], df[<span class="string">'age'</span>] + <span class="number">1</span>).show()</span><br><span class="line"><span class="comment"># +-------+---------+</span></span><br><span class="line"><span class="comment"># |   name|(age + 1)|</span></span><br><span class="line"><span class="comment"># +-------+---------+</span></span><br><span class="line"><span class="comment"># |Michael|     null|</span></span><br><span class="line"><span class="comment"># |   Andy|       31|</span></span><br><span class="line"><span class="comment"># | Justin|       20|</span></span><br><span class="line"><span class="comment"># +-------+---------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Select people older than 21</span></span><br><span class="line">df.filter(df[<span class="string">'age'</span>] &gt; <span class="number">21</span>).show()</span><br><span class="line"><span class="comment"># +---+----+</span></span><br><span class="line"><span class="comment"># |age|name|</span></span><br><span class="line"><span class="comment"># +---+----+</span></span><br><span class="line"><span class="comment"># | 30|Andy|</span></span><br><span class="line"><span class="comment"># +---+----+</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Count people by age</span></span><br><span class="line">df.groupBy(<span class="string">"age"</span>).count().show()</span><br><span class="line"><span class="comment"># +----+-----+</span></span><br><span class="line"><span class="comment"># | age|count|</span></span><br><span class="line"><span class="comment"># +----+-----+</span></span><br><span class="line"><span class="comment"># |  19|    1|</span></span><br><span class="line"><span class="comment"># |null|    1|</span></span><br><span class="line"><span class="comment"># |  30|    1|</span></span><br><span class="line"><span class="comment"># +----+-----+</span></span><br></pre></td></tr></table></figure>
-<h2 id="SQL查询"><a href="#SQL查询" class="headerlink" title="SQL查询"></a>SQL查询</h2><p>通过SQL访问数据库，返回一个DataFrame的类型</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************************   scala   *********************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Register the DataFrame as a SQL temporary view</span></span><br><span class="line">df.createOrReplaceTempView(<span class="string">"people"</span>)</span><br><span class="line"><span class="keyword">val</span> sqlDF = spark.sql(<span class="string">"SELECT * FROM people"</span>)</span><br><span class="line">sqlDF.show()</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***************************   java   *********************************/</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Dataset;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Row;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Register the DataFrame as a SQL temporary view</span></span><br><span class="line">df.createOrReplaceTempView(<span class="string">"people"</span>);</span><br><span class="line">Dataset&lt;Row&gt; sqlDF = spark.sql(<span class="string">"SELECT * FROM people"</span>);</span><br><span class="line">sqlDF.show();</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#############################   python    ###############################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register the DataFrame as a SQL temporary view</span></span><br><span class="line">df.createOrReplaceTempView(<span class="string">"people"</span>)</span><br><span class="line">sqlDF = spark.sql(<span class="string">"SELECT * FROM people"</span>)</span><br><span class="line">sqlDF.show()</span><br></pre></td></tr></table></figure>
-<h2 id="全局临时视图"><a href="#全局临时视图" class="headerlink" title="全局临时视图"></a>全局临时视图</h2><p>Spark SQL中的临时视图是<strong>会话范围</strong>的，如果创建它的会话终止，它将消失。如果您希望拥有一个在所有会话之间共享的临时视图并保持活动状态，直到Spark应用程序终止，您可以创建一个全局临时视图。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*********************************  scala  *************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Register the DataFrame as a global temporary view</span></span><br><span class="line">df.createGlobalTempView(<span class="string">"people"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Global temporary view is tied to a system preserved database `global_temp`</span></span><br><span class="line">spark.sql(<span class="string">"SELECT * FROM global_temp.people"</span>).show()</span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// | age|   name|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// |null|Michael|</span></span><br><span class="line"><span class="comment">// |  30|   Andy|</span></span><br><span class="line"><span class="comment">// |  19| Justin|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*********************************  java  *************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Register the DataFrame as a global temporary view</span></span><br><span class="line">df.createGlobalTempView(<span class="string">"people"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Global temporary view is tied to a system preserved database `global_temp`</span></span><br><span class="line">spark.sql(<span class="string">"SELECT * FROM global_temp.people"</span>).show();</span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// | age|   name|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// |null|Michael|</span></span><br><span class="line"><span class="comment">// |  30|   Andy|</span></span><br><span class="line"><span class="comment">// |  19| Justin|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###############################   python   ################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register the DataFrame as a global temporary view</span></span><br><span class="line">df.createGlobalTempView(<span class="string">"people"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Global temporary view is tied to a system preserved database `global_temp`</span></span><br><span class="line">spark.sql(<span class="string">"SELECT * FROM global_temp.people"</span>).show()</span><br><span class="line"><span class="comment"># +----+-------+</span></span><br><span class="line"><span class="comment"># | age|   name|</span></span><br><span class="line"><span class="comment"># +----+-------+</span></span><br><span class="line"><span class="comment"># |null|Michael|</span></span><br><span class="line"><span class="comment"># |  30|   Andy|</span></span><br><span class="line"><span class="comment"># |  19| Justin|</span></span><br><span class="line"><span class="comment"># +----+-------+</span></span><br></pre></td></tr></table></figure>
-<h2 id="创建dataset"><a href="#创建dataset" class="headerlink" title="创建dataset"></a>创建dataset</h2><p><code>Dataset</code>是特定域对象中的强类型集合，它可以使用函数或者相关操作并行地进行转换等操作。每个<code>Dataset</code>都有一个称为<code>DataFrame</code>的非类型化的视图，这个视图是行的数据集。上面的定义看起来和<code>RDD</code>的定义类似，<code>DataSet</code>和<code>RDD</code>主要的区别是：<code>DataSet</code>是特定域的对象集合；然而<code>RDD</code>是任何对象的集合。<code>DataSet</code>的<code>API</code>总是强类型的；而且可以利用这些模式进行优化，然而<code>RDD</code>却不行。<code>DataFrame</code>是特殊的<code>Dataset</code>，它在编译时不会对模式进行检测。在未来版本的Spark，<code>Dataset</code>将会替代<code>RDD</code>成为我们开发编程使用的<code>API</code>（<strong>注意，<code>RDD</code>并不是会被取消，而是会作为底层的<code>API</code>提供给用户使用</strong>）。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//   scala</span></span><br><span class="line"><span class="comment">// Note: Case classes in Scala 2.10 can support only up to 22 fields. To work around this limit,</span></span><br><span class="line"><span class="comment">// you can use custom classes that implement the Product interface</span></span><br><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>(<span class="params">name: <span class="type">String</span>, age: <span class="type">Long</span></span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">//</span> <span class="title">Encoders</span> <span class="title">are</span> <span class="title">created</span> <span class="title">for</span> <span class="title">case</span> <span class="title">classes</span></span></span><br><span class="line"><span class="class"><span class="title">val</span> <span class="title">caseClassDS</span> </span>= <span class="type">Seq</span>(<span class="type">Person</span>(<span class="string">"Andy"</span>, <span class="number">32</span>)).toDS()</span><br><span class="line">caseClassDS.show()</span><br><span class="line"><span class="comment">// +----+---+</span></span><br><span class="line"><span class="comment">// |name|age|</span></span><br><span class="line"><span class="comment">// +----+---+</span></span><br><span class="line"><span class="comment">// |Andy| 32|</span></span><br><span class="line"><span class="comment">// +----+---+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Encoders for most common types are automatically provided by importing spark.implicits._</span></span><br><span class="line"><span class="keyword">val</span> primitiveDS = <span class="type">Seq</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>).toDS()</span><br><span class="line">primitiveDS.map(_ + <span class="number">1</span>).collect() <span class="comment">// Returns: Array(2, 3, 4)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DataFrames can be converted to a Dataset by providing a class. Mapping will be done by name</span></span><br><span class="line"><span class="keyword">val</span> path = <span class="string">"examples/src/main/resources/people.json"</span></span><br><span class="line"><span class="keyword">val</span> peopleDS = spark.read.json(path).as[<span class="type">Person</span>]</span><br><span class="line">peopleDS.show()</span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// | age|   name|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// |null|Michael|</span></span><br><span class="line"><span class="comment">// |  30|   Andy|</span></span><br><span class="line"><span class="comment">// |  19| Justin|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.api.java.function.MapFunction;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Dataset;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Row;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Encoder;</span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Encoders;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> age;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an instance of a Bean class</span></span><br><span class="line">Person person = <span class="keyword">new</span> Person();</span><br><span class="line">person.setName(<span class="string">"Andy"</span>);</span><br><span class="line">person.setAge(<span class="number">32</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Encoders are created for Java beans</span></span><br><span class="line">Encoder&lt;Person&gt; personEncoder = Encoders.bean(Person.class);</span><br><span class="line">Dataset&lt;Person&gt; javaBeanDS = spark.createDataset(</span><br><span class="line">  Collections.singletonList(person),</span><br><span class="line">  personEncoder</span><br><span class="line">);</span><br><span class="line">javaBeanDS.show();</span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// |age|name|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"><span class="comment">// | 32|Andy|</span></span><br><span class="line"><span class="comment">// +---+----+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Encoders for most common types are provided in class Encoders</span></span><br><span class="line">Encoder&lt;Integer&gt; integerEncoder = Encoders.INT();</span><br><span class="line">Dataset&lt;Integer&gt; primitiveDS = spark.createDataset(Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), integerEncoder);</span><br><span class="line">Dataset&lt;Integer&gt; transformedDS = primitiveDS.map(</span><br><span class="line">    (MapFunction&lt;Integer, Integer&gt;) value -&gt; value + <span class="number">1</span>,</span><br><span class="line">    integerEncoder);</span><br><span class="line">transformedDS.collect(); <span class="comment">// Returns [2, 3, 4]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DataFrames can be converted to a Dataset by providing a class. Mapping based on name</span></span><br><span class="line">String path = <span class="string">"examples/src/main/resources/people.json"</span>;</span><br><span class="line">Dataset&lt;Person&gt; peopleDS = spark.read().json(path).as(personEncoder);</span><br><span class="line">peopleDS.show();</span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// | age|   name|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br><span class="line"><span class="comment">// |null|Michael|</span></span><br><span class="line"><span class="comment">// |  30|   Andy|</span></span><br><span class="line"><span class="comment">// |  19| Justin|</span></span><br><span class="line"><span class="comment">// +----+-------+</span></span><br></pre></td></tr></table></figure>
-<h2 id="与RDD互相转换"><a href="#与RDD互相转换" class="headerlink" title="与RDD互相转换"></a><a href="https://spark-reference-doc-cn.readthedocs.io/zh_CN/latest/programming-guide/sql-guide.html#rdd" target="_blank" rel="noopener">与RDD互相转换</a></h2><p>Spark SQL 支持两种不同的方法将RDDs 转换成 Datasets.</p>
-<p><strong>??????????????????????????????????????????</strong></p>
-<h2 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a><a href="https://spark-reference-doc-cn.readthedocs.io/zh_CN/latest/programming-guide/sql-guide.html#id4" target="_blank" rel="noopener">聚合函数</a></h2><p>DataFrame可以使用聚合函数，例如count()、max()等</p>
-<h3 id="自定义聚合函数"><a href="#自定义聚合函数" class="headerlink" title="自定义聚合函数"></a>自定义聚合函数</h3><p>使用<code>UserDefinedAggregateFunction a</code>自定义聚合函数。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/13/HDFS/hive.md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/13/HDFS/hive.md/" itemprop="url">hive</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-13T11:42:07+08:00">
-                2019-08-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>show tables like &#39;*name*&#39;</code></td>
-<td>hive模糊搜索表</td>
-</tr>
-<tr>
-<td><code>desc formatted table_name</code><br><code>desc table_name</code></td>
-<td>查看表结构信息</td>
-</tr>
-<tr>
-<td><code>show partitions table_name</code></td>
-<td>查看分区信息</td>
-</tr>
-<tr>
-<td><code>select table_coulm from table_name where partition_name = &#39;2014-02-25&#39;;</code></td>
-<td>根据分区查询数据</td>
-</tr>
-<tr>
-<td><code>dfs -ls /user/hive/warehouse/table02;</code></td>
-<td>查看hdfs文件信息</td>
-</tr>
-<tr>
-<td><code>dfs -tail /user/hive/warehouse/table02;</code></td>
-<td>显示hdfs文件的一行信息</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="创建表格"><a href="#创建表格" class="headerlink" title="创建表格"></a>创建表格</h1><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>create table as</code></td>
-<td>选中表格创建表格</td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="create-table-as"><a href="#create-table-as" class="headerlink" title="create table as"></a>create table as</h2><p>create创建部分可以指定表的存储格式等属性，比如指定新表的行列分隔符，存储格式等。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> temp_copy</span><br><span class="line">   <span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span></span><br><span class="line">      <span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\t'</span></span><br><span class="line">      <span class="keyword">LINES</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'\n'</span>;</span><br><span class="line">   STORED AS textfile</span><br><span class="line">AS</span><br><span class="line"><span class="keyword">SELECT</span> *  <span class="keyword">FROM</span> temp <span class="keyword">WHERE</span> start_date <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p><code>hive</code>中用<code>CTAS</code>创建表，所创建的表统一都是非分区表，不管源表是否是分区表。所以对于分区表的创建使用<code>create table ..as</code>一定要注意分区功能的丢失。当然创建表以后可以添加分区，成为分区表。</p>
-</li>
-<li><p>如果使用<code>create table as  select  *</code>创建表时源表是分区表，则新建的表会多字段，具体多的字段个数和名称就是源表分区的个数和名称。当然如果<code>select</code>选择的是指定的列则不会有这种问题。</p>
-</li>
-<li>如果源表的存储格式不是<code>textfile</code>。则使用<code>CTAS</code>创建的表存储格式会变成默认的格式<code>textfile</code>。比如这里源表是<code>RCFILE</code>。而新建的表则是<code>textfile</code>。当然可以在使用<code>create table ....as</code>创建表时指定存储格式和解析格式，甚至是列的名称等属性。具体参考博客：hive使用create as创建表指定存储格式等属性</li>
-<li>使用<code>CTAS</code>方式创建的表不能是外部表。</li>
-<li>使用<code>CTAS</code>创建的表不能分桶表。对于每一个表或者是分区，Hive可以进一步组织成桶，也就是说桶是更为细粒度的数据范围划分。</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2475,7 +2296,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2486,7 +2307,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2497,7 +2318,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

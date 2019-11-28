@@ -286,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/linux软件安装原理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/人工智能/特征工程/数据预处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -305,7 +305,1047 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/26/linux软件安装原理/" itemprop="url">linux软件安装原理</a></h1>
+                <a class="post-title-link" href="/2019/10/30/人工智能/特征工程/数据预处理/" itemprop="url">数据预处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-30T20:55:55+08:00">
+                2019-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/特征工程/" itemprop="url" rel="index">
+                    <span itemprop="name">特征工程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler,StandardScaler,Normalizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># MinMaxScaler()    列特征</span></span><br><span class="line">iris_train=MinMaxScaler().fit_transform(iris_train)</span><br><span class="line">iris_test=MinMaxScaler().fit_transform(iris_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># StandardScaler()  列特征</span></span><br><span class="line">iris_train=StandardScaler().fit_transform(iris_train)</span><br><span class="line">iris_test=StandardScaler().fit_transform(iris_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalizer()      行特征</span></span><br><span class="line">iris_train=Normalizer().fit_transform(iris_train)</span><br><span class="line">iris_test=Normalizer().fit_transform(iris_test)</span><br></pre></td></tr></table></figure>
+<h2 id="列特征"><a href="#列特征" class="headerlink" title="列特征"></a>列特征</h2><p>主要在线性模型中进行</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>公式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StandardScaler  标准化</td>
+<td>$x’=\frac{x-\bar{x}}{\sigma}$</td>
+<td>$\bar{x}$为每一列特征的均值<br>$\sigma$为每一列特征的标准差</td>
+</tr>
+<tr>
+<td>MinMaxScaler    归一化</td>
+<td>$x’=\frac{x-Min}{Max-Min}$</td>
+<td>$Min$：每一列特征的最小值<br>$Max$：每一列特征的最大值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="为什么树形模型不需要进行归一化、标准化"><a href="#为什么树形模型不需要进行归一化、标准化" class="headerlink" title="为什么树形模型不需要进行归一化、标准化"></a>为什么树形模型不需要进行归一化、标准化</h3><p>因为树形模型的损失函数与特征尺度无关，所以树节点进行分裂的时候以及计算叶节点得分的时候同样与特征尺度无关。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>分裂点</th>
+<th>叶节点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID3-分类</td>
+<td>遍历特征，使$g(D,A)=H(D)-H(D</td>
+<td>A)$最大<br>损失函数只与样本量有关，与特征的尺度无关</td>
+<td>即分类结果A</td>
+</tr>
+<tr>
+<td>C4.5-分类</td>
+<td>遍历特征，使$g_{R}(D,A)= \frac {g(D,A)}{H_A(D)}$最大<br>损失函数只与样本量有关，与特征的尺度无关</td>
+<td>即分类结果</td>
+</tr>
+<tr>
+<td>CART-分类</td>
+<td>遍历特征，使$Gini(D)-Gini(D,A)$最大<br>损失函数只与样本量有关，与特征的尺度无关</td>
+<td>即分类结果</td>
+</tr>
+<tr>
+<td>CART-回归</td>
+<td>$L=(y_i-T(x))^2$<br>分裂点使得损失函数最小，与特征尺度无关</td>
+<td>使$L=(y_i-T(x))^2$最小<br>选取均值，与特征尺度无关</td>
+</tr>
+<tr>
+<td>GDBT-分类</td>
+<td>$- \left \{ yf(x)-log\left [ 1+e^{f(x)} \right ] \right \}$<br>分裂点使得损失函数最小，与特征尺度无关</td>
+<td>使$- \left \{ yf(x)-log\left [ 1+e^{f(x)} \right ] \right \}$最小<br>与特征尺度无关</td>
+</tr>
+<tr>
+<td>GBDT-回归</td>
+<td>$L=(y_i-f(x_i))^2$<br>分裂点使得损失函数最小，与特征尺度无关</td>
+<td>使$L=(y_i-f(x_i))^2$最小<br>选取残差的均值，与特征尺度无关</td>
+</tr>
+<tr>
+<td>xgboost</td>
+<td>$Gain=\frac 1 2 [\frac {G_L^2}{H_L + \lambda} + \frac {G_R^2}{H_R + \lambda} - \frac {(G_L + G_R)^2}{H_L + H_R + \lambda}] - \gamma$<br>使增益最大，与特征尺度无关</td>
+<td>$w_j^* = - \frac {G_j} {H_j + \lambda}$与特征尺度无关</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="决策树与随机森林"><a href="#决策树与随机森林" class="headerlink" title="决策树与随机森林"></a>决策树与随机森林</h4><p>随机森林是从训练集中，不停的抽取子样本集，利用子样本集训练决策树的集成学习。所以归一化是否对随机森林有影响，只需要考察决策树。决策树的分支方式如下</p>
+<ul>
+<li><p>信息增益  (与左右节点中样本的数量有关)</p>
+<script type="math/tex; mode=display">
+g(D,A)=H(D)-H(D|A)</script><p>设训练数据集为$D，|D|$表示其样本容量，即样本个数。设有$K$个类$C_k，k＝1,2,…,K$，$|C_k|$为属于类$C_k$的样本个数，。设特征$A$有$n$个不同的取值${a_1，a_2,…,a_n}$，根据特征$A$的取值将$D$划分为$n$个子集$D_1,D_2,…,D_n，|D_i|$为$D_i$的样本个数，$\sum_{i=1}^{n}|D_i|=|D|$。记子集$D_i$中属于类$C_k$的样本的集合为$D_{ik}$，即$D_{ik}＝D_i⋂C_k$，$|D_{ik}|$为$D_{ik}$的样本个数。</p>
+<ul>
+<li>$H(D)=-\sum_{k=1}^{K}\frac{|C_k|}{|D|}log_2\frac{|C_k|}{|D|}$</li>
+<li>$H(D|A)=-\sum_{i=1}^{n}\frac{|D_i|}{|D|}H(D_i)=-\sum_{i=1}^{n}\frac{|D_i|}{|D|}\sum_{k=1}^{K}\frac{|D_{ik}|}{|D_i|}log_2\frac{|D_{ik}|}{|D_i|}$<br><strong>发现信息增益只与不同结点的样本量有关</strong> ，$H(D)$与根结点的总样本量以及不同类别的样本量有关；$H(D|A)$与子结点的总样本量以及不同类别的样本量有关。</li>
+</ul>
+</li>
+<li><p>信息增益比 (与左右节点中样本的数量有关)</p>
+<p>设特征$A$有$n$个不同的取值${a_1，a_2,…,a_n}$，根据特征$A$的取值将$D$划分为$n$个子集$D_1,D_2,…,D_n，|D_i|$为$D_i$的样本个数。则</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+g_{R}(D,A)&=\frac{g(D,A)}{H_A(D)}\\
+H_A(D)&=-\sum_{i=1}^{n}\frac{|D_i|}{|D|}log_2\frac{|D_{i}|}{|D|}
+\end{align*}</script><p><strong>发现信息增益只与不同结点的样本量有关</strong> ，$G(D|A)$与结点的总样本量以及不同类别的样本量有关；$H_A(D)$与父结点的样本量与子结点的样本量有关。</p>
+</li>
+<li><p>CART-基尼指数 (与左右节点中样本的数量有关)</p>
+<script type="math/tex; mode=display">
+Gini(D)-Gini(D,A)</script><ul>
+<li><p>$Gini(D)$</p>
+<p>假设有 $K$ 个类，样本点属于第$k$类的概率为$p_k$，则概率分布的基尼指数定义为<br>$$<br>\begin{align*}</p>
+</li>
+</ul>
+<p>Gini(p)&amp;=\sum_{k=1}^{K}p_k(1-p_k)=1-\sum_{k=1}^{K}p_k^2\\</p>
+<p>Gini(D)&amp;=1-\sum_{k=1}^{K}\left ( \frac{|c_k|}{D} \right )^2</p>
+<p>\end{align*}</p>
+<script type="math/tex; mode=display">
+      **只与每一个类别中样本的数量有关**
+
+- $Gini(D,A)$
+如果样本集合 $D$ 根据特征 $A$ 是否取某一可能值 $a$ 被分割成 $D_1$ 和 $D_2$ 两部分，则在特征 $A$ 的条件下，集合 $D$ 的基尼指数定义为</script><p>Gini(D,A)=\frac{|D_1|}{D}Gini(D_1)+\frac{|D_2|}{D}Gini(D_2)<br>$$</p>
+<pre><code>  **只与每一个类别中样本的数量有关**
+</code></pre></li>
+<li><p>CART-回归</p>
+<script type="math/tex; mode=display">
+L=(y_i-T(x))^2</script><ol>
+<li><p>选择分裂点使所有两个树节点中的损失函数$L$最小</p>
+</li>
+<li><p>选择得分使得损失函数$L$最小，得分是$y$的均值</p>
+<p><strong>全程与特征的尺度无关</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h4><ul>
+<li>结点分裂。计算残差就是负梯度$r_{m,i}$，根据残差拟合一颗回归树$CART$（回归树的损失函数为平方差损失函数）得到树的结构，</li>
+</ul>
+<script type="math/tex; mode=display">
+r_{m,i} = -\left[ \frac{\partial L(y_i,f(x_i))}{\partial f(x_i)} \right]_{f(x)=f_{m-1}(x)}</script><ul>
+<li>得分。计算得分使损失函数最小，与特征尺度无关</li>
+</ul>
+<script type="math/tex; mode=display">
+c_{m,j} = \arg \min_c \sum_{x_i\in R_{m,j}} L(y_i, f_{m-1}(x_i)+c)=\underset{x_i\in R_{m,j}}{ave}r_{m,i} ,~ j=1,2,...,J</script><h4 id="xgboost"><a href="#xgboost" class="headerlink" title="xgboost"></a>xgboost</h4><p>$j$为叶子结点的序号，$T$ 为叶子结点的总数 ；$i$ 为样本的序号，$n$ 为样本的总数；$w_q(x_i)$是求取$x_i$权值的对应函数；$\sum_{i \in I_j} g_i$ 为同一叶子结点的 $g_i$ 的和；;$\sum_{=1}^T \sum_{i \in I_j} = \sum_{i=1}^n$。其中</p>
+<script type="math/tex; mode=display">
+g_i=\frac{\partial l(y_i,\hat{y_i}^{(t-1)})}{\partial \hat{y_i}^{(t-1)}} \quad h_i=\frac{\partial ^2l(y_i,\hat{y_i}^{(t-1)})}{\partial ^2\hat{y_i}^{(t-1)}} \\
+
+G_j = \sum_{i \in I_j} g_i \quad H_j = \sum_{i \in I_j} h_i</script><ul>
+<li><p>结点分裂：取增益的最大值，发现增益与特征尺度无关。$G_R,G_L$都与特征尺度无关，所以结点的分裂与特征尺度无关</p>
+<script type="math/tex; mode=display">
+Gain=\frac 1 2 [\frac {G_L^2}{H_L + \lambda} + \frac {G_R^2}{H_R + \lambda} - \frac {(G_L + G_R)^2}{H_L + H_R + \lambda}] - \gamma</script></li>
+<li><p>结点的权重：结点的得分与特征尺度无关</p>
+<script type="math/tex; mode=display">
+w_j^* = - \frac {G_j} {H_j + \lambda}</script></li>
+</ul>
+<h3 id="归一化、标准化对线性模型的影响"><a href="#归一化、标准化对线性模型的影响" class="headerlink" title="归一化、标准化对线性模型的影响"></a>归一化、标准化对线性模型的影响</h3><ol>
+<li><p>归一化只是对输入空间进行缩放，并不影响模型的全局最优解以及局部最优解。</p>
+<p>假设输入特征分别为$x_1$、$x_2$，进行标准化之后，使用回归模型进行训练</p>
+<script type="math/tex; mode=display">
+x^{'}_1=\frac{x_1-\mu_1}{\sigma_1} \;\;\;\;\;\;\;\;\; 
+x^{'}_2=\frac{x_2-\mu_2}{\sigma_2} \\
+
+y=w_1x_1+w_2x_2+b \;\;\;\;\;\;\;\;\; 
+y^{'}=w_1^{'}x_1^{'}+w_2^{'}x_2^{'}+b^{'}  \\
+\begin{align*}
+y^{'} &=w_1^{'}x_1^{'}+w_2^{'}x_2^{'}+b^{'}  \\ 
+ &= w_1^{'}\frac{x_1-\mu_1}{\sigma_1}+w_2^{'}\frac{x_2-\mu_2}{\sigma_2}+b^{'} \\ 
+ &= \frac{w_1^{'}}{\sigma_1}x_1+\frac{w_2^{'}}{\sigma_2}x_2
+ -\frac{w_1^{'}\mu_1}{\sigma_1}-\frac{w_2^{'}-\mu_2}{\sigma_2}+b^{'} 
+\end{align*}</script><p>由上市可知任何特征经过缩放之后，都可以通过$w,b$变换成之前的模样。所以归一化只是对输入空间进行缩放，并不影响模型的全局最优解以及局部最优解。</p>
+</li>
+<li><p>在训练过程中，由于学习率以及初始点，不会根据输入空间的进行等比例缩放。因此很可能会导致模型最终的局部最优解不同。</p>
+<p>例如初始点都选择为$(1,1)$，那么归一化之后的初始点相对于原始空间将发生变化</p>
+</li>
+<li><p>在梯度下降过程中可以不恰当的学习率、以及初始点导致梯度爆炸等情况。</p>
+<p>因为在特征较多的时候，需要特征的不同尺度，需要对特征选择不同的学习率与初始点，不然很容易发生梯度爆炸的问题。学习率选择为0.01，对于有的特征来讲学习率太小，需要很长的迭代才会拟合；对于有的特征来讲，学习率太大了，会发生梯度爆炸；此时需要对不同的特征设置不同的学习率。进行归一化之后，特征的失度变得一致，梯度也将变得一致，不再需要对不同的特征设置不同的学习率。</p>
+<p><strong>注意</strong>：模型的收敛速度与初始点、学习率的选取都有关。对特征进行归一化之后有可能导致收敛速度变慢。</p>
+</li>
+</ol>
+<h2 id="行特征"><a href="#行特征" class="headerlink" title="行特征"></a>行特征</h2><h3 id="Normalizer"><a href="#Normalizer" class="headerlink" title="Normalizer"></a>Normalizer</h3><p>行特征进行归一化，使行特征的和为1。主要用于TF-IDF等特征。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>norm参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>l1</td>
+<td>样本各个行特征值除以各个行特征值的绝对值之和</td>
+</tr>
+<tr>
+<td>l2</td>
+<td>样本各个行特征值除以各个行特征值的平方之和</td>
+</tr>
+<tr>
+<td>max</td>
+<td>样本各个行特征值除以样本中行特征值最大的值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Normalizer</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = [[<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line"><span class="meta">... </span>     [<span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">3</span>],</span><br><span class="line"><span class="meta">... </span>     [<span class="number">5</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">1</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>transformer = Normalizer().fit(X)  <span class="comment"># fit does nothing.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>transformer</span><br><span class="line">Normalizer(copy=<span class="keyword">True</span>, norm=<span class="string">'l2'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>transformer.transform(X)</span><br><span class="line">array([[<span class="number">0.8</span>, <span class="number">0.2</span>, <span class="number">0.4</span>, <span class="number">0.4</span>],     <span class="comment">#4^2/(4^2+1+2^2+2^2)=0.8</span></span><br><span class="line">       [<span class="number">0.1</span>, <span class="number">0.3</span>, <span class="number">0.9</span>, <span class="number">0.3</span>],</span><br><span class="line">       [<span class="number">0.5</span>, <span class="number">0.7</span>, <span class="number">0.5</span>, <span class="number">0.1</span>]])</span><br></pre></td></tr></table></figure>
+<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#删除数据表中含有空值的行</span><br><span class="line">df.dropna(how=&apos;any&apos;)</span><br><span class="line"></span><br><span class="line"># 定义工资改变特征缺失值处理函数，将有变化设为Yes，缺失设为No def set_salary_change(df):	df.loc[(df.salary_change.notnull()),&apos;salary_change&apos;]=&quot;Yes&quot;	df.loc[(df.salary_change.isnull()),&apos;salary_change&apos;=&quot;No&quot;	return dfdata_train=set_salary_change(data_train)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data_train.fillna(0)</span><br><span class="line"># 将所有行用各自的均值填充 </span><br><span class="line">data_train.fillna(data_train.mean())</span><br><span class="line"></span><br><span class="line"># 也可以指定某些行进行填充 </span><br><span class="line">data_train.fillna(data_train.mean()[&apos;browse_his&apos;:&apos;card_num&apos;])</span><br><span class="line"># 用前一个数据代替NaN：method=&apos;pad&apos;</span><br><span class="line">data_train.fillna(method=&apos;pad&apos;)</span><br><span class="line"></span><br><span class="line"># 与pad相反，bfill表示用后一个数据代替NaN </span><br><span class="line">data_train.fillna(method=&apos;bfill&apos;)</span><br><span class="line"></span><br><span class="line"># 定义browse_his缺失值预测填充函数</span><br><span class="line"></span><br><span class="line">defset_missing_browse_his(df):</span><br><span class="line"></span><br><span class="line">	# 把已有的数值型特征取出来输入到RandomForestRegressor中</span><br><span class="line">	process_df=df[[browse_his&apos; , &apos;gender&apos;, &apos;job&apos;, &apos;edu&apos;, &apos;marriage&apos;, &apos;family_type&apos;]]</span><br><span class="line"></span><br><span class="line">	# 乘客分成已知该特征和未知该特征两部分</span><br><span class="line">	known=process_df[process_df.browse_his.notnull()].as_matrix()</span><br><span class="line">	unknown=process_df[process_df.browse_his.isnull()].as_matrix()</span><br><span class="line"></span><br><span class="line">	# X为特征属性值</span><br><span class="line">	X=known[:,1:]</span><br><span class="line">	# y为结果标签值</span><br><span class="line">	y=known[:,0]</span><br><span class="line"></span><br><span class="line">	# fit到RandomForestRegressor之中</span><br><span class="line">	rfr=RandomForestRegressor(random_state=0,n_estimators=2000,n_jobs=-1)</span><br><span class="line">	rfr.fit(X,y)</span><br><span class="line"></span><br><span class="line">	# 用得到的模型进行未知特征值预测</span><br><span class="line">	predicted=rfr.predict(unknown[:,1::])</span><br><span class="line">	# 用得到的预测结果填补原缺失数据</span><br><span class="line">	df.loc[(df.browse_his.isnull()),&apos;browse_his&apos;]=predicted</span><br><span class="line"></span><br><span class="line">	return df,rfr</span><br><span class="line"></span><br><span class="line">data_train,rfr=set_missing_brows</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/10/30/人工智能/特征工程/数据预处理/164e09f18f4f7b11" alt="img"> </p>
+<h3 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h3><p><strong>优点：</strong></p>
+<ul>
+<li>最简单粗暴；</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>牺牲了大量的数据，通过减少历史数据换取完整的信息，这样可能丢失了很多隐藏的重要信息；</li>
+<li>当缺失数据比例较大时，特别是缺失数据非随机分布时，直接删除可能会导致数据发生偏离，比如原本的正态分布变为非正太；</li>
+</ul>
+<ol>
+<li>删除缺失值</li>
+</ol>
+<p>这是一种很常用的策略。</p>
+<p>缺点：如果缺失值太多，最终删除到没有什么数据了。那就不好办了。</p>
+<h3 id="数据填补"><a href="#数据填补" class="headerlink" title="数据填补"></a>数据填补</h3><p>对缺失值的插补大体可分为两种：<strong>替换缺失值，拟合缺失值，虚拟变量</strong>。替换是通过数据中非缺失数据的相似性来填补，其核心思想是发现相同群体的共同特征，拟合是通过其他特征建模来填补，虚拟变量是衍生的新变量代替缺失值。</p>
+<p><strong>替换缺失值</strong></p>
+<ul>
+<li><strong>均值插补：</strong></li>
+</ul>
+<p><code>对于定类数据</code>：使用 <strong>众数</strong>（mode）填补，比如一个学校的男生和女生的数量，男生500人，女生50人，那么对于其余的缺失值我们会用人数较多的男生来填补。</p>
+<p><code>对于定量（定比）数据</code>：使用<strong>平均数</strong>（mean）或<strong>中位数</strong>（median）填补，比如一个班级学生的身高特征，对于一些同学缺失的身高值就可以使用全班同学身高的平均值或中位数来填补。一般如果特征分布为正太分布时，使用平均值效果比较好，而当分布由于异常值存在而不是正太分布的情况下，使用中位数效果比较好。</p>
+<blockquote>
+<p>注：此方法虽然简单，但是不够精准，可能会引入噪声，或者会改变特征原有的分布。 下图左为填补前的特征分布，图右为填补后的分布，明显发生了畸变。因此，如果缺失值是随机性的，那么用平均值比较适合保证无偏，否则会改变原分布。</p>
+</blockquote>
+<p><img src="/2019/10/30/人工智能/特征工程/数据预处理/164e098fd78a077f" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python中的使用：</span><br><span class="line">#使用price均值对NA进行填充</span><br><span class="line">df[&apos;price&apos;].fillna(df[&apos;price&apos;].mean())</span><br><span class="line">df[&apos;price&apos;].fillna(df[&apos;price&apos;].median())</span><br></pre></td></tr></table></figure>
+<h3 id="存在缺失值时的算法选择"><a href="#存在缺失值时的算法选择" class="headerlink" title="存在缺失值时的算法选择"></a>存在缺失值时的算法选择</h3><p>主流的机器学习模型千千万，很难一概而论。但有一些经验法则(rule of thumb)供参考：</p>
+<ul>
+<li>树模型对于缺失值的敏感度较低，大部分时候可以在数据有缺失时使用。</li>
+<li>涉及到距离度量(distance measurement)时，如计算两个点之间的距离，缺失数据就变得比较重要。因为涉及到“距离”这个概念，那么缺失值处理不当就会导致效果很差，如K近邻算法(KNN)和支持向量机(SVM)。</li>
+<li>线性模型的代价函数(loss function)往往涉及到距离(distance)的计算，计算预测值和真实值之间的差别，这容易导致对缺失值敏感。</li>
+<li>神经网络的鲁棒性强，对于缺失数据不是非常敏感，但一般没有那么多数据可供使用。</li>
+<li>贝叶斯模型对于缺失数据也比较稳定，数据量很小的时候首推贝叶斯模型。</li>
+</ul>
+<p>总结来看，对于有缺失值的数据在经过缺失值处理后：</p>
+<ul>
+<li>数据量很小，用朴素贝叶斯</li>
+<li>数据量适中或者较大，用树模型，优先 xgboost</li>
+<li>数据量较大，也可以用神经网络</li>
+<li>避免使用距离度量相关的模型，如KNN和SVM</li>
+</ul>
+<h4 id="三、处理缺失值的算法"><a href="#三、处理缺失值的算法" class="headerlink" title="三、处理缺失值的算法"></a>三、处理缺失值的算法</h4><p>（一）决策树模型怎么处理异常值？</p>
+<p>随机森林(Random Forests)的提出者Leo Breiman提出两种解决缺失值的方法：</p>
+<ul>
+<li>方法1(快速简单但效果差)：把数值型变量(numerical variables)中的缺失值用其所对应的类别中(class)的中位数(median)替换。把类别型变量(categorical variables)缺失的部分用所对应类别中出现最多的数值替代(most frequent non-missing value)</li>
+<li>方法2(耗时费力但效果好)：虽然依然是使用中位数和出现次数最多的数来进行替换，方法2引入了权重。即对需要替换的数据先和其他数据做相似度测量(proximity measurement)，在补全缺失点是相似的点的数据会有更高的权重W。</li>
+</ul>
+<hr>
+<p>（二）xgboost怎么处理缺失值？</p>
+<p>xgboost模型能够处理缺失值，也就是说模型允许缺失值存在。</p>
+<p>论文中关于缺失值的处理: 将其看与稀疏矩阵的处理看作一样。在寻找split point的时候，不会对该特征为missing的样本进行遍历统计，只对该列特征值为non-missing的样本上对应的特征值进行遍历，通过这个技巧来减少了为稀疏离散特征寻找split point的时间开销。</p>
+<p>在逻辑实现上，为了保证完备性，会分别处理将missing该特征值的样本分配到左叶子结点和右叶子结点的两种情形，计算增益后选择增益大的方向进行分裂即可。可以为缺失值或者指定的值指定分支的默认方向，这能大大提升算法的效率。如果在训练中没有缺失值而在预测中出现缺失，那么会自动将缺失值的划分方向放到右子树。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/29/数学基础/高数/距离/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/29/数学基础/高数/距离/" itemprop="url">距离</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-29T10:43:14+08:00">
+                2019-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学基础/" itemprop="url" rel="index">
+                    <span itemprop="name">数学基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数学基础/高数/" itemprop="url" rel="index">
+                    <span itemprop="name">高数</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="距离公理"><a href="#距离公理" class="headerlink" title="距离公理"></a>距离公理</h1><p><strong>距离必须满足以下条件</strong>。设$X$是任一非空集，对$X$中任意两点$x,y$有一实数$d(x,y)$与之对应且满足：</p>
+<ol>
+<li>正定性：非负性、唯一性。$d(x,y) \geq 0$ ，且 $d(x,y) = 0$当且仅当$x=y$</li>
+<li>对称性：$d(x,y) =d(y,x)$</li>
+<li>三角不等式：$d(x,y) \leq d(x,z)+d(y,z)$，意两边之和大于、等于第三边。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/人工智能/评估/AB测/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/28/人工智能/评估/AB测/" itemprop="url">AB测</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T11:04:17+08:00">
+                2019-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/评估/" itemprop="url" rel="index">
+                    <span itemprop="name">评估</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>A / B测试，即你设计的页面有两个版本（A和B），A为现行的设计， B是新的设计。比较这两个版本之间你所关心的数据（转化率，业绩，跳出率等） 。A/B测试的目的就是尝试了解新的设计是否在统计上显著地改变了转化率。 </p>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><ol>
+<li><p>对用户进行分组，分为A组与B组。A组是对照组，B组是在A组的基础上有一些改变的实验组。</p>
+<p>分组的重点是正交分流，也就是2组的人群分布一致。在实际操作过程中，经常会出现多组实验同时进行，为了避免实验相互干扰，保证每组实验的独立性；就应该保证每个实验过程中，实验组与对照组的人群分布一致，即正交分流。</p>
+<p>例如淘宝App对用户登陆页面与用户注册页面都进行了修改（用户登陆页面—&gt;跳转注册页面）。在对注册页面进行AB测试的过程中，需要保证AB两组中用户登陆页面的人群分布一致；如果A组中的用户80%来自登陆页面修改之后的用户，B组用户20%来自登陆页面修改之后的用户，这样很难确定是用户登陆页面还是注册页面对AB两组产生了影响。</p>
+</li>
+<li><p>使用<strong>显著性检验</strong>，观察A组与B组是否发生了在统计上发生了显著性的变化。从而判断B组的改变是否有效。这就是数学原理的关键所在。</p>
+</li>
+</ol>
+<h1 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h1><h1 id="分流引擎"><a href="#分流引擎" class="headerlink" title="分流引擎"></a>分流引擎</h1><h1 id="AB测副作用"><a href="#AB测副作用" class="headerlink" title="AB测副作用"></a>AB测副作用</h1><h2 id="探索性难题"><a href="#探索性难题" class="headerlink" title="探索性难题"></a>探索性难题</h2><h2 id="多臂赌博机"><a href="#多臂赌博机" class="headerlink" title="多臂赌博机"></a>多臂赌博机</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/linux/terminal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/27/linux/terminal/" itemprop="url">terminal</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T12:50:44+08:00">
+                2019-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/wsl/" itemprop="url" rel="index">
+                    <span itemprop="name">wsl</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="windows-terminal"><a href="#windows-terminal" class="headerlink" title="windows terminal"></a>windows terminal</h1><h2 id="添加到右键"><a href="#添加到右键" class="headerlink" title="添加到右键"></a>添加到右键</h2><ol>
+<li><p>检查常量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo %USERPROFILE%</span><br><span class="line"></span><br><span class="line">echo %LOCALAPPDATA%</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建文件夹用来存放图标与注册表</p>
+<ol>
+<li><p>创建文件夹<code>terminal</code></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> "<span class="variable">%USERPROFILE%</span>\AppData\Local\Terminal"</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存放图标</p>
+<p>将terminal的图标存放在<code>mkdir &quot;%USERPROFILE%\AppData\Local\Terminal&quot;</code>中</p>
+</li>
+<li><p>添加注册表</p>
+<p>创建 <code>addwt.reg</code>文件，在文件中写入以下内容，并使用管理员身份运行。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version <span class="number">5.00</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span><br><span class="line">@=<span class="string">"Windows Terminal here"</span></span><br><span class="line"><span class="string">"Icon"</span>=<span class="string">"%USERPROFILE%\\AppData\\Local\\Terminal\\terminal.ico"</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]</span><br><span class="line">@=<span class="string">"C:\\Users\\[你的电脑用户名！你的电脑用户名！]\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"$schema"</span>: <span class="string">"https://aka.ms/terminal-profiles-schema"</span>,</span><br><span class="line">    <span class="attr">"globals"</span> : </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"alwaysShowTabs"</span> : <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"copyOnSelect"</span> : <span class="literal">false</span>,</span><br><span class="line">        "defaultProfile" : "&#123;c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40&#125;",     //默认终端</span><br><span class="line">        "initialCols" : 120,</span><br><span class="line">        "initialRows" : 30,</span><br><span class="line">        "keybindings" : </span><br><span class="line">        [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"closePane"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+w"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"copy"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+c"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"duplicateTab"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+d"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTab"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+t"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile0"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+1"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile1"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+2"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile2"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+3"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile3"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+4"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile4"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+5"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile5"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+6"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile6"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+7"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile7"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+8"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"newTabProfile8"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+9"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"nextTab"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+tab"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"openNewTabDropdown"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+space"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"openSettings"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+,"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"paste"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+v"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"prevTab"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+tab"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"scrollDown"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+down"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"scrollDownPage"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+pgdn"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"scrollUp"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+up"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"scrollUpPage"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+shift+pgup"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab0"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+1"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab1"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+2"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab2"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+3"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab3"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+4"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab4"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+5"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab5"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+6"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab6"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+7"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab7"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+8"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">"command"</span> : <span class="string">"switchToTab8"</span>,</span><br><span class="line">                <span class="attr">"keys"</span> : </span><br><span class="line">                [</span><br><span class="line">                    <span class="string">"ctrl+alt+9"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        "requestedTheme" : "system",</span><br><span class="line">        "showTabsInTitlebar" : true,</span><br><span class="line">        "showTerminalTitleInTitlebar" : true,</span><br><span class="line">        "wordDelimiters" : " ./\\()\"'-:,.;&lt;&gt;~!@#$%^&amp;*|+=[]&#123;&#125;~?\u2502"</span><br><span class="line">    &#125;,</span><br><span class="line">    "profiles" : </span><br><span class="line">    [</span><br><span class="line">        &#123;                           </span><br><span class="line">            "acrylicOpacity" : 0.75,                    // 亚克力效果透明度</span><br><span class="line">        //    "background" : "#123456",                   // 背景颜色</span><br><span class="line">            "backgroundImage" : "C://terminalpicture//powershell.png", // 背景图片地址，路径中不能有中文</span><br><span class="line">            "backgroundImageOpacity" : 0.3,   // 透明度</span><br><span class="line">            "backgroundImageStretchMode" : "uniformToFill",</span><br><span class="line">            "closeOnExit" : true,</span><br><span class="line">            "colorScheme" : "Campbell",                // 配色方案</span><br><span class="line">            "commandline" : "powershell.exe",          // 打开终端的命令</span><br><span class="line">            "cursorColor" : "#FFFFFF",                 // 游标的颜色</span><br><span class="line">            "cursorShape" : "bar",</span><br><span class="line">            "fontFace" : "Consolas",</span><br><span class="line">            "fontSize" : 10,                           // 字体大小</span><br><span class="line">            "guid" : "&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;",</span><br><span class="line">            "historySize" : 9001,</span><br><span class="line">            "icon" : "ms-appx:///ProfileIcons/&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;.png",    // 图标地址</span><br><span class="line">            "name" : "Windows PowerShell",             // 终端的名称</span><br><span class="line">            "padding" : "0, 0, 0, 0",</span><br><span class="line">            "snapOnInput" : true,</span><br><span class="line">            "startingDirectory" : "./",</span><br><span class="line">            "useAcrylic" : false                       // 使用亚克力效果</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.75</span>,</span><br><span class="line">          //  "background" : "#0C0C0C",                  // 背景颜色</span><br><span class="line">            "backgroundImage" : "C://terminalpicture//cmd.jpg",       // 背景图片地址</span><br><span class="line">            "backgroundImageOpacity" : 0.9,            // 透明度</span><br><span class="line">            "backgroundImageStretchMode" : "uniformToFill",</span><br><span class="line">            "closeOnExit" : true,</span><br><span class="line">            "colorScheme" : "Campbell",</span><br><span class="line">            "commandline" : "cmd.exe",</span><br><span class="line">            "cursorColor" : "#FFFFFF",</span><br><span class="line">            "cursorShape" : "bar",</span><br><span class="line">            "fontFace" : "Consolas",</span><br><span class="line">            "fontSize" : 10,</span><br><span class="line">            "guid" : "&#123;0caa0dad-35be-5f56-a8ff-afceeeaa6101&#125;",</span><br><span class="line">            "historySize" : 9001,</span><br><span class="line">            "icon" : "ms-appx:///ProfileIcons/&#123;0caa0dad-35be-5f56-a8ff-afceeeaa6101&#125;.png",</span><br><span class="line">            "name" : "cmd",</span><br><span class="line">            "padding" : "0, 0, 0, 0",</span><br><span class="line">            "snapOnInput" : true,</span><br><span class="line">            "startingDirectory" : "./",</span><br><span class="line">            "useAcrylic" : false</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.59999999999999998</span>,</span><br><span class="line">            <span class="attr">"closeOnExit"</span> : <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"colorScheme"</span> : <span class="string">"Vintage"</span>,</span><br><span class="line">            <span class="attr">"commandline"</span> : <span class="string">"Azure"</span>,</span><br><span class="line">            <span class="attr">"connectionType"</span> : <span class="string">"&#123;d9fcfdfa-a479-412c-83b7-c5640e61cd62&#125;"</span>,</span><br><span class="line">            <span class="attr">"cursorColor"</span> : <span class="string">"#FFFFFF"</span>,</span><br><span class="line">            <span class="attr">"cursorShape"</span> : <span class="string">"bar"</span>,</span><br><span class="line">            <span class="attr">"fontFace"</span> : <span class="string">"Consolas"</span>,</span><br><span class="line">            <span class="attr">"fontSize"</span> : <span class="number">10</span>,</span><br><span class="line">            <span class="attr">"guid"</span> : <span class="string">"&#123;b453ae62-4e3d-5e58-b989-0a998ec441b8&#125;"</span>,</span><br><span class="line">            <span class="attr">"historySize"</span> : <span class="number">9001</span>,</span><br><span class="line">            <span class="attr">"icon"</span> : <span class="string">"ms-appx:///ProfileIcons/&#123;b453ae62-4e3d-5e58-b989-0a998ec441b8&#125;.png"</span>,</span><br><span class="line">            <span class="attr">"name"</span> : <span class="string">"Azure Cloud Shell"</span>,</span><br><span class="line">            <span class="attr">"padding"</span> : <span class="string">"0, 0, 0, 0"</span>,</span><br><span class="line">            <span class="attr">"snapOnInput"</span> : <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">"startingDirectory"</span> : <span class="string">"./"</span>,</span><br><span class="line">            <span class="attr">"useAcrylic"</span> : <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"acrylicOpacity"</span> : <span class="number">0.5</span>,</span><br><span class="line">            "background" : "#0C0C0C",                   // 背景颜色</span><br><span class="line">            "backgroundImage" : "C://terminalpicture//ubuntu.jpg",       // 背景图片地址</span><br><span class="line">            "backgroundImageOpacity" : 0.3,             // 透明度</span><br><span class="line">            "backgroundImageStretchMode" : "uniformToFill",</span><br><span class="line">            "closeOnExit" : true,</span><br><span class="line">            "colorScheme" : "Campbell",</span><br><span class="line">            "commandline" : "wsl.exe -d Ubuntu-18.04",</span><br><span class="line">            "cursorColor" : "#FFFFFF",</span><br><span class="line">            "cursorShape" : "bar",</span><br><span class="line">            "fontFace" : "Consolas",</span><br><span class="line">            "fontSize" : 10,</span><br><span class="line">            "guid" : "&#123;c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40&#125;",</span><br><span class="line">            "historySize" : 9001,</span><br><span class="line">            "icon" : "ms-appx:///ProfileIcons/&#123;9acb9455-ca41-5af7-950f-6bca1bc9722f&#125;.png",</span><br><span class="line">            "name" : "Ubuntu-18.04",</span><br><span class="line">            "padding" : "0, 0, 0, 0",</span><br><span class="line">            "snapOnInput" : true,</span><br><span class="line">            "startingDirectory" : "./",</span><br><span class="line">            "useAcrylic" : false</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    "schemes" : </span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"background"</span> : <span class="string">"#0C0C0C"</span>,</span><br><span class="line">            <span class="attr">"black"</span> : <span class="string">"#0C0C0C"</span>,</span><br><span class="line">            <span class="attr">"blue"</span> : <span class="string">"#0037DA"</span>,</span><br><span class="line">            <span class="attr">"brightBlack"</span> : <span class="string">"#767676"</span>,</span><br><span class="line">            <span class="attr">"brightBlue"</span> : <span class="string">"#3B78FF"</span>,</span><br><span class="line">            <span class="attr">"brightCyan"</span> : <span class="string">"#61D6D6"</span>,</span><br><span class="line">            <span class="attr">"brightGreen"</span> : <span class="string">"#16C60C"</span>,</span><br><span class="line">            <span class="attr">"brightPurple"</span> : <span class="string">"#B4009E"</span>,</span><br><span class="line">            <span class="attr">"brightRed"</span> : <span class="string">"#E74856"</span>,</span><br><span class="line">            <span class="attr">"brightWhite"</span> : <span class="string">"#F2F2F2"</span>,</span><br><span class="line">            <span class="attr">"brightYellow"</span> : <span class="string">"#F9F1A5"</span>,</span><br><span class="line">            <span class="attr">"cyan"</span> : <span class="string">"#3A96DD"</span>,</span><br><span class="line">            <span class="attr">"foreground"</span> : <span class="string">"#CCCCCC"</span>,</span><br><span class="line">            <span class="attr">"green"</span> : <span class="string">"#13A10E"</span>,</span><br><span class="line">            <span class="attr">"name"</span> : <span class="string">"Campbell"</span>,</span><br><span class="line">            <span class="attr">"purple"</span> : <span class="string">"#881798"</span>,</span><br><span class="line">            <span class="attr">"red"</span> : <span class="string">"#C50F1F"</span>,</span><br><span class="line">            <span class="attr">"white"</span> : <span class="string">"#CCCCCC"</span>,</span><br><span class="line">            <span class="attr">"yellow"</span> : <span class="string">"#C19C00"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"background"</span> : <span class="string">"#000000"</span>,</span><br><span class="line">            <span class="attr">"black"</span> : <span class="string">"#000000"</span>,</span><br><span class="line">            <span class="attr">"blue"</span> : <span class="string">"#000080"</span>,</span><br><span class="line">            <span class="attr">"brightBlack"</span> : <span class="string">"#808080"</span>,</span><br><span class="line">            <span class="attr">"brightBlue"</span> : <span class="string">"#0000FF"</span>,</span><br><span class="line">            <span class="attr">"brightCyan"</span> : <span class="string">"#00FFFF"</span>,</span><br><span class="line">            <span class="attr">"brightGreen"</span> : <span class="string">"#00FF00"</span>,</span><br><span class="line">            <span class="attr">"brightPurple"</span> : <span class="string">"#FF00FF"</span>,</span><br><span class="line">            <span class="attr">"brightRed"</span> : <span class="string">"#FF0000"</span>,</span><br><span class="line">            <span class="attr">"brightWhite"</span> : <span class="string">"#FFFFFF"</span>,</span><br><span class="line">            <span class="attr">"brightYellow"</span> : <span class="string">"#FFFF00"</span>,</span><br><span class="line">            <span class="attr">"cyan"</span> : <span class="string">"#008080"</span>,</span><br><span class="line">            <span class="attr">"foreground"</span> : <span class="string">"#C0C0C0"</span>,</span><br><span class="line">            <span class="attr">"green"</span> : <span class="string">"#008000"</span>,</span><br><span class="line">            <span class="attr">"name"</span> : <span class="string">"Vintage"</span>,</span><br><span class="line">            <span class="attr">"purple"</span> : <span class="string">"#800080"</span>,</span><br><span class="line">            <span class="attr">"red"</span> : <span class="string">"#800000"</span>,</span><br><span class="line">            <span class="attr">"white"</span> : <span class="string">"#C0C0C0"</span>,</span><br><span class="line">            <span class="attr">"yellow"</span> : <span class="string">"#808000"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"background"</span> : <span class="string">"#282C34"</span>,</span><br><span class="line">            <span class="attr">"black"</span> : <span class="string">"#282C34"</span>,</span><br><span class="line">            <span class="attr">"blue"</span> : <span class="string">"#61AFEF"</span>,</span><br><span class="line">            <span class="attr">"brightBlack"</span> : <span class="string">"#5A6374"</span>,</span><br><span class="line">            <span class="attr">"brightBlue"</span> : <span class="string">"#61AFEF"</span>,</span><br><span class="line">            <span class="attr">"brightCyan"</span> : <span class="string">"#56B6C2"</span>,</span><br><span class="line">            <span class="attr">"brightGreen"</span> : <span class="string">"#98C379"</span>,</span><br><span class="line">            <span class="attr">"brightPurple"</span> : <span class="string">"#C678DD"</span>,</span><br><span class="line">            <span class="attr">"brightRed"</span> : <span class="string">"#E06C75"</span>,</span><br><span class="line">            <span class="attr">"brightWhite"</span> : <span class="string">"#DCDFE4"</span>,</span><br><span class="line">            <span class="attr">"brightYellow"</span> : <span class="string">"#E5C07B"</span>,</span><br><span class="line">            <span class="attr">"cyan"</span> : <span class="string">"#56B6C2"</span>,</span><br><span class="line">            <span class="attr">"foreground"</span> : <span class="string">"#DCDFE4"</span>,</span><br><span class="line">            <span class="attr">"green"</span> : <span class="string">"#98C379"</span>,</span><br><span class="line">            <span class="attr">"name"</span> : <span class="string">"One Half Dark"</span>,</span><br><span class="line">            <span class="attr">"purple"</span> : <span class="string">"#C678DD"</span>,</span><br><span class="line">            <span class="attr">"red"</span> : <span class="string">"#E06C75"</span>,</span><br><span class="line">            <span class="attr">"white"</span> : <span class="string">"#DCDFE4"</span>,</span><br><span class="line">            <span class="attr">"yellow"</span> : <span class="string">"#E5C07B"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"background"</span> : <span class="string">"#FAFAFA"</span>,</span><br><span class="line">            <span class="attr">"black"</span> : <span class="string">"#383A42"</span>,</span><br><span class="line">            <span class="attr">"blue"</span> : <span class="string">"#0184BC"</span>,</span><br><span class="line">            <span class="attr">"brightBlack"</span> : <span class="string">"#4F525D"</span>,</span><br><span class="line">            <span class="attr">"brightBlue"</span> : <span class="string">"#61AFEF"</span>,</span><br><span class="line">            <span class="attr">"brightCyan"</span> : <span class="string">"#56B5C1"</span>,</span><br><span class="line">            <span class="attr">"brightGreen"</span> : <span class="string">"#98C379"</span>,</span><br><span class="line">            <span class="attr">"brightPurple"</span> : <span class="string">"#C577DD"</span>,</span><br><span class="line">            <span class="attr">"brightRed"</span> : <span class="string">"#DF6C75"</span>,</span><br><span class="line">            <span class="attr">"brightWhite"</span> : <span class="string">"#FFFFFF"</span>,</span><br><span class="line">            <span class="attr">"brightYellow"</span> : <span class="string">"#E4C07A"</span>,</span><br><span class="line">            <span class="attr">"cyan"</span> : <span class="string">"#0997B3"</span>,</span><br><span class="line">            <span class="attr">"foreground"</span> : <span class="string">"#383A42"</span>,</span><br><span class="line">            <span class="attr">"green"</span> : <span class="string">"#50A14F"</span>,</span><br><span class="line">            <span class="attr">"name"</span> : <span class="string">"One Half Light"</span>,</span><br><span class="line">            <span class="attr">"purple"</span> : <span class="string">"#A626A4"</span>,</span><br><span class="line">            <span class="attr">"red"</span> : <span class="string">"#E45649"</span>,</span><br><span class="line">            <span class="attr">"white"</span> : <span class="string">"#FAFAFA"</span>,</span><br><span class="line">            <span class="attr">"yellow"</span> : <span class="string">"#C18301"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"background"</span> : <span class="string">"#002B36"</span>,</span><br><span class="line">            <span class="attr">"black"</span> : <span class="string">"#073642"</span>,</span><br><span class="line">            <span class="attr">"blue"</span> : <span class="string">"#268BD2"</span>,</span><br><span class="line">            <span class="attr">"brightBlack"</span> : <span class="string">"#002B36"</span>,</span><br><span class="line">            <span class="attr">"brightBlue"</span> : <span class="string">"#839496"</span>,</span><br><span class="line">            <span class="attr">"brightCyan"</span> : <span class="string">"#93A1A1"</span>,</span><br><span class="line">            <span class="attr">"brightGreen"</span> : <span class="string">"#586E75"</span>,</span><br><span class="line">            <span class="attr">"brightPurple"</span> : <span class="string">"#6C71C4"</span>,</span><br><span class="line">            <span class="attr">"brightRed"</span> : <span class="string">"#CB4B16"</span>,</span><br><span class="line">            <span class="attr">"brightWhite"</span> : <span class="string">"#FDF6E3"</span>,</span><br><span class="line">            <span class="attr">"brightYellow"</span> : <span class="string">"#657B83"</span>,</span><br><span class="line">            <span class="attr">"cyan"</span> : <span class="string">"#2AA198"</span>,</span><br><span class="line">            <span class="attr">"foreground"</span> : <span class="string">"#839496"</span>,</span><br><span class="line">            <span class="attr">"green"</span> : <span class="string">"#859900"</span>,</span><br><span class="line">            <span class="attr">"name"</span> : <span class="string">"Solarized Dark"</span>,</span><br><span class="line">            <span class="attr">"purple"</span> : <span class="string">"#D33682"</span>,</span><br><span class="line">            <span class="attr">"red"</span> : <span class="string">"#DC322F"</span>,</span><br><span class="line">            <span class="attr">"white"</span> : <span class="string">"#EEE8D5"</span>,</span><br><span class="line">            <span class="attr">"yellow"</span> : <span class="string">"#B58900"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"background"</span> : <span class="string">"#FDF6E3"</span>,</span><br><span class="line">            <span class="attr">"black"</span> : <span class="string">"#073642"</span>,</span><br><span class="line">            <span class="attr">"blue"</span> : <span class="string">"#268BD2"</span>,</span><br><span class="line">            <span class="attr">"brightBlack"</span> : <span class="string">"#002B36"</span>,</span><br><span class="line">            <span class="attr">"brightBlue"</span> : <span class="string">"#839496"</span>,</span><br><span class="line">            <span class="attr">"brightCyan"</span> : <span class="string">"#93A1A1"</span>,</span><br><span class="line">            <span class="attr">"brightGreen"</span> : <span class="string">"#586E75"</span>,</span><br><span class="line">            <span class="attr">"brightPurple"</span> : <span class="string">"#6C71C4"</span>,</span><br><span class="line">            <span class="attr">"brightRed"</span> : <span class="string">"#CB4B16"</span>,</span><br><span class="line">            <span class="attr">"brightWhite"</span> : <span class="string">"#FDF6E3"</span>,</span><br><span class="line">            <span class="attr">"brightYellow"</span> : <span class="string">"#657B83"</span>,</span><br><span class="line">            <span class="attr">"cyan"</span> : <span class="string">"#2AA198"</span>,</span><br><span class="line">            <span class="attr">"foreground"</span> : <span class="string">"#657B83"</span>,</span><br><span class="line">            <span class="attr">"green"</span> : <span class="string">"#859900"</span>,</span><br><span class="line">            <span class="attr">"name"</span> : <span class="string">"Solarized Light"</span>,</span><br><span class="line">            <span class="attr">"purple"</span> : <span class="string">"#D33682"</span>,</span><br><span class="line">            <span class="attr">"red"</span> : <span class="string">"#DC322F"</span>,</span><br><span class="line">            <span class="attr">"white"</span> : <span class="string">"#EEE8D5"</span>,</span><br><span class="line">            <span class="attr">"yellow"</span> : <span class="string">"#B58900"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/25/编程语言/python语言/anaconda与conda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/25/编程语言/python语言/anaconda与conda/" itemprop="url">anaconda与conda</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-25T10:18:32+08:00">
+                2019-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="conda环境管理"><a href="#conda环境管理" class="headerlink" title="conda环境管理"></a>conda环境管理</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda info --envs     #查看环境</span><br><span class="line">conda create -n my_env_name python=3.6  #创建环境</span><br><span class="line">conda remove -n my_env_name --all #删除环境</span><br><span class="line">source activate my_env_name #激活环境</span><br><span class="line">source deactivate my_env_name #关闭环境</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/linux/linux软件安装原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/26/linux/linux软件安装原理/" itemprop="url">linux软件安装原理</a></h1>
         
 
         <div class="post-meta">
@@ -342,6 +1382,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/linux/" itemprop="url" rel="index">
                     <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/环境/" itemprop="url" rel="index">
+                    <span itemprop="name">环境</span>
                   </a>
                 </span>
 
@@ -388,7 +1439,7 @@
 <p>因此，<strong>只要某个程序所需要的全部“文件”都存在于正确的位置上，那么这个程序就可以运行。</strong>（这个现象在windows下是不全部适用的，如果你复制某个缺少的文件到windows的系统目录，并不一定能使你需要的程序运行起来。）对程序而言，还有一些是以纯文本形式存在的配置文件，用户可以通过定制配置文件来控制程序的运行结果等等。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/26/linux软件安装原理/#more" rel="contents">
+            <a class="btn" href="/2019/09/26/linux/linux软件安装原理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -439,7 +1490,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/t-SNE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/21/风轻云淡/身体部位/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -458,7 +1509,126 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/19/t-SNE/" itemprop="url">t-SNE</a></h1>
+                <a class="post-title-link" href="/2019/09/21/风轻云淡/身体部位/" itemprop="url">身体部位</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-21T19:48:21+08:00">
+                2019-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="肩部"><a href="#肩部" class="headerlink" title="肩部"></a>肩部</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/人工智能/特征工程/t-SNE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/19/人工智能/特征工程/t-SNE/" itemprop="url">t-SNE</a></h1>
         
 
         <div class="post-meta">
@@ -493,8 +1663,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/特征工程/" itemprop="url" rel="index">
+                    <span itemprop="name">特征工程</span>
                   </a>
                 </span>
 
@@ -582,7 +1763,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/18/pytest/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/18/编程语言/python语言/pytest/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -601,7 +1782,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/18/pytest/" itemprop="url">pytest</a></h1>
+                <a class="post-title-link" href="/2019/09/18/编程语言/python语言/pytest/" itemprop="url">pytest</a></h1>
         
 
         <div class="post-meta">
@@ -636,7 +1817,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/python/" itemprop="url" rel="index">
                     <span itemprop="name">python</span>
                   </a>
                 </span>
@@ -677,7 +1869,7 @@
           <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├── feature        </span><br><span class="line">    ├── in_fc.py             #开发文件</span><br><span class="line">    └── test                 #测试目录</span><br><span class="line">        ├── __init__.py      #子目录需要添加</span><br><span class="line">        └── test_in_fc.py    #测试</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/09/18/pytest/#more" rel="contents">
+            <a class="btn" href="/2019/09/18/编程语言/python语言/pytest/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -728,7 +1920,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/ssh/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/linux/ssh/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路西法">
@@ -747,7 +1939,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/09/03/ssh/" itemprop="url">ssh</a></h1>
+                <a class="post-title-link" href="/2019/09/03/linux/ssh/" itemprop="url">ssh</a></h1>
         
 
         <div class="post-meta">
@@ -782,7 +1974,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/远程登陆/" itemprop="url" rel="index">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/远程登陆/" itemprop="url" rel="index">
                     <span itemprop="name">远程登陆</span>
                   </a>
                 </span>
@@ -823,7 +2026,7 @@
           
             <h1 id="生成ssh密钥对"><a href="#生成ssh密钥对" class="headerlink" title="生成ssh密钥对"></a>生成ssh密钥对</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C 'xxx@xxx.com'</span><br></pre></td></tr></table></figure>
 <p>按3次回车（不使用密码）生成下图。密钥对在<code>~/.ssh</code>文件夹中,将<code>id_rsa.pub</code>（公钥）提交到github或者gitlab中</p>
-<p><img src="/2019/09/03/ssh/1568460515778.png" alt="1568460515778"></p>
+<p><img src="/2019/09/03/linux/ssh/1568460515778.png" alt="1568460515778"></p>
 <h1 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-client  #客户端 类似于xshell，登陆服务器</span><br><span class="line">sudo apt-get install openssh-server  #服务端 用于服务器，让其他客户端远程登陆</span><br></pre></td></tr></table></figure>
 <h1 id="远程登陆服务器"><a href="#远程登陆服务器" class="headerlink" title="远程登陆服务器"></a>远程登陆服务器</h1><h2 id="shell脚本远程自动登陆服务器"><a href="#shell脚本远程自动登陆服务器" class="headerlink" title="shell脚本远程自动登陆服务器"></a>shell脚本远程自动登陆服务器</h2><p>目前远程登陆服务器一般需要1. 登陆跳板机；2. 登陆服务器。</p>
 <ol>
@@ -868,1143 +2071,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/git原理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/03/git原理/" itemprop="url">git原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-03T14:24:10+08:00">
-                2019-09-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p> Git 和其它版本控制系统(包括 Subversion 和近似工具)的主要差别在于 Git 对待数据的方法。</p>
-<ul>
-<li><p>大部分版本控制系统，例如(CVS、Subversion、Perforce、Bazaar 等等)，采用增量文件系统，存储每个文件版本的差异；</p>
-</li>
-<li><p>Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件；如果文件发生修改，Git 将存储该文件全部内容。</p>
-<p><img src="/2019/09/03/git原理/498935a9ebaa0d553460df77f30a0110d35.jpg" alt="img"></p>
-</li>
-</ul>
-<p><center>增量文件系统</center><br><img src="/2019/09/03/git原理/9a7ec25d895130165bf7c3214472442f6c0.jpg" alt="img"></p>
-<p><center>快照文件系统</center><br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/09/03/git原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/28/git使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/28/git使用/" itemprop="url">git使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-28T10:14:10+08:00">
-                2019-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/版本管理/" itemprop="url" rel="index">
-                    <span itemprop="name">版本管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。知名的<code>git</code>管理平台有<code>github</code></p>
-<h1 id="本地git"><a href="#本地git" class="headerlink" title="本地git"></a>本地git</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>git分为工作区、暂存器和版本库。</p>
-<ul>
-<li><strong>工作区</strong>：就是你在电脑里能看到的目录。</li>
-<li><strong>暂存区</strong>：英文叫stage, 或index。一般存放在 “.git目录下” 下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。</li>
-<li><strong>版本库</strong>：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。图中”HEAD” 实际是指向 master 分支的一个”游标”。所以图示的命令中出现 HEAD 的地方可以用 master 来替换。</li>
-<li><strong>object：</strong>Git 的对象库，实际位于 “.git/objects” 目录下，里面包含了创建的各种对象及内容。</li>
-</ul>
-<p><img src="/2019/08/28/git使用/1566977176119.png" alt="1566977176119"></p>
-<h2 id="命令说明"><a href="#命令说明" class="headerlink" title="命令说明"></a>命令说明</h2><table>
-  <tr>
-    <th rowspan="7">基本操作</th>
-    <th>git init</th>
-    <th>创建版本库</th>
-  </tr>
-  <tr>
-    <td>git add &lt;文件&gt;</td>
-    <td>将文件从工作区添加到暂存区</td>
-  </tr>
-  <tr>
-    <td>git commit -m“&lt;说明&gt;”</td>
-    <td>将文件从暂存区添加到版本库</td>
-  </tr>
-  <tr>
-    <td>git checkout  &lt;文件&gt;</td>
-    <td>将文件从暂存区添加到工作区</td>
-  </tr>
-  <tr>
-    <td>git rm --cached &lt;文件&gt;</td>
-    <td>将暂存区中的文件删除</td>
-  </tr>
-  <tr>
-    <td>git reset head</td>
-    <td>将文件从版本库添加到暂存区</td>
-  </tr>
-  <tr>
-    <td>git checkout head &lt;文件&gt;</td>
-    <td>将文件从版本库添加到工作区</td>
-  </tr>
-  <tr>
-    <td rowspan="3">版本管理</td>
-    <td>git log</td>
-    <td>查看版本信息 ——查找commit id<br>--graph：以图的形式展现信息<br></td>
-  </tr>
-  <tr>
-    <td>git reflog</td>
-    <td>查看历史操作信息——查找commit id<br>以防因为版本回滚导致git log中的信息丢失</td>
-  </tr>
-  <tr>
-    <td>git reset --hard HEAD^<br>git reset --hard HEAD^^<br>git reset --HEAD~100<br>git reset --hard 1094<br></td>
-    <td># 回退上一个版本<br># 回退上两个版本<br># 回退上100个版本<br># 回退到指定版本，后面的1094a是commit的版本号</td>
-  </tr>
-  <tr>
-    <td rowspan="5">标签</td>
-    <td>git tag -a v0.1 -m "version 0.1 released" 1094adb</td>
-    <td>-a指定标签名，-m指定说明文字</td>
-  </tr>
-  <tr>
-    <td>git tag v0.1  commit id</td>
-    <td>默认标签是打在最新提交的commit id<br>如果添加commit id就会打在指定的commit id上</td>
-  </tr>
-  <tr>
-    <td>git tag -d v0.1</td>
-    <td>删除标签</td>
-  </tr>
-  <tr>
-    <td>git push origin v1.0<br>git push origin --tags<br></td>
-    <td>推送标签到远程<br>一次性推送全部标签<br></td>
-  </tr>
-  <tr>
-    <td>git tag<br>git show &lt;标签名&gt;<br></td>
-    <td>查看标签<br>查看标签的说明文字</td>
-  </tr>
-  <tr>
-    <td rowspan="5">保存工作区与缓存区</td>
-    <td>git stash <br></td>
-    <td>将工作区与暂存区的内容保存起来</td>
-  </tr>
-  <tr>
-    <td>git stash list </td>
-    <td>查看保存的工作区与暂存区  <br></td>
-  </tr>
-  <tr>
-    <td>git stash apply </td>
-    <td>恢复制定的stash，但是stash内容并不删除。git stash apply stash@{0}  <br></td>
-  </tr>
-  <tr>
-    <td>git stash drop </td>
-    <td>删除制定的stash。git stash drop stash@{0}  <br></td>
-  </tr>
-  <tr>
-    <td>git stash pop </td>
-    <td>恢复并删除最新的工作区与暂存区</td>
-  </tr>
-  <tr>
-    <td rowspan="5">分支管理</td>
-    <td>git branch</td>
-    <td>查看分支</td>
-  </tr>
-  <tr>
-    <td>git branch  &lt;分支名&gt;</td>
-    <td>新建分支，并且新分支有老分支的内容</td>
-  </tr>
-  <tr>
-    <td>git checkout &lt;分支名&gt;</td>
-    <td>切换分支</td>
-  </tr>
-  <tr>
-    <td>git branch -d &lt;分支名&gt;</td>
-    <td>删除分支</td>
-  </tr>
-  <tr>
-    <td>git merge &lt;分支名&gt;<br>git merge --no-ff &lt;分支名&gt;<br></td>
-    <td>合并分支到当前分支下<br>如果有冲突修改冲突，使用git add与git commit 提交</td>
-  </tr>
-  <tr>
-    <td rowspan="9">其他</td>
-    <td>git status</td>
-    <td>查看状态</td>
-  </tr>
-  <tr>
-    <td rowspan="7">git diff<br>git diff [--options] &lt;commit&gt; &lt;commit&gt; [--] [&lt;path&gt;...]<br></td>
-    <td>git diff：比较工作区与暂存区</td>
-  </tr>
-  <tr>
-    <td>git diff --cached：比较暂存区与最新本地版本库</td>
-  </tr>
-  <tr>
-    <td>git diff --cached &lt;commit-id&gt;：比较暂存区与版本库指定commit-id的差异</td>
-  </tr>
-  <tr>
-    <td>git diff HEAD：比较工作区与最新本地版本库</td>
-  </tr>
-  <tr>
-    <td>git diff &lt;commit-id&gt;：比较工作区与版本库指定commit-id的差异</td>
-  </tr>
-  <tr>
-    <td>git diff &lt;commit-id&gt;&lt;commit-id&gt;：比较版本库两个commit-id之间的差异</td>
-  </tr>
-  <tr>
-    <td>git diff &lt;分支&gt;&lt;分支&gt;：比较两个分支</td>
-  </tr>
-  <tr>
-    <td>git rm</td>
-    <td>删除文件</td>
-  </tr>
-</table>
-
-<h1 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h1><p>添加到<code>.gitignore</code>中的文件，不会被添加到暂存区，因此不会被保存到版本库中，进而不会存在版本管理。在不同文件夹下建立<code>.gitignore</code>可以忽略不同的文件。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">├── .vscode   </span><br><span class="line">├── feture        </span><br><span class="line">│   ├── dev.py</span><br><span class="line">│   └── test            #测试文件夹</span><br><span class="line">│   │   ├── test_dev.py #本地仓库对应分支所有操作</span><br><span class="line">│   └── .gitignore      #写入test/ 可以忽略同级目录下test的文件夹 </span><br><span class="line">├── .gitignore   #写入.vscode/ 可以忽略同级目录下.vscode的文件夹</span><br></pre></td></tr></table></figure>
-<h1 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h1><p><img src="/2019/08/28/git使用/1566980274372.png" alt="1566980274372"></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>git remote</td>
-<td>查看当前配置有哪些远程仓库<br>-v：执行时加上 -v 参数，你还可以看到每个别名的实际链接地址。</td>
-</tr>
-<tr>
-<td>git remote add</td>
-<td>连接远程版本库<br>git remote add [shortname] [url]<br>shortname：远程版本库的别名<br>url：远程版本库的链接</td>
-</tr>
-<tr>
-<td>git remote rm [别名]</td>
-<td>删除远程仓库</td>
-</tr>
-<tr>
-<td>git push</td>
-<td>本地库内容推送到远程库中 <br>git push [alias] [branch]：推送成为 [alias] 远程仓库上的 [branch] 分支</td>
-</tr>
-<tr>
-<td>git clone</td>
-<td>克隆远程版本库</td>
-</tr>
-<tr>
-<td>git pull</td>
-<td>拉取远程分支更新到本地仓库，再与本地指定分支合并。<br>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</td>
-</tr>
-<tr>
-<td>git fetch</td>
-<td>拉取远程分支更新到本地仓库</td>
-</tr>
-<tr>
-<td>git merge origin/master</td>
-<td>把远程下载下来的代码合并到本地仓库，远程的和本地的合并</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>git ls-files查看版本库目录</p>
-<p>git指针问题</p>
-<p>文件<code>.git/index</code>实际上就是一个包含文件索引的目录树，像是一个虚拟的工作区。在这个虚拟工作区的目录树中，记录了文件名、文件的状态信息（时间戳、文件长度等）。文件的内容并不存储其中，而是保存在Git对象库<code>.git/objects</code>目录中，文件索引建立了文件和对象库中对象实体之间的对应。下面这个图展示了工作区、版本库中的暂存区和版本库之间的关系。</p>
-<blockquote>
-<p><a href="http://www.worldhello.net/gotgit/images/git-stage.png" target="_blank" rel="noopener"><img src="/2019/08/28/git使用/git-stage.png" alt="../images/git-stage.png"></a></p>
-<p>工作区、版本库、暂存区原理图</p>
-</blockquote>
-<p>在这个图中，可以看到部分Git命令是如何影响工作区和暂存区（stage，亦称index）的。下面就对这些命令进行简要的说明，而要彻底揭开这些命令的面纱要在接下来的几个章节。</p>
-<ul>
-<li>图中左侧为工作区，右侧为版本库。在版本库中标记为<code>index</code>的区域是暂存区（stage，亦称index），标记为<code>master</code>的是master分支所代表的目录树。</li>
-<li>图中可以看出此时HEAD实际是指向master分支的一个“游标”。所以图示的命令中出现HEAD的地方可以用master来替换。</li>
-<li>图中的objects标识的区域为Git的对象库，实际位于<code>.git/objects</code>目录下，会在后面的章节重点介绍。</li>
-<li>当对工作区修改（或新增）的文件执行<strong>git add</strong>命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。</li>
-<li>当执行提交操作（<strong>git commit</strong>）时，暂存区的目录树写到版本库（对象库）中，master分支会做相应的更新。即master最新指向的目录树就是提交时原暂存区的目录树。</li>
-<li>当执行<strong>git reset HEAD</strong>命令时，暂存区的目录树会被重写，被master分支指向的目录树所替换，但是工作区不受影响。</li>
-<li>当执行<strong>git rm –cached <file></file></strong>命令时，会直接从暂存区删除文件，工作区则不做出改变。</li>
-<li>当执行<strong>git checkout .</strong>或者<strong>git checkout – <file></file></strong>命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</li>
-<li>当执行<strong>git checkout HEAD .</strong>或者<strong>git checkout HEAD <file></file></strong>命令时，会用HEAD指向的master分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</li>
-</ul>
-<p><img src="/2019/08/28/git使用/git-diff.png" alt="../images/git-diff.png"></p>
-<p>git原理与基本命令</p>
-<p><a href="https://www.cnblogs.com/kekec/p/9248487.html" target="_blank" rel="noopener">https://www.cnblogs.com/kekec/p/9248487.html</a></p>
-<p><a href="https://drprincess.github.io/2018/02/27/Git-%E4%BD%A0%E5%A5%BDHEAD%E5%90%8C%E5%AD%A6/" target="_blank" rel="noopener">https://drprincess.github.io/2018/02/27/Git-%E4%BD%A0%E5%A5%BDHEAD%E5%90%8C%E5%AD%A6/</a></p>
-<p><a href="https://coding.net/help/doc/practice/git-principle.html" target="_blank" rel="noopener">https://coding.net/help/doc/practice/git-principle.html</a></p>
-<p><a href="https://yanhaijing.com/git/2017/02/08/deep-git-3/" target="_blank" rel="noopener">https://yanhaijing.com/git/2017/02/08/deep-git-3/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/机器学习/PSI.md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/26/机器学习/PSI.md/" itemprop="url">PSI</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T14:24:22+08:00">
-                2019-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>由于模型是以特定时期的样本所开发的，此模型是否适用于开发样本之外的族群，必须经过稳定性测试才能得知。稳定度指标(population stability index ,PSI)可衡量测试样本及模型开发样本评分的的分布差异，为最常见的模型稳定度评估指针。其实PSI表示的就是按分数分档后，针对不同样本，或者不同时间的样本，population分布是否有变化，就是看各个分数区间内人数占总人数的占比是否有显著变化。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>PSI&lt;0.1</th>
-<th>0.1~0.25</th>
-<th>PSI&gt;0.25​</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>稳定性很高</td>
-<td>一般</td>
-<td>稳定性差</td>
-</tr>
-</tbody>
-</table>
-</div>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/26/机器学习/PSI.md/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/23/博客/" itemprop="url">博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T12:01:43+08:00">
-                2019-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WSL开发环境/" itemprop="url" rel="index">
-                    <span itemprop="name">WSL开发环境</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>使用<code>WSL</code>即<code>windows</code>的<code>ubuntu</code>子系统搭建博客</p>
-<h1 id="安装node与npm"><a href="#安装node与npm" class="headerlink" title="安装node与npm"></a>安装node与npm</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br><span class="line"></span><br><span class="line">node -v #测试是否安装完成</span><br><span class="line">npm -v  #测试是否安装完成</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/23/博客/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/22/健身动作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/22/健身动作/" itemprop="url">健身动作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T20:20:06+08:00">
-                2019-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/健身/" itemprop="url" rel="index">
-                    <span itemprop="name">健身</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <div class="table-container">
-<table>
-<thead>
-<tr>
-<th>部位</th>
-<th>动作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>胸部</td>
-<td>上胸肌：上斜卧推<br>中胸肌：平板卧推<br>下胸肌：双杠臂屈伸</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/22/健身动作/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/22/linux子系统安装spark/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="路西法">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tou_xiang.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黎明晨光">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/22/linux子系统安装spark/" itemprop="url">linux子系统安装spark</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T19:27:32+08:00">
-                2019-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spark/" itemprop="url" rel="index">
-                    <span itemprop="name">spark</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JDK:1.8  </span><br><span class="line">Spark-2.2.0</span><br><span class="line">Hadoop Release:2.7.4</span><br></pre></td></tr></table></figure>
-<p>一般将文件安装在<code>/opt</code>目录下，<code>/opt</code>目录用来存放第三方的应用程序与文件。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/22/linux子系统安装spark/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2054,7 +2125,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2065,7 +2136,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2076,7 +2147,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

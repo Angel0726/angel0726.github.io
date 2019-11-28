@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c语言,类和对象," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="C++ 类定义类由内部成员(属性与方法)组成，属性指变量，方法指行为。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;iostream&amp;gt;using namespace std;#include &amp;lt;iostream&amp;gt;using nam">
+<meta name="keywords" content="c语言,类和对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++类和对象">
+<meta property="og:url" content="http://yoursite.com/2017/08/29/编程语言/c语言/C-类和对象/index.html">
+<meta property="og:site_name" content="黎明晨光">
+<meta property="og:description" content="C++ 类定义类由内部成员(属性与方法)组成，属性指变量，方法指行为。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;iostream&amp;gt;using namespace std;#include &amp;lt;iostream&amp;gt;using nam">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-28T02:28:36.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++类和对象">
+<meta name="twitter:description" content="C++ 类定义类由内部成员(属性与方法)组成，属性指变量，方法指行为。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include&amp;lt;iostream&amp;gt;using namespace std;#include &amp;lt;iostream&amp;gt;using nam">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/29/编程语言/c语言/C-类和对象/"/>
+
+
+
+
+
+  <title>C++类和对象 | 黎明晨光</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黎明晨光</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生活从一点一滴开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/编程语言/c语言/C-类和对象/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路西法">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tou_xiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黎明晨光">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++类和对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T21:41:12+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量 <i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="C-类定义"><a href="#C-类定义" class="headerlink" title="C++ 类定义"></a>C++ 类定义</h1><p>类由内部成员(属性与方法)组成，属性指变量，方法指行为。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="comment">//属性</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">double</span> length;   <span class="comment">// 长度</span></span><br><span class="line">	<span class="keyword">double</span> breadth;  <span class="comment">// 宽度</span></span><br><span class="line">	<span class="keyword">double</span> height;   <span class="comment">// 高度</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">volume</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> height * length * breadth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//方法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Box Box1;        <span class="comment">// 声明 Box1，类型为 Box</span></span><br><span class="line">	Box Box2;        <span class="comment">// 声明 Box2，类型为 Box</span></span><br><span class="line">	<span class="keyword">double</span> volume = <span class="number">0.0</span>;     <span class="comment">// 用于存储体积</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// box 1 详述</span></span><br><span class="line">	Box1.height = <span class="number">5.0</span>;</span><br><span class="line">	Box1.length = <span class="number">6.0</span>;</span><br><span class="line">	Box1.breadth = <span class="number">7.0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// box 2 详述</span></span><br><span class="line">	Box2.height = <span class="number">10.0</span>;</span><br><span class="line">	Box2.length = <span class="number">12.0</span>;</span><br><span class="line">	Box2.breadth = <span class="number">13.0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// box 1 的体积</span></span><br><span class="line">	volume = Box1.volume();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Box1 的体积："</span> &lt;&lt; volume &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// box 2 的体积</span></span><br><span class="line">	volume = Box2.volume();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Box2 的体积："</span> &lt;&lt; volume &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="C-类访问修饰符"><a href="#C-类访问修饰符" class="headerlink" title="C++ 类访问修饰符"></a>C++ 类访问修饰符</h1><p>数据封装是面向对象编程的一个重要特点，它防止函数直接访问类类型的内部成员（属性和方法）。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public</td>
+<td>公有成员在程序中类的外部是可访问的。您可以不使用任何成员函数来设置和获取公有变量的值。</td>
+</tr>
+<tr>
+<td>private</td>
+<td>私有成员变量或函数在类的外部是不可访问的，甚至是不可查看的。只有类和友元函数可以访问私有成员。默认情况下，类的所有成员都是私有的。</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>保护成员变量或函数与私有成员十分相似，但有一点不同，保护成员在派生类（即子类）中是可访问的。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 公有成员</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">protected</span>:</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 受保护成员</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 私有成员</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="公有（public）成员"><a href="#公有（public）成员" class="headerlink" title="公有（public）成员"></a>公有（public）成员</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Line</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="keyword">double</span> length;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">setLength</span><span class="params">( <span class="keyword">double</span> len )</span></span>;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">getLength</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数定义</span></span><br><span class="line"><span class="keyword">double</span> Line::getLength(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> length ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setLength( <span class="keyword">double</span> len )</span><br><span class="line">&#123;</span><br><span class="line">    length = len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   Line line;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 设置长度</span></span><br><span class="line">   line.setLength(<span class="number">6.0</span>);</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length of line : "</span> &lt;&lt; line.getLength() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 不使用成员函数设置长度</span></span><br><span class="line">   line.length = <span class="number">10.0</span>; <span class="comment">// OK: 因为 length 是公有的</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length of line : "</span> &lt;&lt; line.length &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="私有（private）成员"><a href="#私有（private）成员" class="headerlink" title="私有（private）成员"></a>私有（private）成员</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="keyword">double</span> length;</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">setWidth</span><span class="params">( <span class="keyword">double</span> wid )</span></span>;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">getWidth</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> width;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数定义</span></span><br><span class="line"><span class="keyword">double</span> Box::getWidth(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> width ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Box::setWidth( <span class="keyword">double</span> wid )</span><br><span class="line">&#123;</span><br><span class="line">    width = wid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   Box box;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 不使用成员函数设置长度</span></span><br><span class="line">   box.length = <span class="number">10.0</span>; <span class="comment">// OK: 因为 length 是公有的</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length of box : "</span> &lt;&lt; box.length &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 不使用成员函数设置宽度</span></span><br><span class="line">   <span class="comment">// box.width = 10.0; // Error: 因为 width 是私有的</span></span><br><span class="line">   box.setWidth(<span class="number">10.0</span>);  <span class="comment">// 使用成员函数设置宽度</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Width of box : "</span> &lt;&lt; box.getWidth() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="保护（protected）成员"><a href="#保护（protected）成员" class="headerlink" title="保护（protected）成员"></a>保护（protected）成员</h2><p>保护成员变量或函数与私有成员十分相似，但有一点不同，保护成员在派生类（即子类）中是可访问的。</p>
+<p>在下一个章节中，您将学习到派生类和继承的知识。现在您可以看到下面的实例中，我们从父类 Box 派生了一个子类 smallBox。<br>下面的实例与前面的实例类似，在这里 <strong>width 成员可被派生类 smallBox 的任何成员函数访问。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">protected</span>:</span><br><span class="line">      <span class="keyword">double</span> width;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmallBox</span>:</span>Box <span class="comment">// SmallBox 是派生类</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">setSmallWidth</span><span class="params">( <span class="keyword">double</span> wid )</span></span>;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">getSmallWidth</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类的成员函数</span></span><br><span class="line"><span class="keyword">double</span> SmallBox::getSmallWidth(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> width ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> SmallBox::setSmallWidth( <span class="keyword">double</span> wid )</span><br><span class="line">&#123;</span><br><span class="line">    width = wid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   SmallBox box;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 使用成员函数设置宽度</span></span><br><span class="line">   box.setSmallWidth(<span class="number">5.0</span>);</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Width of box : "</span>&lt;&lt; box.getSmallWidth() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="继承的修饰符"><a href="#继承的修饰符" class="headerlink" title="继承的修饰符"></a>继承的修饰符</h1><p>有public, protected, private三种继承方式，它们相应地改变了基类成员的访问属性。但无论哪种继承方式，上面两点都没有改变</p>
+<ul>
+<li>private 成员只能被本类成员（类内）和友元访问，不能被派生类访问；</li>
+<li>protected 成员可以被派生类访问。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>继承模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public 继承</td>
+<td>基类 public 成员，protected 成员，private 成员的访问属性在派生类中分别变成：public, protected, private</td>
+</tr>
+<tr>
+<td>protected 继承</td>
+<td>基类 public 成员，protected 成员，private 成员的访问属性在派生类中分别变成：protected, protected, private</td>
+</tr>
+<tr>
+<td>private 继承</td>
+<td>基类 public 成员，protected 成员，private 成员的访问属性在派生类中分别变成：private, private, private</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="public-继承"><a href="#public-继承" class="headerlink" title="public 继承"></a>public 继承</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  A()&#123;</span><br><span class="line">    a1 = <span class="number">1</span>;</span><br><span class="line">    a2 = <span class="number">2</span>;</span><br><span class="line">    a3 = <span class="number">3</span>;</span><br><span class="line">    a = <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;    <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a1 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a2 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a3 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a1;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">  <span class="keyword">int</span> a2;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">int</span> a3;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  B(<span class="keyword">int</span> i)&#123;</span><br><span class="line">    A();</span><br><span class="line">    a = i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，public成员</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a1 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，基类的public成员，在派生类中仍是public成员。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a2 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，基类的protected成员，在派生类中仍是protected可以被派生类访问。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a3 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//错误，基类的private成员不能被派生类访问。</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="function">B <span class="title">b</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a1 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a2 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//错误，类外不能访问protected成员</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a3 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//错误，类外不能访问private成员</span></span><br><span class="line">  system(<span class="string">"pause"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="protected-继承"><a href="#protected-继承" class="headerlink" title="protected 继承"></a>protected 继承</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  A()&#123;</span><br><span class="line">    a1 = <span class="number">1</span>;</span><br><span class="line">    a2 = <span class="number">2</span>;</span><br><span class="line">    a3 = <span class="number">3</span>;</span><br><span class="line">    a = <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;    <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a1 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a2 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a3 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a1;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">  <span class="keyword">int</span> a2;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">int</span> a3;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">protected</span> A&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  B(<span class="keyword">int</span> i)&#123;</span><br><span class="line">    A();</span><br><span class="line">    a = i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，public成员。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a1 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，基类的public成员，在派生类中变成了protected，可以被派生类访问。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a2 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，基类的protected成员，在派生类中还是protected，可以被派生类访问。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a3 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//错误，基类的private成员不能被派生类访问。</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="function">B <span class="title">b</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确。public成员</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a1 &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">//错误，protected成员不能在类外访问。</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a2 &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">//错误，protected成员不能在类外访问。</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a3 &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">//错误，private成员不能在类外访问。</span></span><br><span class="line">  system(<span class="string">"pause"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="private-继承"><a href="#private-继承" class="headerlink" title="private 继承"></a>private 继承</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  A()&#123;</span><br><span class="line">    a1 = <span class="number">1</span>;</span><br><span class="line">    a2 = <span class="number">2</span>;</span><br><span class="line">    a3 = <span class="number">3</span>;</span><br><span class="line">    a = <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;    <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a1 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a2 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a3 &lt;&lt; <span class="built_in">endl</span>;   <span class="comment">//正确</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a1;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">  <span class="keyword">int</span> a2;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">int</span> a3;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">private</span> A&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  B(<span class="keyword">int</span> i)&#123;</span><br><span class="line">    A();</span><br><span class="line">    a = i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，public成员。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a1 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，基类public成员,在派生类中变成了private,可以被派生类访问。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a2 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确，基类的protected成员，在派生类中变成了private,可以被派生类访问。</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a3 &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//错误，基类的private成员不能被派生类访问。</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="function">B <span class="title">b</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a &lt;&lt; <span class="built_in">endl</span>;       <span class="comment">//正确。public成员</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a1 &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">//错误，private成员不能在类外访问。</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a2 &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">//错误, private成员不能在类外访问。</span></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; b.a3 &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">//错误，private成员不能在类外访问。</span></span><br><span class="line">  system(<span class="string">"pause"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><p>类的构造函数是类的一种特殊的成员函数，它会在每次创建类的新对象时执行。</p>
+<p>构造函数的名称与类的名称是完全相同的，并且不会返回任何类型，也不会返回 void。构造函数可用于为某些成员变量设置初始值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Line</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">setLength</span><span class="params">( <span class="keyword">double</span> len )</span></span>;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">getLength</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br><span class="line">      Line();  <span class="comment">// 这是构造函数</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数定义，包括构造函数</span></span><br><span class="line">Line::Line(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Object is being created"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setLength( <span class="keyword">double</span> len )</span><br><span class="line">&#123;</span><br><span class="line">    length = len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> Line::getLength( <span class="keyword">void</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   Line line;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 设置长度</span></span><br><span class="line">   line.setLength(<span class="number">6.0</span>);</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length of line : "</span> &lt;&lt; line.getLength() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="带参数的构造函数"><a href="#带参数的构造函数" class="headerlink" title="带参数的构造函数"></a>带参数的构造函数</h2><p>默认的构造函数没有任何参数，但如果需要，构造函数也可以带有参数。这样在创建对象时就会给对象赋初始值，如下面的例子所示：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Line</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">setLength</span><span class="params">( <span class="keyword">double</span> len )</span></span>;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">getLength</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br><span class="line">      Line(<span class="keyword">double</span> len);  <span class="comment">// 这是构造函数</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数定义，包括构造函数</span></span><br><span class="line">Line::Line( <span class="keyword">double</span> len)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Object is being created, length = "</span> &lt;&lt; len &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    length = len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setLength( <span class="keyword">double</span> len )</span><br><span class="line">&#123;</span><br><span class="line">    length = len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> Line::getLength( <span class="keyword">void</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="function">Line <span class="title">line</span><span class="params">(<span class="number">10.0</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 获取默认设置的长度</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length of line : "</span> &lt;&lt; line.getLength() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   <span class="comment">// 再次设置长度</span></span><br><span class="line">   line.setLength(<span class="number">6.0</span>);</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length of line : "</span> &lt;&lt; line.getLength() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="类的析构函数"><a href="#类的析构函数" class="headerlink" title="类的析构函数"></a>类的析构函数</h1><p>类的析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行。</p>
+<p>析构函数的名称与类的名称是完全相同的，只是在前面加了个波浪号（~）作为前缀，它不会返回任何值，也不能带有任何参数。析构函数有助于在跳出程序（比如关闭文件、释放内存等）前释放资源。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Line</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setLength</span><span class="params">(<span class="keyword">double</span> len)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getLength</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line">	Line();   <span class="comment">// 这是构造函数声明</span></span><br><span class="line">	~Line();  <span class="comment">// 这是析构函数声明</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">double</span> length;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数定义，包括构造函数</span></span><br><span class="line">Line::Line(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Object is being created"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">Line::~Line(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Object is being deleted"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Line::setLength(<span class="keyword">double</span> len)</span><br><span class="line">&#123;</span><br><span class="line">	length = len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> Line::getLength(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> length;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Line line;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 设置长度</span></span><br><span class="line">	line.setLength(<span class="number">6.0</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"Length of line : "</span> &lt;&lt; line.getLength() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">//结束后，对象销毁，此时返回析构函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="C-拷贝构造函数"><a href="#C-拷贝构造函数" class="headerlink" title="C++ 拷贝构造函数"></a>C++ 拷贝构造函数</h1><p>拷贝构造函数是一种特殊的构造函数，它在创建对象时，是使用同一类中之前创建的对象来初始化新创建的对象。拷贝构造函数通常用于：</p>
+<ul>
+<li>通过使用另一个同类型的对象来初始化新创建的对象。</li>
+<li>复制对象把它作为参数传递给函数。</li>
+<li>复制对象，并从函数返回这个对象</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Line</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">getLength</span><span class="params">( <span class="keyword">void</span> )</span></span>;</span><br><span class="line">      Line( <span class="keyword">int</span> len );             <span class="comment">// 简单的构造函数</span></span><br><span class="line">      Line( <span class="keyword">const</span> Line &amp;obj);      <span class="comment">// 拷贝构造函数</span></span><br><span class="line">      ~Line();                     <span class="comment">// 析构函数</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">int</span> *ptr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数定义，包括构造函数</span></span><br><span class="line">Line::Line(<span class="keyword">int</span> len)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"调用构造函数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// 为指针分配内存</span></span><br><span class="line">    ptr = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">    *ptr = len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Line::Line(<span class="keyword">const</span> Line &amp;obj)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"调用拷贝构造函数并为指针 ptr 分配内存"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    ptr = <span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">    *ptr = *obj.ptr; <span class="comment">// 拷贝值</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Line::~Line(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"释放内存"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">delete</span> ptr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> Line::getLength( <span class="keyword">void</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> *ptr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(Line obj)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"line 大小 : "</span> &lt;&lt; obj.getLength() &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="function">Line <span class="title">line1</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">   Line line2 = line1; <span class="comment">// 这里也调用了拷贝构造函数</span></span><br><span class="line"></span><br><span class="line">   display(line1);</span><br><span class="line">   display(line2);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="C-友元函数"><a href="#C-友元函数" class="headerlink" title="C++ 友元函数"></a>C++ 友元函数</h1><p>类的友元函数是定义在类外部，但有权访问类的所有私有（private）成员和保护（protected）成员。尽管友元函数的原型有在类的定义中出现过，但是友元函数并不是成员函数。</p>
+<p>友元可以是一个函数，该函数被称为友元函数；友元也可以是一个类，该类被称为友元类，在这种情况下，整个类及其所有成员都是友元。<br>如果要声明函数为一个类的友元，需要在类定义中该函数原型前使用关键字 friend，如下所示：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">double</span> width;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">   <span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">printWidth</span><span class="params">( Box box )</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">setWidth</span><span class="params">( <span class="keyword">double</span> wid )</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数定义</span></span><br><span class="line"><span class="keyword">void</span> Box::setWidth( <span class="keyword">double</span> wid )</span><br><span class="line">&#123;</span><br><span class="line">    width = wid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请注意：printWidth() 不是任何类的成员函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printWidth</span><span class="params">( Box box )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">/* 因为 printWidth() 是 Box 的友元，它可以直接访问该类的任何成员 */</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Width of box : "</span> &lt;&lt; box.width &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   Box box;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 使用成员函数设置宽度</span></span><br><span class="line">   box.setWidth(<span class="number">10.0</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 使用友元函数输出宽度</span></span><br><span class="line">   printWidth( box );</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="C-内联函数"><a href="#C-内联函数" class="headerlink" title="C++内联函数"></a>C++内联函数</h1><p>调用函数比求解等价表达式要慢得多。在大多数的机器上，调用函数都要做很多工作：调用前要先保存寄存器，并在返回时恢复，复制实参，程序还必须转向一个新位置执行<br>C++中支持内联函数，其目的是为了提高函数的执行效率，用关键字 inline 放在函数定义(注意是定义而非声明，下文继续讲到)的前面即可将函数指定为内联函数。内联函数是通常与类一起使用。如果一个函数是内联的，那么在编译时，编译器会把该函数的代码副本放置在每个调用该函数的地方。<br>对内联函数进行任何修改，都需要重新编译函数的所有客户端，因为编译器需要重新更换一次所有的代码，否则将会继续使用旧的函数。<br>如果想把一个函数定义为内联函数，则需要在函数名前面放置关键字 inline，在调用函数之前需要对函数进行定义。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">return</span> (x &gt; y)? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 程序的主函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">( )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Max (20,10): "</span> &lt;&lt; Max(<span class="number">20</span>,<span class="number">10</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Max (0,200): "</span> &lt;&lt; Max(<span class="number">0</span>,<span class="number">200</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Max (100,1010): "</span> &lt;&lt; Max(<span class="number">100</span>,<span class="number">1010</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="C-this-指针"><a href="#C-this-指针" class="headerlink" title="C++ this 指针"></a>C++ this 指针</h1><p>在 C++ 中，每一个对象都能通过 this 指针来访问自己的地址。this 指针是所有成员函数的隐含参数。因此，在成员函数内部，它可以用来指向调用对象。</p>
+<p>友元函数没有 this 指针，因为友元不是类的成员。只有成员函数才有 this 指针。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="comment">// 构造函数定义</span></span><br><span class="line">      Box(<span class="keyword">double</span> l=<span class="number">2.0</span>, <span class="keyword">double</span> b=<span class="number">2.0</span>, <span class="keyword">double</span> h=<span class="number">2.0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt;<span class="string">"Constructor called."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">         length = l;</span><br><span class="line">         breadth = b;</span><br><span class="line">         height = h;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">Volume</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> length * breadth * height;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">int</span> <span class="title">compare</span><span class="params">(Box box)</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>-&gt;Volume() &gt; box.Volume();</span><br><span class="line">      &#125;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> length;     <span class="comment">// Length of a box</span></span><br><span class="line">      <span class="keyword">double</span> breadth;    <span class="comment">// Breadth of a box</span></span><br><span class="line">      <span class="keyword">double</span> height;     <span class="comment">// Height of a box</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="function">Box <span class="title">Box1</span><span class="params">(<span class="number">3.3</span>, <span class="number">1.2</span>, <span class="number">1.5</span>)</span></span>;    <span class="comment">// Declare box1</span></span><br><span class="line">   <span class="function">Box <span class="title">Box2</span><span class="params">(<span class="number">8.5</span>, <span class="number">6.0</span>, <span class="number">2.0</span>)</span></span>;    <span class="comment">// Declare box2</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span>(Box1.compare(Box2))</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"Box2 is smaller than Box1"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">   &#123;</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"Box2 is equal to or larger than Box1"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="C-指向类的指针"><a href="#C-指向类的指针" class="headerlink" title="C++ 指向类的指针"></a>C++ 指向类的指针</h1><p>一个指向 C++ 类的指针与指向结构的指针类似，访问指向类的指针的成员，需要使用成员访问运算符 -&gt;，就像访问指向结构的指针一样。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="comment">// 构造函数定义</span></span><br><span class="line">      Box(<span class="keyword">double</span> l=<span class="number">2.0</span>, <span class="keyword">double</span> b=<span class="number">2.0</span>, <span class="keyword">double</span> h=<span class="number">2.0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt;<span class="string">"Constructor called."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">         length = l;</span><br><span class="line">         breadth = b;</span><br><span class="line">         height = h;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">Volume</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> length * breadth * height;</span><br><span class="line">      &#125;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> length;     <span class="comment">// Length of a box</span></span><br><span class="line">      <span class="keyword">double</span> breadth;    <span class="comment">// Breadth of a box</span></span><br><span class="line">      <span class="keyword">double</span> height;     <span class="comment">// Height of a box</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="function">Box <span class="title">Box1</span><span class="params">(<span class="number">3.3</span>, <span class="number">1.2</span>, <span class="number">1.5</span>)</span></span>;    <span class="comment">// Declare box1</span></span><br><span class="line">   <span class="function">Box <span class="title">Box2</span><span class="params">(<span class="number">8.5</span>, <span class="number">6.0</span>, <span class="number">2.0</span>)</span></span>;    <span class="comment">// Declare box2</span></span><br><span class="line">   Box *ptrBox;                <span class="comment">// Declare pointer to a class.</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// 保存第一个对象的地址</span></span><br><span class="line">   ptrBox = &amp;Box1;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 现在尝试使用成员访问运算符来访问成员</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Volume of Box1: "</span> &lt;&lt; ptrBox-&gt;Volume() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 保存第二个对象的地址</span></span><br><span class="line">   ptrBox = &amp;Box2;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 现在尝试使用成员访问运算符来访问成员</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Volume of Box2: "</span> &lt;&lt; ptrBox-&gt;Volume() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="C-类的静态成员"><a href="#C-类的静态成员" class="headerlink" title="C++类的静态成员"></a>C++类的静态成员</h1><p>我们可以使用 static 关键字来把类成员定义为静态的。当我们声明类的成员为静态时，这意味着无论创建多少个类的对象，静态成员都只有一个副本。</p>
+<p>静态成员在类的所有对象中是共享的。如果不存在其他的初始化语句，在创建第一个对象时，所有的静态数据都会被初始化为零。我们不能把静态成员的初始化放置在类的定义中，但是可以在类的外部通过使用范围解析运算符 :: 来重新声明静态变量从而对它进行初始化，如下面的实例所示。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="keyword">static</span> <span class="keyword">int</span> objectCount;</span><br><span class="line">      <span class="comment">// 构造函数定义</span></span><br><span class="line">      Box(<span class="keyword">double</span> l=<span class="number">2.0</span>, <span class="keyword">double</span> b=<span class="number">2.0</span>, <span class="keyword">double</span> h=<span class="number">2.0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt;<span class="string">"Constructor called."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">         length = l;</span><br><span class="line">         breadth = b;</span><br><span class="line">         height = h;</span><br><span class="line">         <span class="comment">// 每次创建对象时增加 1</span></span><br><span class="line">         objectCount++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">Volume</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> length * breadth * height;</span><br><span class="line">      &#125;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> length;     <span class="comment">// 长度</span></span><br><span class="line">      <span class="keyword">double</span> breadth;    <span class="comment">// 宽度</span></span><br><span class="line">      <span class="keyword">double</span> height;     <span class="comment">// 高度</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化类 Box 的静态成员</span></span><br><span class="line"><span class="keyword">int</span> Box::objectCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="function">Box <span class="title">Box1</span><span class="params">(<span class="number">3.3</span>, <span class="number">1.2</span>, <span class="number">1.5</span>)</span></span>;    <span class="comment">// 声明 box1</span></span><br><span class="line">   <span class="function">Box <span class="title">Box2</span><span class="params">(<span class="number">8.5</span>, <span class="number">6.0</span>, <span class="number">2.0</span>)</span></span>;    <span class="comment">// 声明 box2</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// 输出对象的总数</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Total objects: "</span> &lt;&lt; Box::objectCount &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Constructor called.</span><br><span class="line">Constructor called.</span><br><span class="line">Total objects: <span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="静态成员函数"><a href="#静态成员函数" class="headerlink" title="静态成员函数"></a>静态成员函数</h2><ul>
+<li>如果把函数成员声明为静态的，就可以把函数与类的任何特定对象独立开来。静态成员函数即使在类对象不存在的情况下也能被调用，静态函数只要使用类名加范围解析运算符 :: 就可以访问。</li>
+<li>静态成员函数只能访问静态成员数据、其他静态成员函数和类外部的其他函数。</li>
+<li>静态成员函数有一个类范围，他们不能访问类的 this 指针。您可以使用静态成员函数来判断类的某些对象是否已被创建。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Box</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">      <span class="keyword">static</span> <span class="keyword">int</span> objectCount;</span><br><span class="line">      <span class="comment">// 构造函数定义</span></span><br><span class="line">      Box(<span class="keyword">double</span> l=<span class="number">2.0</span>, <span class="keyword">double</span> b=<span class="number">2.0</span>, <span class="keyword">double</span> h=<span class="number">2.0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt;<span class="string">"Constructor called."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">         length = l;</span><br><span class="line">         breadth = b;</span><br><span class="line">         height = h;</span><br><span class="line">         <span class="comment">// 每次创建对象时增加 1</span></span><br><span class="line">         objectCount++;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">double</span> <span class="title">Volume</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> length * breadth * height;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> objectCount;</span><br><span class="line">      &#125;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">      <span class="keyword">double</span> length;     <span class="comment">// 长度</span></span><br><span class="line">      <span class="keyword">double</span> breadth;    <span class="comment">// 宽度</span></span><br><span class="line">      <span class="keyword">double</span> height;     <span class="comment">// 高度</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化类 Box 的静态成员</span></span><br><span class="line"><span class="keyword">int</span> Box::objectCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 在创建对象之前输出对象的总数</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Inital Stage Count: "</span> &lt;&lt; Box::getCount() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="function">Box <span class="title">Box1</span><span class="params">(<span class="number">3.3</span>, <span class="number">1.2</span>, <span class="number">1.5</span>)</span></span>;    <span class="comment">// 声明 box1</span></span><br><span class="line">   <span class="function">Box <span class="title">Box2</span><span class="params">(<span class="number">8.5</span>, <span class="number">6.0</span>, <span class="number">2.0</span>)</span></span>;    <span class="comment">// 声明 box2</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// 在创建对象之后输出对象的总数</span></span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">"Final Stage Count: "</span> &lt;&lt; Box::getCount() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Inital Stage Count: <span class="number">0</span></span><br><span class="line">Constructor called.</span><br><span class="line">Constructor called.</span><br><span class="line">Final Stage Count: <span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c语言/" rel="tag"># c语言</a>
+          
+            <a href="/tags/类和对象/" rel="tag"># 类和对象</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/29/编程语言/c语言/C-结构体/" rel="next" title="C++结构体">
+                <i class="fa fa-chevron-left"></i> C++结构体
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/29/编程语言/c语言/C-继承/" rel="prev" title="C++继承">
+                C++继承 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMzYwNi8xMDE2MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/tou_xiang.jpg"
+                alt="路西法" />
+            
+              <p class="site-author-name" itemprop="name">路西法</p>
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Angel0726" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:MaHao_0726@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-类定义"><span class="nav-number">1.</span> <span class="nav-text">C++ 类定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-类访问修饰符"><span class="nav-number">2.</span> <span class="nav-text">C++ 类访问修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#公有（public）成员"><span class="nav-number">2.1.</span> <span class="nav-text">公有（public）成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有（private）成员"><span class="nav-number">2.2.</span> <span class="nav-text">私有（private）成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保护（protected）成员"><span class="nav-number">2.3.</span> <span class="nav-text">保护（protected）成员</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承的修饰符"><span class="nav-number">3.</span> <span class="nav-text">继承的修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#public-继承"><span class="nav-number">3.1.</span> <span class="nav-text">public 继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#protected-继承"><span class="nav-number">3.2.</span> <span class="nav-text">protected 继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#private-继承"><span class="nav-number">3.3.</span> <span class="nav-text">private 继承</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造函数"><span class="nav-number">4.</span> <span class="nav-text">构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带参数的构造函数"><span class="nav-number">4.1.</span> <span class="nav-text">带参数的构造函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的析构函数"><span class="nav-number">5.</span> <span class="nav-text">类的析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-拷贝构造函数"><span class="nav-number">6.</span> <span class="nav-text">C++ 拷贝构造函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-友元函数"><span class="nav-number">7.</span> <span class="nav-text">C++ 友元函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-内联函数"><span class="nav-number">8.</span> <span class="nav-text">C++内联函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-this-指针"><span class="nav-number">9.</span> <span class="nav-text">C++ this 指针</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-指向类的指针"><span class="nav-number">10.</span> <span class="nav-text">C++ 指向类的指针</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-类的静态成员"><span class="nav-number">11.</span> <span class="nav-text">C++类的静态成员</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#静态成员函数"><span class="nav-number">11.1.</span> <span class="nav-text">静态成员函数</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路西法</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数 <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量 <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
