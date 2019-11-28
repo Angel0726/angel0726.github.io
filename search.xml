@@ -376,6 +376,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[DDL-SQL]]></title>
+    <url>%2F2019%2F07%2F31%2F%2F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%2Fsql%E8%AF%AD%E8%A8%80%2FSQL%2FDDL-SQL.md%2F</url>
+    <content type="text"><![CDATA[数据库12345678-- 创建数据库Create database my_db; -- 删除数据库Drop database my_db;-- 指定数据库use my_db;-- 关闭数据库close my_db; 表123456-- 创建表格CREATE TABLE table_name-- 修改表格alter table tablename -- 删除表格DROP TABLE Persons 创建表格12create table 表名 as select 列名 from 表名 12345678CREATE TABLE Persons( P_Id int NOT NULL PRIMARY KEY CHECK (P_Id&gt;0), --不为空，主键，删选条件：P_Id&gt;0 LastName varchar(255) NOT NULL, --不为空 FirstName varchar(255), Address varchar(255), City varchar(255) DEFAULT 'Sandnes' --默认值为'Sandnes'); 1234567CREATE TABLE table_name( 列名1 数据类型(size) 约束条件, 列名2 数据类型(size) 约束条件, 列名3 数据类型(size) 约束条件, ....); 参数 说明 列名 规定表中列的名称 数据类型 例如varchar、integer、decimal、date。不同的数据库有不同的数据类型 约束条件 Primary key 主键约束。每个表只能创建一个主键约束 Unique 唯一性约束（即候选键）。每个表可以有多个唯一性约束，但只能有一个Primary key。 Not null 非空约束。是指该列允许不允许有空值出现，如选择了Not null表明该列不允许有空值出现。 CHECK (search_cond) 约束用于限制列中的值的范围,search_cond为条件。如果对单个列定义 CHECK 约束，那么该列只允许特定的值；如果对一个表定义 CHECK 约束，那么此约束会在特定的列中对值进行限制。 FOREIGN KEY 一个表中的 FOREIGN KEY指向另一个表中的PRIMARY KEY DEFAULT 如果没有规定其他的值，那么会将默认值添加到所有的新记录。 AUTO_INCREMENT 每次插入时，自动生成主键的值 修改表格1234alter table tablename - add 增加新列 - drop 删除列或者完整性约束条件 - modify 修改列定义 12345678-- 在表 "Person" 中添加一个名为 "Birthday" 的新列。ALTER TABLE Person ADD Birthday date;-- 删除 "Person" 表中的 "Birthday" 列：ALTER TABLE Person DROP COLUMN Birthday;-- 删除 "Person" 表中 "P_Id" 的主键：ALTER TABLE Person DROP PRIMARY KEY(P_Id);-- 改变 "Person" 表中 "Birthday" 列的数据类型。ALTER TABLE Person Modify Birthday year; 删除表格1DROP TABLE table_name -- 删除表 视图表中存储的是实际数据，而视图中保存的是从表中取出数据所使用的SELECT语句。一般来说你可以用update，insert，delete等sql语句修改表中的数据，而对视图只能进行select操作。但是也存在可更新的视图，对于这类视图的update，insert和delete等操作最终会作用于与其相关的表中数据。 创建视图**定义视图时不能使用 ORDER BY 子句** 12345CREATE VIEW view_name ASSELECT column_name(s)FROM table_nameWHERE condition[with check option] -- 指明当对视图进行insert，update，delete时，要检查进行insert/update/delete的元组是否满足视图定义中子查询中定义的条件表达式 12345CREATE VIEW CUSTOMERS_VIEW ASSELECT name, ageFROM CUSTOMERSWHERE age IS NOT NULLWITH CHECK OPTION; --这里 WITH CHECK OPTION 使得视图拒绝任何 AGE 字段为 NULL 的条目，因为视图的定义中，AGE 字段不能为空。对视图不管修改前还是修改后都必须遵从此规定。 使用视图1Select * From view_name 视图的更新（增、删、改）一般来说你可以用update，insert，delete等sql语句修改表中的数据，而对视图只能进行select操作。但是也存在可更新的视图，对于这类视图的update，insert和delete等操作最终会作用于与其相关的表中数据。 对于可更新的视图，在视图中的行和基表中的行之间必须具有一对一的关系。还有一些特定的其他结构，这类结构会使得视图不可更新。如果视图包含下述结构中的任何一种，那么它就是不可更新的： 分类 说明 非一对一 DISTINCT关键字、GROUP BY子句、UNION运算符、位于选择列表中的子查询 未知 聚合函数、ORDER BY子句、HAVING子句、FROM子句中包含多个表、WHERE子句中的子查询，引用FROM子句中的表 其他 SELECT语句中引用了不可更新视图ALGORITHM 选项指定为TEMPTABLE（使用临时表总会使视图成为不可更新的） 插入数据12INSERT INTO CUSTOMERS_VIEW VALUES('李牧',50); 修改数据1UPDATE CUSTOMERS_VIEW SET age = 58 where name = '李牧'; 删除数据1DELETE FROM CUSTOMERS_VIEW WHERE name = '李牧'; 删除视图1Drop View view_name]]></content>
+      <categories>
+        <category>编程语言</category>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[DCL-SQL]]></title>
     <url>%2F2019%2F07%2F31%2F%2F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%2Fsql%E8%AF%AD%E8%A8%80%2FSQL%2F%2FDCL-SQL.md%2F</url>
     <content type="text"><![CDATA[用户对不同的数据对象有不同的存取权限 不同的用户对同一对象也有不同的权限 用户还可将其拥有的存取权限转授给其他用户]]></content>
@@ -392,19 +405,6 @@
     <title><![CDATA[DML-SQL]]></title>
     <url>%2F2019%2F07%2F31%2F%2F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%2Fsql%E8%AF%AD%E8%A8%80%2FSQL%2FDML-SQL.md%2F</url>
     <content type="text"><![CDATA[命令 作用 insert 插入语句insert into:追加数据insert overwrite:覆盖数据 UPDATE 更新语句 DELETE 删除语句 增、删、改123456789101112131415-- 插入语句Insert Into Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')Insert Into St (S#, Sname, avgScore) Select S#, Sname, Avg(Score) From Student, SC Where Student.S# = SC.S# Group by Student.S# ;Insert overwrite St (S#, Sname, avgScore) Select S#, Sname, Avg(Score) From Student, SC Where Student.S# = SC.S# Group by Student.S# ;-- 更新语句-UPDATE 修改某一行数据UPDATE Person SET Address = 'Zhongshan 23', City = 'Nanjing' WHERE LastName = 'Wilson'-- 删除语句-DELETEDELETE FROM Person WHERE LastName = 'Wilson' --删除行名为Wilson 查询语句12345select expr,列名 as 列的别名,function(列名) as 列的别名from 表名 as 表的别名where 条件(对每一个元组进行过滤)group by 列名(分组) having 对每一组进行过滤Order by 列名 [asc|desc] 命令 关键字 说明 select expr 常量 when case select when st.score&gt;90 then 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when st.score&lt;60 then 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end label function count 求个数 sum 求和 avg 求平均 max 求最大 min 求最小 first 返回列中第一个记录的值 last 返回列中最后一个记录的值 UCASE 把字段的值转换为大写 LCASE 把字段的值转换为小写 MID 从文本字段中提取字符SELECT MID(column_name,start[,length]) FROM table_name;column_name：必需。要提取字符的字段。Start：必需。规定开始位置（起始值是 1）。Length：可选。要返回的字符数。如果省略，则 MID() 函数返回剩余文本。 LEN 函数返回文本字段中值的长度 ROUND 函数用于把数值字段舍入为指定的小数位数。SELECT ROUND(column_name,decimals) FROM table_name;column_name 必需。要舍入的字段。decimals 必需。规定要返回的小数位数。 NOW 函数返回当前系统的日期和时间 FORMAT FORMAT 函数用于对字段的显示进行格式化。SELECT ProductName, UnitPrice, FORMAT(Now(),'YYYY-MM-DD') as PerDateFROM Products from 原理 从表格中选取数据，采用笛卡尔积 join连接 join oninner join on INNER JOIN 与 JOIN 是相同的不保留空值 Left join on 保留左表中所有的数据，右表中不能匹配的数据使用空值填充 Right join on 保留右表中所有的数据，左表中不能匹配的数据使用空值填充 Full join on 保留两个表中所有的数据，，两个表中不能匹配的数据使用空值填充 where 运算符 =、&lt;&gt;、&gt;、&lt;、&gt;=、&lt;= 函数 between BETWEEN ... AND 会选取介于两个值之间的数据范围。这些值可以是数值、文本或者日期 like "%" : 可以匹配0个或者多个字符 “ _ ” :只可以匹配一个字符 “\” : 转义字符，用于去掉一些特殊字符 ，使其变为普通字符。比如用"\%"可以去匹配字符%,而“”是去匹配字符“_”. [charlist]：字符列中的任何单一字符 [^charlist]或者[!charlist]：不在字符列中的任何单一字符 in = exists 是否存在 group by 列名 分组计算 having 条件 函数 count、sum、avg、max、min、first、last、UCASE、LCASE、MID、LEN、ROUND、NOW、FORMAT 运算符 =、&lt;&gt;、&gt;、&lt;、&gt;=、&lt;=；like；in = exists 关系代数操作1234567891011121314-- 并：求学过002号课的同学或学过003号课的同学学号Select S# From SC Where C# = ‘002’UNION [ALL] --使用ALL命令之后会保留所有重复的元组Select S# From SC Where C# = ‘003’;-- 交：求既学过002号课，又学过003号课的同学学号Select S# From SC Where C# = ‘002’INTERSECTSelect S# From SC Where C# = ‘003’;-- 差：假定所有学生都有选课，求没学过002号课程的学生学号Select DISTINCT S# From SCEXCEPTSelect S# From SC Where C# = ‘002’; 排序1order by columns asc(desc) #升序或者降序 分组排序123456select subject,score,rank() over(partition by name order by score) rank,dense_rank() over(partition by name order by score) dense_rank,row_number() over(partition by name order by score) row_number,rank() over(order by score) rank2from score_table --对score_table中的数据按照subject分组对score进行排序 dense_rank、rank与row_number的区别 subject score rank dense_rank row_number rank2 数学 67 1 1 1 1 数学 77 2 2 2 2 数学 78 3 3 3 3 数学 88 4 4 4 4 数学 99 5 5 5 5 语文 60 1 1 1 6 语文 70 2 2 2 6 语文 80 3 3 3 8 语文 80 3 3 4 9 语文 90 5 4 5 10]]></content>
-      <categories>
-        <category>编程语言</category>
-        <category>SQL</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[DDL-SQL]]></title>
-    <url>%2F2019%2F07%2F31%2F%2F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%2Fsql%E8%AF%AD%E8%A8%80%2FSQL%2FDDL-SQL.md%2F</url>
-    <content type="text"><![CDATA[数据库12345678-- 创建数据库Create database my_db; -- 删除数据库Drop database my_db;-- 指定数据库use my_db;-- 关闭数据库close my_db; 表123456-- 创建表格CREATE TABLE table_name-- 修改表格alter table tablename -- 删除表格DROP TABLE Persons 创建表格12create table 表名 as select 列名 from 表名 12345678CREATE TABLE Persons( P_Id int NOT NULL PRIMARY KEY CHECK (P_Id&gt;0), --不为空，主键，删选条件：P_Id&gt;0 LastName varchar(255) NOT NULL, --不为空 FirstName varchar(255), Address varchar(255), City varchar(255) DEFAULT 'Sandnes' --默认值为'Sandnes'); 1234567CREATE TABLE table_name( 列名1 数据类型(size) 约束条件, 列名2 数据类型(size) 约束条件, 列名3 数据类型(size) 约束条件, ....); 参数 说明 列名 规定表中列的名称 数据类型 例如varchar、integer、decimal、date。不同的数据库有不同的数据类型 约束条件 Primary key 主键约束。每个表只能创建一个主键约束 Unique 唯一性约束（即候选键）。每个表可以有多个唯一性约束，但只能有一个Primary key。 Not null 非空约束。是指该列允许不允许有空值出现，如选择了Not null表明该列不允许有空值出现。 CHECK (search_cond) 约束用于限制列中的值的范围,search_cond为条件。如果对单个列定义 CHECK 约束，那么该列只允许特定的值；如果对一个表定义 CHECK 约束，那么此约束会在特定的列中对值进行限制。 FOREIGN KEY 一个表中的 FOREIGN KEY指向另一个表中的PRIMARY KEY DEFAULT 如果没有规定其他的值，那么会将默认值添加到所有的新记录。 AUTO_INCREMENT 每次插入时，自动生成主键的值 修改表格1234alter table tablename - add 增加新列 - drop 删除列或者完整性约束条件 - modify 修改列定义 12345678-- 在表 "Person" 中添加一个名为 "Birthday" 的新列。ALTER TABLE Person ADD Birthday date;-- 删除 "Person" 表中的 "Birthday" 列：ALTER TABLE Person DROP COLUMN Birthday;-- 删除 "Person" 表中 "P_Id" 的主键：ALTER TABLE Person DROP PRIMARY KEY(P_Id);-- 改变 "Person" 表中 "Birthday" 列的数据类型。ALTER TABLE Person Modify Birthday year; 删除表格1DROP TABLE table_name -- 删除表 视图表中存储的是实际数据，而视图中保存的是从表中取出数据所使用的SELECT语句。一般来说你可以用update，insert，delete等sql语句修改表中的数据，而对视图只能进行select操作。但是也存在可更新的视图，对于这类视图的update，insert和delete等操作最终会作用于与其相关的表中数据。 创建视图**定义视图时不能使用 ORDER BY 子句** 12345CREATE VIEW view_name ASSELECT column_name(s)FROM table_nameWHERE condition[with check option] -- 指明当对视图进行insert，update，delete时，要检查进行insert/update/delete的元组是否满足视图定义中子查询中定义的条件表达式 12345CREATE VIEW CUSTOMERS_VIEW ASSELECT name, ageFROM CUSTOMERSWHERE age IS NOT NULLWITH CHECK OPTION; --这里 WITH CHECK OPTION 使得视图拒绝任何 AGE 字段为 NULL 的条目，因为视图的定义中，AGE 字段不能为空。对视图不管修改前还是修改后都必须遵从此规定。 使用视图1Select * From view_name 视图的更新（增、删、改）一般来说你可以用update，insert，delete等sql语句修改表中的数据，而对视图只能进行select操作。但是也存在可更新的视图，对于这类视图的update，insert和delete等操作最终会作用于与其相关的表中数据。 对于可更新的视图，在视图中的行和基表中的行之间必须具有一对一的关系。还有一些特定的其他结构，这类结构会使得视图不可更新。如果视图包含下述结构中的任何一种，那么它就是不可更新的： 分类 说明 非一对一 DISTINCT关键字、GROUP BY子句、UNION运算符、位于选择列表中的子查询 未知 聚合函数、ORDER BY子句、HAVING子句、FROM子句中包含多个表、WHERE子句中的子查询，引用FROM子句中的表 其他 SELECT语句中引用了不可更新视图ALGORITHM 选项指定为TEMPTABLE（使用临时表总会使视图成为不可更新的） 插入数据12INSERT INTO CUSTOMERS_VIEW VALUES('李牧',50); 修改数据1UPDATE CUSTOMERS_VIEW SET age = 58 where name = '李牧'; 删除数据1DELETE FROM CUSTOMERS_VIEW WHERE name = '李牧'; 删除视图1Drop View view_name]]></content>
       <categories>
         <category>编程语言</category>
         <category>SQL</category>
@@ -463,8 +463,8 @@
         <category>命令</category>
       </categories>
       <tags>
-        <tag>linux命令</tag>
         <tag>操作系统</tag>
+        <tag>linux命令</tag>
       </tags>
   </entry>
   <entry>
@@ -476,8 +476,8 @@
         <category>命令</category>
       </categories>
       <tags>
-        <tag>linux命令</tag>
         <tag>操作系统</tag>
+        <tag>linux命令</tag>
       </tags>
   </entry>
   <entry>
@@ -596,8 +596,8 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>线性分类器</tag>
         <tag>模型</tag>
+        <tag>线性分类器</tag>
       </tags>
   </entry>
   <entry>
