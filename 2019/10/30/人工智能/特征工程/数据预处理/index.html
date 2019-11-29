@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="归一化  分类与编码  数据离散化  多项式化  缺失值处理">
+<meta name="description" content="预处理      归一化 列：preprocessing.MinMaxScaler        preprocessing.StandardScaler行：preprocessing.Normalizer   分类与编码 preprocessing.OrdinalEncoder()preprocessing.OneHotEncoder()   数据离散化    多项式化 Polynomi">
 <meta name="keywords" content="特征工程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据预处理">
 <meta property="og:url" content="http://yoursite.com/2019/10/30/人工智能/特征工程/数据预处理/index.html">
 <meta property="og:site_name" content="黎明晨光">
-<meta property="og:description" content="归一化  分类与编码  数据离散化  多项式化  缺失值处理">
+<meta property="og:description" content="预处理      归一化 列：preprocessing.MinMaxScaler        preprocessing.StandardScaler行：preprocessing.Normalizer   分类与编码 preprocessing.OrdinalEncoder()preprocessing.OneHotEncoder()   数据离散化    多项式化 Polynomi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/10/30/人工智能/特征工程/数据预处理/164e09f18f4f7b11">
-<meta property="og:image" content="http://yoursite.com/2019/10/30/人工智能/特征工程/数据预处理/164e098fd78a077f">
-<meta property="og:updated_time" content="2019-11-28T07:20:23.755Z">
+<meta property="og:updated_time" content="2019-11-29T07:06:07.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据预处理">
-<meta name="twitter:description" content="归一化  分类与编码  数据离散化  多项式化  缺失值处理">
-<meta name="twitter:image" content="http://yoursite.com/2019/10/30/人工智能/特征工程/数据预处理/164e09f18f4f7b11">
+<meta name="twitter:description" content="预处理      归一化 列：preprocessing.MinMaxScaler        preprocessing.StandardScaler行：preprocessing.Normalizer   分类与编码 preprocessing.OrdinalEncoder()preprocessing.OneHotEncoder()   数据离散化    多项式化 Polynomi">
 
 
 
@@ -395,19 +392,38 @@
       
 
       
-        <ul>
-<li><p>归一化</p>
-</li>
-<li><p>分类与编码</p>
-</li>
-<li><p>数据离散化</p>
-</li>
-<li><p>多项式化</p>
-</li>
-<li><p>缺失值处理</p>
+        <div class="table-container">
+<table>
+<thead>
+<tr>
+<th>预处理</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>归一化</td>
+<td>列：preprocessing.MinMaxScaler<br>        preprocessing.StandardScaler<br>行：preprocessing.Normalizer</td>
+</tr>
+<tr>
+<td>分类与编码</td>
+<td>preprocessing.OrdinalEncoder()<br>preprocessing.OneHotEncoder()</td>
+</tr>
+<tr>
+<td>数据离散化</td>
+<td></td>
+</tr>
+<tr>
+<td>多项式化</td>
+<td>PolynomialFeatures(degree=2,include_bias=False)</td>
+</tr>
+<tr>
+<td>缺失值处理</td>
+</tr>
+</tbody>
+</table>
+</div>
 <a id="more"></a>
-</li>
-</ul>
 <h1 id="归一化"><a href="#归一化" class="headerlink" title="归一化"></a>归一化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler,StandardScaler,Normalizer</span><br><span class="line"></span><br><span class="line"><span class="comment"># MinMaxScaler()    列特征</span></span><br><span class="line">iris_train=MinMaxScaler().fit_transform(iris_train)</span><br><span class="line">iris_test=MinMaxScaler().fit_transform(iris_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># StandardScaler()  列特征</span></span><br><span class="line">iris_train=StandardScaler().fit_transform(iris_train)</span><br><span class="line">iris_test=StandardScaler().fit_transform(iris_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalizer()      行特征</span></span><br><span class="line">iris_train=Normalizer().fit_transform(iris_train)</span><br><span class="line">iris_test=Normalizer().fit_transform(iris_test)</span><br></pre></td></tr></table></figure>
 <h2 id="列特征"><a href="#列特征" class="headerlink" title="列特征"></a>列特征</h2><p>主要在线性模型中进行</p>
 <div class="table-container">
@@ -569,8 +585,8 @@ y^{'} &=w_1^{'}x_1^{'}+w_2^{'}x_2^{'}+b^{'}  \\
 <p>例如初始点都选择为$(1,1)$，那么归一化之后的初始点相对于原始空间将发生变化</p>
 </li>
 <li><p>在梯度下降过程中可以解决不恰当的学习率、以及初始点导致梯度爆炸等情况。</p>
-<p>因为在特征较多的时候，需要特征的不同尺度，需要对特征选择不同的学习率与初始点，不然很容易发生梯度爆炸的问题。学习率选择为0.01，对于有的特征来讲学习率太小，需要很长的迭代才会拟合；对于有的特征来讲，学习率太大了，会发生梯度爆炸；此时需要对不同的特征设置不同的学习率。进行归一化之后，特征的失度变得一致，梯度也将变得一致，不再需要对不同的特征设置不同的学习率。</p>
-<p><strong>注意</strong>：模型的收敛速度与初始点、学习率的选取都有关。对特征进行归一化之后有可能导致收敛速度变慢。</p>
+<p>因为在特征较多的时候，需要根据特征的不同尺度，选择不同的学习率与初始点，不然很容易发生梯度爆炸的问题。例如，学习率选择为0.01，对于有的特征来讲学习率太小，需要很长的迭代才会拟合；对于有的特征来讲，学习率太大了，会发生梯度爆炸。此时需要对不同的特征设置不同的学习率。进行归一化之后，特征的失度变得一致，梯度也将变得一致，不再需要对不同的特征设置不同的学习率。</p>
+<p><strong>注意</strong>：模型的收敛速度与初始点、学习率的选取都有关。大多数情况下，归一化会加快模型的收敛速度；但是某些时候导致收敛速度变慢。</p>
 </li>
 </ol>
 <h2 id="行特征"><a href="#行特征" class="headerlink" title="行特征"></a>行特征</h2><h3 id="Normalizer"><a href="#Normalizer" class="headerlink" title="Normalizer"></a>Normalizer</h3><p>行特征进行归一化，使行特征的和为1。主要用于TF-IDF等特征。</p>
@@ -599,22 +615,131 @@ y^{'} &=w_1^{'}x_1^{'}+w_2^{'}x_2^{'}+b^{'}  \\
 </table>
 </div>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Normalizer</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>X = [[<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line"><span class="meta">... </span>     [<span class="number">1</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">3</span>],</span><br><span class="line"><span class="meta">... </span>     [<span class="number">5</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">1</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>transformer = Normalizer().fit(X)  <span class="comment"># fit does nothing.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>transformer</span><br><span class="line">Normalizer(copy=<span class="keyword">True</span>, norm=<span class="string">'l2'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>transformer.transform(X)</span><br><span class="line">array([[<span class="number">0.8</span>, <span class="number">0.2</span>, <span class="number">0.4</span>, <span class="number">0.4</span>],     <span class="comment">#4^2/(4^2+1+2^2+2^2)=0.8</span></span><br><span class="line">       [<span class="number">0.1</span>, <span class="number">0.3</span>, <span class="number">0.9</span>, <span class="number">0.3</span>],</span><br><span class="line">       [<span class="number">0.5</span>, <span class="number">0.7</span>, <span class="number">0.5</span>, <span class="number">0.1</span>]])</span><br></pre></td></tr></table></figure>
-<h1 id="分类-amp-编码"><a href="#分类-amp-编码" class="headerlink" title="分类&amp;编码"></a>分类&amp;编码</h1><h1 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h1><h1 id="多项式化"><a href="#多项式化" class="headerlink" title="多项式化"></a>多项式化</h1><h1 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#删除数据表中含有空值的行</span><br><span class="line">df.dropna(how=&apos;any&apos;)</span><br><span class="line"></span><br><span class="line"># 定义工资改变特征缺失值处理函数，将有变化设为Yes，缺失设为No def set_salary_change(df):	df.loc[(df.salary_change.notnull()),&apos;salary_change&apos;]=&quot;Yes&quot;	df.loc[(df.salary_change.isnull()),&apos;salary_change&apos;=&quot;No&quot;	return dfdata_train=set_salary_change(data_train)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data_train.fillna(0)</span><br><span class="line"># 将所有行用各自的均值填充 </span><br><span class="line">data_train.fillna(data_train.mean())</span><br><span class="line"></span><br><span class="line"># 也可以指定某些行进行填充 </span><br><span class="line">data_train.fillna(data_train.mean()[&apos;browse_his&apos;:&apos;card_num&apos;])</span><br><span class="line"># 用前一个数据代替NaN：method=&apos;pad&apos;</span><br><span class="line">data_train.fillna(method=&apos;pad&apos;)</span><br><span class="line"></span><br><span class="line"># 与pad相反，bfill表示用后一个数据代替NaN </span><br><span class="line">data_train.fillna(method=&apos;bfill&apos;)</span><br><span class="line"></span><br><span class="line"># 定义browse_his缺失值预测填充函数</span><br><span class="line"></span><br><span class="line">defset_missing_browse_his(df):</span><br><span class="line"></span><br><span class="line">	# 把已有的数值型特征取出来输入到RandomForestRegressor中</span><br><span class="line">	process_df=df[[browse_his&apos; , &apos;gender&apos;, &apos;job&apos;, &apos;edu&apos;, &apos;marriage&apos;, &apos;family_type&apos;]]</span><br><span class="line"></span><br><span class="line">	# 乘客分成已知该特征和未知该特征两部分</span><br><span class="line">	known=process_df[process_df.browse_his.notnull()].as_matrix()</span><br><span class="line">	unknown=process_df[process_df.browse_his.isnull()].as_matrix()</span><br><span class="line"></span><br><span class="line">	# X为特征属性值</span><br><span class="line">	X=known[:,1:]</span><br><span class="line">	# y为结果标签值</span><br><span class="line">	y=known[:,0]</span><br><span class="line"></span><br><span class="line">	# fit到RandomForestRegressor之中</span><br><span class="line">	rfr=RandomForestRegressor(random_state=0,n_estimators=2000,n_jobs=-1)</span><br><span class="line">	rfr.fit(X,y)</span><br><span class="line"></span><br><span class="line">	# 用得到的模型进行未知特征值预测</span><br><span class="line">	predicted=rfr.predict(unknown[:,1::])</span><br><span class="line">	# 用得到的预测结果填补原缺失数据</span><br><span class="line">	df.loc[(df.browse_his.isnull()),&apos;browse_his&apos;]=predicted</span><br><span class="line"></span><br><span class="line">	return df,rfr</span><br><span class="line"></span><br><span class="line">data_train,rfr=set_missing_brows</span><br></pre></td></tr></table></figure>
-<p> <img src="/2019/10/30/人工智能/特征工程/数据预处理/164e09f18f4f7b11" alt="img"> </p>
-<h3 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h3><p><strong>优点：</strong></p>
-<ul>
-<li>最简单粗暴；</li>
-</ul>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>牺牲了大量的数据，通过减少历史数据换取完整的信息，这样可能丢失了很多隐藏的重要信息；</li>
-<li>当缺失数据比例较大时，特别是缺失数据非随机分布时，直接删除可能会导致数据发生偏离，比如原本的正态分布变为非正太；</li>
-</ul>
+<h1 id="分类-amp-编码"><a href="#分类-amp-编码" class="headerlink" title="分类&amp;编码"></a>分类&amp;编码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 序号编码</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line">enc = preprocessing.OrdinalEncoder()</span><br><span class="line">X = [[<span class="string">'male'</span>, <span class="string">'from US'</span>, <span class="string">'uses Safari'</span>], [<span class="string">'female'</span>, <span class="string">'from Europe'</span>, <span class="string">'uses Firefox'</span>]]</span><br><span class="line">enc.fit(X)                                                   <span class="comment"># fit来学习编码</span></span><br><span class="line">temp=enc.transform([[<span class="string">'female'</span>, <span class="string">'from US'</span>, <span class="string">'uses Safari'</span>]])   <span class="comment"># 进行编码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 独热编码</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line">enc = preprocessing.OneHotEncoder()</span><br><span class="line">X = [[<span class="string">'male'</span>, <span class="string">'from US'</span>, <span class="string">'uses Safari'</span>], [<span class="string">'female'</span>, <span class="string">'from Europe'</span>, <span class="string">'uses Firefox'</span>]]</span><br><span class="line">enc.fit(X)                                                             <span class="comment"># fit来学习编码</span></span><br><span class="line">temp=enc.transform([[<span class="string">'female'</span>, <span class="string">'from US'</span>, <span class="string">'uses Safari'</span>]]).toarray()   <span class="comment"># 进行编码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 二进制编码</span></span><br></pre></td></tr></table></figure>
+<p>面对分类特征，需要对特征进行编码，不同的编码方式对模型有不同的影响。下面分别介绍几种同编码方式对线性模型与树形模型的影响。例如对于A、B、O型血，其编码方式如下所示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>序号编码</th>
+<th>独热编码</th>
+<th>二进制编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编码</td>
+<td><strong>1     A<br>2     B<br>3     C</strong></td>
+<td><strong>1 0 0    A<br>0 1 0    B<br>0 0 1    C</strong></td>
+<td><strong>1 0 0    A<br>0 1 0    B<br>1 1 0    C</strong></td>
+</tr>
+<tr>
+<td>编码特点</td>
+<td>共同使用一个变量，类别特征具有大小关系</td>
+<td>不具有大小关系，每一个变量对应着一个类别</td>
+<td>不同类别之间具有某种联系，使得类别无法通过单一变量进行区分</td>
+</tr>
+<tr>
+<td>线性模型</td>
+<td>不同类别产生了大小关系，使得特征对模型的贡献度呈单调关系</td>
+<td><strong>不同类别分配不同的权重，使得每一个类别都有不同的贡献度。是线性模型最好的编码方式</strong></td>
+<td>例如类别C为1 1 0，是类别A与类别B的和，对模型贡献度也是两者之和。但是在实际应用中，类别C与类别A、B没有任何关系</td>
+</tr>
+<tr>
+<td>多分枝树模型</td>
+<td><strong>无影响。一次分裂，就能够将，不同类别放入不同的分支。是多分枝树最好的编码 方式</strong></td>
+<td>一次分支能够筛选出一类样本，如果想要筛选出所有样本，需要增加树的深度。本例中，树的深度起码为3。<strong>此时与二叉树没有区别。</strong></td>
+<td>一次分支能够筛选出部分样本，例如，对第一个分支进行分类，能够识别出A、C与B，其中类别A与类别C在一起；如果想要筛选出所有样本，需要增加树的深度。<strong>此时与二叉树没有区别。</strong></td>
+</tr>
+<tr>
+<td>二分支树模型</td>
+<td>一次分支，无法识别出所有类别或一种类别，其中部分类别绑定在一起。如果想要识别所有类别需要增加树的深度</td>
+<td>一次分支，只能识别出来一种类别。如果想要识别所有类别需要增加树的深度。</td>
+<td>一次分支，无法识别出所有类别，例如，对第一个分支进行分类，能够识别出A、C与B，其中类别A与类别C在一起。如果想要识别所有类别需要增加树的深度。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>注意</strong>：多分支树包括ID3、C4.5；二分支树包括CART、GBDT、XGBoost。但是目前sklearn里面的所有树模型都是二分支树模型</p>
+<h1 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h1><p>连续特征离散化的优势：</p>
 <ol>
-<li>删除缺失值</li>
+<li>离散特征的增加和减少都很容易，易于模型的快速迭代；</li>
+<li>稀疏向量内积乘法运算速度快，计算结果方便存储，容易扩展； </li>
+<li>逻辑回归属于广义线性模型，表达能力受限；单变量离散化为N个后，每个变量有单独的权重，相当于为模型<strong>引入了非线性</strong>，能够提升模型表达能力，加大拟合；例如使用独热编码，此时函数为非线性函数。</li>
+<li>离散化后<strong>可以进行特征交叉（多项式化）</strong>，由M+N个变量变为M*N个变量，进一步引入非线性，提升表达能力；</li>
+<li>离散化后的特征对异常数据有很强的鲁棒性：比如一个特征是年龄&gt;30是1，否则0。如果特征没有离散化，一个异常数据“年龄300岁”会给模型造成很大的干扰。</li>
+<li>特征离散化后，模型会更稳定，比如如果对用户年龄离散化，20-30作为一个区间，不会因为一个用户年龄长了一岁就变成一个完全不同的人。当然处于区间相邻处的样本会刚好相反，所以怎么划分区间是门学问。 </li>
 </ol>
-<p>这是一种很常用的策略。</p>
-<p>缺点：如果缺失值太多，最终删除到没有什么数据了。那就不好办了。</p>
+<p>李沐曾经说过：模型是使用离散特征还是连续特征，其实是一个“海量离散特征+简单模型” 同 “少量连续特征+复杂模型”的权衡。既可以离散化用线性模型，也可以用连续特征加深度学习。就看是喜欢折腾特征还是折腾模型了。通常来说，前者容易，而且可以n个人一起并行做，有成功经验；后者目前看很赞，能走多远还须拭目以待。</p>
+<h1 id="多项式化-amp-高维组合特征"><a href="#多项式化-amp-高维组合特征" class="headerlink" title="多项式化&amp;高维组合特征"></a>多项式化&amp;高维组合特征</h1><p>特征多项式化，能够有效的将不同特征组合起来，弥补了线性模型的不足；对于树形模型来说，模型会使用组合特征，当树的深度足够时，可以表达特征多项化的效果。4个特征$(x_1,x_2,x_3,x_4)$，度为2的多项式转换公式如下： </p>
+<script type="math/tex; mode=display">
+(x_{1}^{'},x_{2}^{'},x_{3}^{'},x_{4}^{'},\cdots ,x_{15}^{'})=\\(1,x_{1},x_{2},x_{3},x_{4},x_{1}^{2},x_{1}*x_{2},x_{1}*x_{3},x_{1}*x_{4},x_{2}^2,x_{2}*x_{3},x_{2}*x_{4},x_{3}^2,x_{3}*x_{4},x_{4}^2)</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">多项式变换</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data = pd.DataFrame(&#123;<span class="string">'Integer'</span>:[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>],<span class="string">'Categorical'</span>:[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>]&#125;)</span><br><span class="line"><span class="comment">#多项式转换</span></span><br><span class="line"><span class="comment">#参数degree为度，默认值为2.include_bias常数项</span></span><br><span class="line">poly = PolynomialFeatures(degree=<span class="number">2</span>,include_bias=<span class="keyword">False</span>)</span><br><span class="line">temp = poly.fit_transform(data)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>对于树形模型来说，模型会使用组合特征，当树的深度足够时，可以表达特征多项化的效果。例如$feature1\times feature2&gt;=500$是$class2$，$feaute1\times feature2&lt;500$是$class1$树模型额表达方式如下所示</p>
+<pre class="mermaid">  graph TD
+A[feature1]-->|<50|b[feature2] b--="">|<10|c[class1] b--="">|>=10|D[feture1 <br> ...]
+A-->|>=50|E[feature2]
+E-->|<10|f[feature1 <br=""> ...]
+E-->|>=10|G[class2]</10|f[feature1></10|c[class1]></50|b[feature2]></pre>
+
+</li>
+</ul>
+<h1 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h1><h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除数据表中含有空值的行</span></span><br><span class="line">df.dropna(how=<span class="string">'any'</span>,axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除缺失值列</span></span><br><span class="line">df.dropna(how=<span class="string">'any'</span>,axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>总览</th>
+<th>1. 牺牲了大量的数据，通过减少历史数据换取完整的信息，这样可能丢失了很多隐藏的重要信息；<br> 2. 当缺失数据比例较大时，特别是缺失数据非随机分布时，直接删除可能会导致数据发生偏离，比如原本的正态分布变为非正太；</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>删除样本</td>
+<td>删除样本以后，可能造成模型性能下降。当数据量过大时，只能通过实验评估删除数据对模型的影响，难以从理论上进行评估，原因有以下两个：<br>1. 删除之后样本，发生偏移，正负样本比例发生变化<br>2. 特征空间发生变化，删除样本之后，导致样本的某些特征分布发生变化</td>
+</tr>
+<tr>
+<td>删除特征</td>
+<td>删除样本以后，可能造成模型性能下降。当特征过多时，只能通过实验评估删除特征对模型的影响，难以从理论上进行评估，原因如下：<br>1. 通过计算正负样本在特征中的显著性变化或者IV值变化，可以判断单一特征对模型的影响。所以线性模型可以使用此种方法进行特征选择<br>2. 但是如果当特征与其他特征组合起来，共同影响模型，此时便难以判断特征的重要性</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>判断组合特征对于模型的影响。如下所示，性别中存在部分缺失样本，但是可以通过已知性别与年龄，共同判断类别：</p>
+<pre class="mermaid">graph TD
+A[年龄 <br> 范围0到100]-->|<=50|b[性别] b--="">|男<br>1岁1个,共50个|C[class1]
+B-->|女<br>1岁1个,共50个|D[class2]
+B-->|不详|H[男]
+A-->|>50|E[性别]
+E-->|男<br>1岁1个,共50个|F[class2]
+E-->|女<br>1岁1个,共50个|G[class1]
+E-->|不详|J[女]</=50|b[性别]></pre>
+
+<p>如果只有一项特征是无法进行判断的。例如年龄或者只有性别，此时样本呈现无偏分布。所以删除特征难以进行判断，因此根据特征值删除特征需要谨慎。</p>
+<h2 id="缺失值填充"><a href="#缺失值填充" class="headerlink" title="缺失值填充"></a>缺失值填充</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>操作方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>填充均值、中位数或众数</td>
+<td>效果一般，因为等于人为增加了噪声</td>
+</tr>
+<tr>
+<td>用其他变量做预测模型来算出缺失变量</td>
+<td>效果比方法1略好。有一个根本缺陷：<br>如果其他变量和缺失变量无关，则预测的结果无意义；如果预测结果相当准确，则又说明这个变量是没必要加入建模的</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用sklearn填充缺失值</span></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span>  Imputer</span><br><span class="line">imp=Imputer(missing_values=<span class="string">'NaN'</span>,strategy=<span class="string">'mean'</span>,axis=<span class="number">0</span>) <span class="comment">#median中位数 most_frequent众数</span></span><br><span class="line">imp.fit(x)</span><br><span class="line">imp.transform(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用pandas填充</span></span><br><span class="line">data_train.fillna(<span class="number">0</span>)     <span class="comment">#填充0</span></span><br><span class="line">data_train.fillna(data_train.mean())   <span class="comment"># 将所有行用各自的均值填充 </span></span><br><span class="line">data_train.fillna(data_train.mean()[<span class="string">'browse_his'</span>:<span class="string">'card_num'</span>])   <span class="comment"># 也可以指定某些行进行填充 </span></span><br><span class="line">data_train.fillna(method=<span class="string">'pad'</span>)        <span class="comment"># 用前一个数据代替NaN：method='pad'</span></span><br><span class="line">data_train.fillna(method=<span class="string">'bfill'</span>)      <span class="comment"># 与pad相反，bfill表示用后一个数据代替NaN</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="模型对缺失值的处理"><a href="#模型对缺失值的处理" class="headerlink" title="模型对缺失值的处理"></a>模型对缺失值的处理</h2><h3 id=""><a href="#" class="headerlink" title=" "></a> </h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># 定义工资改变特征缺失值处理函数，将有变化设为Yes，缺失设为No </span><br><span class="line">def set_salary_change(df):	df.loc[(df.salary_change.notnull()),&apos;salary_change&apos;]=&quot;Yes&quot;	df.loc[(df.salary_change.isnull()),&apos;salary_change&apos;]=&quot;No&quot;	return dfdata_train=set_salary_change(data_train)</span><br><span class="line"></span><br><span class="line"># 定义browse_his缺失值预测填充函数</span><br><span class="line"></span><br><span class="line">defset_missing_browse_his(df):</span><br><span class="line"></span><br><span class="line">	# 把已有的数值型特征取出来输入到RandomForestRegressor中</span><br><span class="line">	process_df=df[[browse_his&apos; , &apos;gender&apos;, &apos;job&apos;, &apos;edu&apos;, &apos;marriage&apos;, &apos;family_type&apos;]]</span><br><span class="line"></span><br><span class="line">	# 乘客分成已知该特征和未知该特征两部分</span><br><span class="line">	known=process_df[process_df.browse_his.notnull()].as_matrix()</span><br><span class="line">	unknown=process_df[process_df.browse_his.isnull()].as_matrix()</span><br><span class="line"></span><br><span class="line">	# X为特征属性值</span><br><span class="line">	X=known[:,1:]</span><br><span class="line">	# y为结果标签值</span><br><span class="line">	y=known[:,0]</span><br><span class="line"></span><br><span class="line">	# fit到RandomForestRegressor之中</span><br><span class="line">	rfr=RandomForestRegressor(random_state=0,n_estimators=2000,n_jobs=-1)</span><br><span class="line">	rfr.fit(X,y)</span><br><span class="line"></span><br><span class="line">	# 用得到的模型进行未知特征值预测</span><br><span class="line">	predicted=rfr.predict(unknown[:,1::])</span><br><span class="line">	# 用得到的预测结果填补原缺失数据</span><br><span class="line">	df.loc[(df.browse_his.isnull()),&apos;browse_his&apos;]=predicted</span><br><span class="line"></span><br><span class="line">	return df,rfr</span><br><span class="line"></span><br><span class="line">data_train,rfr=set_missing_brows</span><br></pre></td></tr></table></figure>
 <h3 id="数据填补"><a href="#数据填补" class="headerlink" title="数据填补"></a>数据填补</h3><p>对缺失值的插补大体可分为两种：<strong>替换缺失值，拟合缺失值，虚拟变量</strong>。替换是通过数据中非缺失数据的相似性来填补，其核心思想是发现相同群体的共同特征，拟合是通过其他特征建模来填补，虚拟变量是衍生的新变量代替缺失值。</p>
 <p><strong>替换缺失值</strong></p>
 <ul>
@@ -625,7 +750,6 @@ y^{'} &=w_1^{'}x_1^{'}+w_2^{'}x_2^{'}+b^{'}  \\
 <blockquote>
 <p>注：此方法虽然简单，但是不够精准，可能会引入噪声，或者会改变特征原有的分布。 下图左为填补前的特征分布，图右为填补后的分布，明显发生了畸变。因此，如果缺失值是随机性的，那么用平均值比较适合保证无偏，否则会改变原分布。</p>
 </blockquote>
-<p><img src="/2019/10/30/人工智能/特征工程/数据预处理/164e098fd78a077f" alt="img"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python中的使用：</span><br><span class="line">#使用price均值对NA进行填充</span><br><span class="line">df[&apos;price&apos;].fillna(df[&apos;price&apos;].mean())</span><br><span class="line">df[&apos;price&apos;].fillna(df[&apos;price&apos;].median())</span><br></pre></td></tr></table></figure>
 <h3 id="存在缺失值时的算法选择"><a href="#存在缺失值时的算法选择" class="headerlink" title="存在缺失值时的算法选择"></a>存在缺失值时的算法选择</h3><p>主流的机器学习模型千千万，很难一概而论。但有一些经验法则(rule of thumb)供参考：</p>
 <ul>
@@ -848,7 +972,7 @@ y^{'} &=w_1^{'}x_1^{'}+w_2^{'}x_2^{'}+b^{'}  \\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#归一化"><span class="nav-number">1.</span> <span class="nav-text">归一化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列特征"><span class="nav-number">1.1.</span> <span class="nav-text">列特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么树形模型不需要进行归一化、标准化"><span class="nav-number">1.1.1.</span> <span class="nav-text">为什么树形模型不需要进行归一化、标准化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#决策树与随机森林"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">决策树与随机森林</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBDT"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">GBDT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xgboost"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">xgboost</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归一化、标准化对线性模型的影响"><span class="nav-number">1.1.2.</span> <span class="nav-text">归一化、标准化对线性模型的影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行特征"><span class="nav-number">1.2.</span> <span class="nav-text">行特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalizer"><span class="nav-number">1.2.1.</span> <span class="nav-text">Normalizer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类-amp-编码"><span class="nav-number">2.</span> <span class="nav-text">分类&amp;编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#离散化"><span class="nav-number">3.</span> <span class="nav-text">离散化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多项式化"><span class="nav-number">4.</span> <span class="nav-text">多项式化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺失值处理"><span class="nav-number">5.</span> <span class="nav-text">缺失值处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除记录"><span class="nav-number">5.0.1.</span> <span class="nav-text">删除记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据填补"><span class="nav-number">5.0.2.</span> <span class="nav-text">数据填补</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在缺失值时的算法选择"><span class="nav-number">5.0.3.</span> <span class="nav-text">存在缺失值时的算法选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三、处理缺失值的算法"><span class="nav-number">5.0.3.1.</span> <span class="nav-text">三、处理缺失值的算法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#归一化"><span class="nav-number">1.</span> <span class="nav-text">归一化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列特征"><span class="nav-number">1.1.</span> <span class="nav-text">列特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么树形模型不需要进行归一化、标准化"><span class="nav-number">1.1.1.</span> <span class="nav-text">为什么树形模型不需要进行归一化、标准化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#决策树与随机森林"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">决策树与随机森林</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBDT"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">GBDT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xgboost"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">xgboost</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归一化、标准化对线性模型的影响"><span class="nav-number">1.1.2.</span> <span class="nav-text">归一化、标准化对线性模型的影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行特征"><span class="nav-number">1.2.</span> <span class="nav-text">行特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalizer"><span class="nav-number">1.2.1.</span> <span class="nav-text">Normalizer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类-amp-编码"><span class="nav-number">2.</span> <span class="nav-text">分类&amp;编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#离散化"><span class="nav-number">3.</span> <span class="nav-text">离散化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多项式化-amp-高维组合特征"><span class="nav-number">4.</span> <span class="nav-text">多项式化&amp;高维组合特征</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缺失值处理"><span class="nav-number">5.</span> <span class="nav-text">缺失值处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数据"><span class="nav-number">5.1.</span> <span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺失值填充"><span class="nav-number">5.2.</span> <span class="nav-text">缺失值填充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型对缺失值的处理"><span class="nav-number">5.3.</span> <span class="nav-text">模型对缺失值的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">5.3.1.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据填补"><span class="nav-number">5.3.2.</span> <span class="nav-text">数据填补</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在缺失值时的算法选择"><span class="nav-number">5.3.3.</span> <span class="nav-text">存在缺失值时的算法选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三、处理缺失值的算法"><span class="nav-number">5.3.3.1.</span> <span class="nav-text">三、处理缺失值的算法</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

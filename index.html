@@ -389,16 +389,37 @@
 
       
         
-          <ul>
-<li><p>归一化</p>
-</li>
-<li><p>分类与编码</p>
-</li>
-<li><p>数据离散化</p>
-</li>
-<li><p>多项式化</p>
-</li>
-<li><p>缺失值处理</p></li></ul>
+          <div class="table-container">
+<table>
+<thead>
+<tr>
+<th>预处理</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>归一化</td>
+<td>列：preprocessing.MinMaxScaler<br>        preprocessing.StandardScaler<br>行：preprocessing.Normalizer</td>
+</tr>
+<tr>
+<td>分类与编码</td>
+<td>preprocessing.OrdinalEncoder()<br>preprocessing.OneHotEncoder()</td>
+</tr>
+<tr>
+<td>数据离散化</td>
+<td></td>
+</tr>
+<tr>
+<td>多项式化</td>
+<td>PolynomialFeatures(degree=2,include_bias=False)</td>
+</tr>
+<tr>
+<td>缺失值处理</td>
+</tr>
+</tbody>
+</table>
+</div>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/10/30/人工智能/特征工程/数据预处理/#more" rel="contents">
